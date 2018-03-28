@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.farazannajmi.majesticlife.MainMenuActivity">
 
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Hello"/>-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,23 +63,24 @@
                 app:srcCompat="@drawable/ic_launcher_background"
                 tools:ignore="VectorDrawableCompat" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ProgressBar
-                android:id="@+id/Main_HP_progBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="57dp"
-                android:layout_weight="1" />
-            <ProgressBar
-                android:id="@+id/Main_SP_progBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="57dp"
-                android:layout_weight="1" />
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ProgressBar
+                    android:id="@+id/Main_HP_progBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="57dp"
+                    android:layout_weight="1" />
+                <ProgressBar
+                    android:id="@+id/Main_SP_progBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="57dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,17 +88,20 @@
 
                 <Button
                     android:id="@+id/Main_Skills_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Skills" />
+                    android:onClick="UiElementsOnClick"
+                    android:text="@string/skills" />
+
                 <Button
                     android:id="@+id/Main_DoActivity_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Activities" />
+                    android:text="@string/activities" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,17 +109,21 @@
 
                 <Button
                     android:id="@+id/Main_Plan_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Plan" />
+                    android:text="@string/plan"
+                    android:onClick="UiElementsOnClick"/>
+
                 <Button
                     android:id="@+id/Main_Quests_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Quests" />
+                    android:text="@string/quests"
+                    android:onClick="UiElementsOnClick"/>
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

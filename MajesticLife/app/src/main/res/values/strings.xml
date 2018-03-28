@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Majestic Life</string>
+    <string name="plan">Plan</string>
+    <string name="quests">Quests</string>
+    <string name="skills">Skills</string>
+    <string name="activities">Activities</string>
 </resources>
