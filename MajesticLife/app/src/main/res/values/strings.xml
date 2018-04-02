@@ -4,4 +4,7 @@
     <string name="quests">Quests</string>
     <string name="skills">Skills</string>
     <string name="activities">Activities</string>
+    <string name="username">Username</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
 </resources>
