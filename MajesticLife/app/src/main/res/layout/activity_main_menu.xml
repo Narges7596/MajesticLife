@@ -34,10 +34,9 @@
 
                 <ImageView
                     android:id="@+id/Main_UserAvatar_img"
-                    android:layout_width="52dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_launcher_background"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/ic_king"
                     tools:ignore="VectorDrawableCompat"
                     android:onClick="UiElementsOnClick"/>
 
@@ -93,7 +92,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="UiElementsOnClick"
-                    android:text="@string/skills" />
+                    android:text="@string/skills"
+                    android:drawableTop="@drawable/ic_skills"/>
 
                 <Button
                     android:id="@+id/Main_DoActivity_btn"
@@ -101,7 +101,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="UiElementsOnClick"
-                    android:text="@string/activities" />
+                    android:text="@string/activities"
+                    android:drawableTop="@drawable/ic_majestic_activities"/>
             </LinearLayout>
 
             <LinearLayout
@@ -115,7 +116,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="@string/plan"
-                    android:onClick="UiElementsOnClick"/>
+                    android:onClick="UiElementsOnClick"
+                    android:drawableTop="@drawable/ic_plan"/>
 
                 <Button
                     android:id="@+id/Main_Quests_btn"
@@ -123,7 +125,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="@string/quests"
-                    android:onClick="UiElementsOnClick"/>
+                    android:onClick="UiElementsOnClick"
+                    android:drawableTop="@drawable/ic_quests"/>
             </LinearLayout>
 
         </LinearLayout>
