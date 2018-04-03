@@ -58,9 +58,9 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_launcher_background"
+                app:srcCompat="@drawable/ic_view"
                 tools:ignore="VectorDrawableCompat" />
 
             <LinearLayout
