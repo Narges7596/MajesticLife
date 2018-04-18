@@ -1,0 +1,3 @@
+- the custom list view worked!! hooray!
+- we should use string values for set texts
+- global variable! wierd variable!!

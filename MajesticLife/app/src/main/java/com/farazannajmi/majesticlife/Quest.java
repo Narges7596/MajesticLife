@@ -12,5 +12,5 @@ public class Quest
     public String Name_q;
     public Time Deadline;
 
-    public List<Activity_Time> ActivityCounts;
+    public List<Faaliat_Count> FaaliatCounts;
 }

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.farazannajmi.majesticlife.ActivitiesMajesticActivity">
+    tools:context="com.farazannajmi.majesticlife.FaaliatsActivity">
+
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/MajesticActivity_ListView">
+        android:layout_height="wrap_content"
+        android:id="@+id/FaaliatsActivity_ListView"/>
 
-    </ListView>
 </android.support.constraint.ConstraintLayout>

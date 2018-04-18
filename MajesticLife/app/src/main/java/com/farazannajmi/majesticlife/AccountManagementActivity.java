@@ -6,12 +6,14 @@ import android.view.View;
 
 public class AccountManagementActivity extends AppCompatActivity
 {
+    public AppManager TheAppManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_management);
+        TheAppManager = (AppManager) getApplicationContext();
     }
 
     public void UiElementsOnClick(View view)

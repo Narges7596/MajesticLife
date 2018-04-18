@@ -3,6 +3,7 @@
     package="com.farazannajmi.majesticlife">
 
     <application
+        android:name="com.farazannajmi.majesticlife.AppManager"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,12 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccountManagementActivity" />
+        <activity android:name=".AccountManagementActivity"/>
         <activity android:name=".SkillsActivity" />
-        <activity android:name=".ActivitiesMajesticActivity" />
         <activity android:name=".PlanActivity" />
         <activity android:name=".QuestsActivity" />
-        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".ShopActivity" />
+        <activity android:name=".FaaliatsActivity"/>
     </application>
 
 </manifest>

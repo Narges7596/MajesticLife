@@ -1,17 +1,14 @@
 package com.farazannajmi.majesticlife;
 
-import android.graphics.Bitmap;
-
-import java.sql.Struct;
 import java.util.List;
 
 /**
- * Created by Narges on 3/28/2018.
+ * Created by Narges on 4/18/2018.
  */
 
-public class Activity_Majesty
+public class Faaliat
 {
-    public String Name_ac;
+    public String Name;
     //public Bitmap Avatar;
 
     public int XpCount;
@@ -20,9 +17,9 @@ public class Activity_Majesty
 
     public List<Skill_Time> SkillTimes;
 
-    public Activity_Majesty (String Name_ac, /*Bitmap Avatar,*/ int XpCount, int HpCount, int SpCount, List<Skill_Time> SkillTimes)
+    public Faaliat (String Name, /*Bitmap Avatar,*/ int XpCount, int HpCount, int SpCount, List<Skill_Time> SkillTimes)
     {
-        this.Name_ac = Name_ac;
+        this.Name = Name;
         //this.Avatar = Avatar;
         this.XpCount = XpCount;
         this.HpCount = HpCount;

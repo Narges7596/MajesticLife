@@ -1,0 +1,3 @@
+All in app activites are called "Faaliat" so that it doesn't mistakens with Android Activities.
+
+hp_txt.setText(Integer.toString(faaliat.HpCount)); //when we want to set text with an int value we should convert it to string

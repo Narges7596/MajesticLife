@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 
 public class MainMenuActivity extends AppCompatActivity
 {
+    public AppManager TheAppManager;
 
     public ImageView UserAvatar_img;
     public ProgressBar XpLevel_progBar;
@@ -18,7 +19,11 @@ public class MainMenuActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        TheAppManager = (AppManager) getApplicationContext();
 
+        TheAppManager = new AppManager();
+
+        //getting UI elements
         UserAvatar_img = (ImageView) findViewById(R.id.Main_UserAvatar_img);
         XpLevel_progBar = (ProgressBar) findViewById(R.id.Main_XpLevel_progBar);
     }
@@ -39,9 +44,9 @@ public class MainMenuActivity extends AppCompatActivity
                 startActivity(skillsIntent);
                 break;
             }
-            case R.id.Main_DoActivity_btn:
+            case R.id.Main_Faaliat_btn:
             {
-                Intent activitiesIntent = new Intent(MainMenuActivity.this, ActivitiesMajesticActivity.class);
+                Intent activitiesIntent = new Intent(MainMenuActivity.this, FaaliatsActivity.class);
                 startActivity(activitiesIntent);
                 break;
             }

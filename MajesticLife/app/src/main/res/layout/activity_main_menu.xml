@@ -104,7 +104,7 @@
                     android:drawableTop="@drawable/ic_skills"/>
 
                 <Button
-                    android:id="@+id/Main_DoActivity_btn"
+                    android:id="@+id/Main_Faaliat_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
