@@ -8,11 +8,19 @@ import android.graphics.Bitmap;
 
 public class Skill
 {
-    public String Name_sk;
+    public String Name;
     public Bitmap Avatar;
     public int Level;
     /**
      * the increasing value to reach the next level
      */
     public int Progress;
+
+    public Skill (String Name/*, Bitmap Avatar*/, int Level, int Progress)
+    {
+        this.Name = Name;
+        //this.Avatar = Avatar;
+        this.Level = Level;
+        this.Progress = Progress;
+    }
 }

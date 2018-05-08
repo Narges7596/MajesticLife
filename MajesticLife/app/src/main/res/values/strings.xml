@@ -7,4 +7,6 @@
     <string name="username">Username</string>
     <string name="sign_up">Sign Up</string>
     <string name="login">Login</string>
+    <string name="Edit">edit</string>
+    <string name="Graph">graph</string>
 </resources>

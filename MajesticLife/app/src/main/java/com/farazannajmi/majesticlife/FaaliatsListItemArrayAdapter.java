@@ -40,7 +40,6 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         LayoutInflater inflater = LayoutInflater.from(getContext());
         convertView = inflater.inflate(R.layout.listitem_faaliat, parent, false);
-        //View view = inflater.inflate(R.layout.listitem_faaliat, null);
 
         TextView name_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_name_txt);
         TextView hp_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_hp_txt);
@@ -49,7 +48,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         TextView skills_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_skills_txt);
         ImageView avatar_img = (ImageView) convertView.findViewById(R.id.listItem_faaliat_avatar_img);
 
-        //set address and description
+        //setting UI values
         name_txt.setText(faaliat.Name);
         hp_txt.setText(Integer.toString(faaliat.HpCount));
         sp_txt.setText(Integer.toString(faaliat.SpCount));
@@ -58,12 +57,12 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         String sk_txt = "";
         for (int i = 0; i < faaliat.SkillTimes.size(); i++)
         {
-            sk_txt += "+" + faaliat.SkillTimes.get(i).RepeatingTime + " " + faaliat.SkillTimes.get(i).TheSill.Name_sk + "\n";
+            sk_txt += "+" + faaliat.SkillTimes.get(i).RepeatingTime + " " + faaliat.SkillTimes.get(i).TheSill.Name + "\n";
         }
 
         skills_txt.setText(sk_txt);
 
-//        //get the image associated with this property
+        //get the image associated with this property
 //        int imageID = context.getResources().getIdentifier(property.getImage(), "drawable", context.getPackageName());
 //        image.setImageResource(imageID);
 

@@ -19,8 +19,8 @@ public class MainMenuActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        TheAppManager = (AppManager) getApplicationContext();
 
+        TheAppManager = (AppManager) getApplicationContext();
         TheAppManager = new AppManager();
 
         //getting UI elements
