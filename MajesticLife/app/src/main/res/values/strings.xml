@@ -9,4 +9,6 @@
     <string name="login">Login</string>
     <string name="Edit">edit</string>
     <string name="Graph">graph</string>
+    <string name="hp">HP</string>
+    <string name="sp">SP</string>
 </resources>

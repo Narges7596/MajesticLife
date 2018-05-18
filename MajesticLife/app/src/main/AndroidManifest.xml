@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.farazannajmi.majesticlife">
 
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="27" />
+
     <application
         android:name="com.farazannajmi.majesticlife.AppManager"
         android:allowBackup="true"

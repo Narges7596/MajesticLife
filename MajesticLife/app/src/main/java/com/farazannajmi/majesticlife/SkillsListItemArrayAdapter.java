@@ -1,11 +1,13 @@
 package com.farazannajmi.majesticlife;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -45,15 +47,16 @@ public class SkillsListItemArrayAdapter extends ArrayAdapter<Skill>
         ImageView avatar_img = (ImageView) convertView.findViewById(R.id.listItem_skill_avatar_img);
         ProgressBar progress_Bar = (ProgressBar) convertView.findViewById(R.id.listItem_skill_progressBar);
 
-        if(progress_Bar.isIndeterminate())
-            progress_Bar.setIndeterminate(false);
-
-        //set address and description
+        //setting info in UI:
         name_txt.setText(skill.Name);
         level_txt.setText(Integer.toString(skill.Level));
 
         progress_Bar.setMax(100);
         progress_Bar.setProgress(skill.Progress);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progress_Bar, "progress", 0, skill.Progress); // see this max value coming back here, we animate towards that value
+        animation.setDuration(1000); // in milliseconds
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
 
         //get the image associated with this property
 //        int imageID = context.getResources().getIdentifier(property.getImage(), "drawable", context.getPackageName());
