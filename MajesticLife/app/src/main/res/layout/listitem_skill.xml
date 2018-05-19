@@ -28,7 +28,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            android:progressDrawable="@drawable/circular" />
+            android:progressDrawable="@drawable/circular"
+            android:rotation="90"/>
 
         <TextView
             android:id="@+id/listItem_skill_level_txt"

@@ -18,12 +18,41 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/AccountM_Avatar_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat= "@drawable/ic_king"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/AccountM_Username_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/level"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -31,34 +60,44 @@
 
                 <ImageView
                     android:id="@+id/AccountM_Level_img"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerInParent="true"
                     app:srcCompat="@drawable/ic_circle"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
-                    android:id="@+id/AccountM_Level_txt"
+                    android:id="@+id/AccountM_XpLevel_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Level"
+                    android:text="10"
                     android:textColor="@android:color/black"
                     android:textSize="15sp" />
             </RelativeLayout>
-
 
             <ProgressBar
                 android:id="@+id/AccountM_XpLevel_progBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:max="100" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/hp"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -66,34 +105,44 @@
 
                 <ImageView
                     android:id="@+id/AccountM_HP_img"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerInParent="true"
                     app:srcCompat="@drawable/ic_circle"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
-                    android:id="@+id/AccountM_HP_txt"
+                    android:id="@+id/AccountM_HpLevel_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/hp"
+                    android:text="5"
                     android:textColor="@android:color/black"
                     android:textSize="15sp" />
             </RelativeLayout>
-
 
             <ProgressBar
                 android:id="@+id/AccountM_HP_progBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:max="100" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/sp"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -101,18 +150,18 @@
 
                 <ImageView
                     android:id="@+id/AccountM_SP_img"
-                    android:layout_width="wrap_content"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerInParent="true"
                     app:srcCompat="@drawable/ic_circle"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
-                    android:id="@+id/AccountM_SP_txt"
+                    android:id="@+id/AccountM_SpLevel_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/sp"
+                    android:text="12"
                     android:textColor="@android:color/black"
                     android:textSize="15sp" />
             </RelativeLayout>
@@ -121,33 +170,24 @@
                 android:id="@+id/AccountM_SP_progBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:max="100" />
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/AccountM_Avatar_img"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/AccountM_Username_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/username" />
 
         <Button
             android:id="@+id/AccountM_Signup_btn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:onClick="UiElementsOnClick"
-            android:text="@string/sign_up" />
+            android:text="@string/sign_up"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/AccountM_or_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="or" />
+            android:text="or"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/AccountM_Login_btn"

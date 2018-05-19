@@ -39,5 +39,12 @@ public class AppManager extends Application
         Faaliats = new ArrayList<Faaliat>();
         Skills = new ArrayList<Skill>();
         User = new User_Majesty();
+        //User.Avatar = ...
+        User.XP = 0;
+        User.HP = 0;
+        User.SP = 0;
+        User.XpLevel = 1;
+        User.HpLevel = 1;
+        User.SpLevel = 1;
     }
 }

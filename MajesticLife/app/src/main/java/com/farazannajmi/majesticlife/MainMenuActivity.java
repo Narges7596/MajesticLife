@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.backtory.java.HttpStatusCode;
 import com.backtory.java.internal.BacktoryCallBack;
@@ -20,6 +21,7 @@ public class MainMenuActivity extends AppCompatActivity
     public AppManager TheAppManager;
 
     public ImageView UserAvatar_img;
+    public TextView Username_txt;
     public ProgressBar XpLevel_progBar;
 
     @Override
@@ -32,6 +34,7 @@ public class MainMenuActivity extends AppCompatActivity
 
         //getting UI elements
         UserAvatar_img = (ImageView) findViewById(R.id.Main_UserAvatar_img);
+        Username_txt = (TextView) findViewById(R.id.Main_UserName_txt);
         XpLevel_progBar = (ProgressBar) findViewById(R.id.Main_XpLevel_progBar);
 
         //region handling login user
@@ -67,6 +70,9 @@ public class MainMenuActivity extends AppCompatActivity
                         editor.putString("UserName", newUsername);
                         editor.putString("UserPassword", newPassword);
 
+                        TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                        Username_txt.setText(newUsername);
+
                         editor.commit();
                         //endregion
                     }
@@ -85,31 +91,36 @@ public class MainMenuActivity extends AppCompatActivity
             String username = sharedPref.getString("UserName", "");
             String password = sharedPref.getString("UserPassword", "");
 
-            // Pass user info to login
-            BacktoryUser.loginInBackground(username, password,
-                    new BacktoryCallBack<Void>()
-                    {
-                        @Override
-                        public void onResponse(BacktoryResponse<Void> response)
-                        {
-                            // Checking result of operation
-                            if (response.isSuccessful())
-                            {
-                                // Login successfull
-                                Log.d("Backtory", "Logged in as username: " + BacktoryUser.getCurrentUser().getUsername());
-                            }
-                            else if (response.code() == HttpStatusCode.Unauthorized.code())
-                            {
-                                // Username 'mohx' with password '123456' is wrong
-                                Log.d("Backtory", "Failed to log in: Either username or password is wrong");
-                            }
-                            else
-                            {
-                                // Operation generally failed, maybe internet connection issue
-                                Log.d("Backtory", "Failed to log in: " + response.code());
-                            }
-                        }
-                    });
+            TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+            Username_txt.setText(TheAppManager.User.CurrentBacktoryUser.getUsername());
+
+            Log.d("WorkFlow", "Username: " + TheAppManager.User.CurrentBacktoryUser.getUsername());
+
+//            // Pass user info to login
+//            BacktoryUser.loginInBackground(username, password,
+//                    new BacktoryCallBack<Void>()
+//                    {
+//                        @Override
+//                        public void onResponse(BacktoryResponse<Void> response)
+//                        {
+//                            // Checking result of operation
+//                            if (response.isSuccessful())
+//                            {
+//                                // Login successfull
+//                                Log.d("Backtory", "Logged in as username: " + BacktoryUser.getCurrentUser().getUsername());
+//                            }
+//                            else if (response.code() == HttpStatusCode.Unauthorized.code())
+//                            {
+//                                // Username 'mohx' with password '123456' is wrong
+//                                Log.d("Backtory", "Failed to log in: Either username or password is wrong");
+//                            }
+//                            else
+//                            {
+//                                // Operation generally failed, maybe internet connection issue
+//                                Log.d("Backtory", "Failed to log in: " + response.code());
+//                            }
+//                        }
+//                    });
         }
         //endregion
     }
