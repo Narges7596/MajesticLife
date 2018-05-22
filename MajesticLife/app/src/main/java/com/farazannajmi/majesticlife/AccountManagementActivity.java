@@ -1,11 +1,16 @@
 package com.farazannajmi.majesticlife;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.backtory.java.internal.BacktoryUser;
+import com.backtory.java.model.GuestRegistrationParam;
 
 public class AccountManagementActivity extends AppCompatActivity
 {
@@ -41,9 +46,9 @@ public class AccountManagementActivity extends AppCompatActivity
 
         //Avatar_img.setImageBitmap(TheAppManager.User.Avatar);
         Username_txt.setText(TheAppManager.User.CurrentBacktoryUser.getUsername());
-        XpLevel_txt.setText(TheAppManager.User.XpLevel);
-        HpLevel_txt.setText(TheAppManager.User.HpLevel);
-        SpLevel_txt.setText(TheAppManager.User.SpLevel);
+        XpLevel_txt.setText(Integer.toString(TheAppManager.User.XpLevel));
+        HpLevel_txt.setText(Integer.toString(TheAppManager.User.HpLevel));
+        SpLevel_txt.setText(Integer.toString(TheAppManager.User.SpLevel));
         XpLevel_progBar.setProgress(TheAppManager.User.XP);
         HpLevel_progBar.setProgress(TheAppManager.User.HP);
         SpLevel_progBar.setProgress(TheAppManager.User.SP);
@@ -57,10 +62,47 @@ public class AccountManagementActivity extends AppCompatActivity
         {
             case R.id.AccountM_Signup_btn:
             {
+                Log.d("WorkFlow", "Clicked on sign up btn in account management activity.");
+
+                //https://developer.android.com/guide/topics/ui/dialogs
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext()   );
+                //region complete registration from guest to user
+//
+//                GuestRegistrationParam params = new GuestRegistrationParam.Builder().
+//                        //setFirstName("alireza").
+//                        //setLastName("farahani").
+//                        setEmail("alireza.farahani@gmail.com").
+//                        setNewPassword("123456").
+//                        setNewUsername("a_farahani").
+//                        build();
+//
+//                // CurrentUser is your guest user, so get your currentUser and complete his/her registration
+//                BacktoryUser.getCurrentUser().completeRegistrationInBackground(params,
+//                        new BacktoryCallBack<BacktoryUser>() {
+//
+//                            // CompleteRegistration done (fail or success), handling it:
+//                            @Override
+//                            public void onResponse(BacktoryResponse<BacktoryUser> response) {
+//                                // Checking result of operation
+//                                if (response.isSuccessful()) {
+//                                    // Hooray, You are a normal user now
+//                                    String firstName = response.body().getFirstName();
+//                                    Log.d(TAG, firstName + ", thanks for registration");
+//                                } else if (response.code() == HttpStatusCode.Conflict.code())
+//                                    // You request username(= a_farahani) already exists
+//                                    Log.d(TAG, "a user with this username already exist");
+//                            } else {
+//                                // Operation generally failed, maybe internet connection issue
+//                                Log.d(TAG, "registration failed");
+//                            }
+//                        }
+//            });
+                //endregion
                 break;
             }
             case R.id.AccountM_Login_btn:
             {
+                Log.d("WorkFlow", "Clicked on log in btn in account management activity.");
                 break;
             }
             default:

@@ -12,4 +12,7 @@
     <string name="hp">HP</string>
     <string name="sp">SP</string>
     <string name="level">Level</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="password">password</string>
 </resources>
