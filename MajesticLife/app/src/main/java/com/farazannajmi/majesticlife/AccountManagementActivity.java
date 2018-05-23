@@ -1,18 +1,27 @@
 package com.farazannajmi.majesticlife;
 
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.backtory.java.HttpStatusCode;
+import com.backtory.java.internal.BacktoryCallBack;
+import com.backtory.java.internal.BacktoryResponse;
 import com.backtory.java.internal.BacktoryUser;
 import com.backtory.java.model.GuestRegistrationParam;
 
-public class AccountManagementActivity extends AppCompatActivity
+public class AccountManagementActivity extends FragmentActivity
+        implements SignupDialogFragment.SignupDialogListener
 {
     public AppManager TheAppManager;
 
@@ -24,6 +33,9 @@ public class AccountManagementActivity extends AppCompatActivity
     public ProgressBar XpLevel_progBar;
     public ProgressBar HpLevel_progBar;
     public ProgressBar SpLevel_progBar;
+    public Button Signup_btn;
+    public Button Login_btn;
+    public TextView Or_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +45,7 @@ public class AccountManagementActivity extends AppCompatActivity
 
         TheAppManager = (AppManager) getApplicationContext();
 
+        //getting UI elements:
         Avatar_img = findViewById(R.id.AccountM_Avatar_img);
         Username_txt = findViewById(R.id.AccountM_Username_txt);
         XpLevel_txt = findViewById(R.id.AccountM_XpLevel_txt);
@@ -41,9 +54,11 @@ public class AccountManagementActivity extends AppCompatActivity
         XpLevel_progBar = findViewById(R.id.AccountM_XpLevel_progBar);
         HpLevel_progBar = findViewById(R.id.AccountM_HP_progBar);
         SpLevel_progBar = findViewById(R.id.AccountM_SP_progBar);
+        Signup_btn = findViewById(R.id.AccountM_Signup_btn);
+        Login_btn = findViewById(R.id.AccountM_Login_btn);
+        Or_txt = findViewById(R.id.AccountM_or_txt);
 
         //region setting right UI values!
-
         //Avatar_img.setImageBitmap(TheAppManager.User.Avatar);
         Username_txt.setText(TheAppManager.User.CurrentBacktoryUser.getUsername());
         XpLevel_txt.setText(Integer.toString(TheAppManager.User.XpLevel));
@@ -53,6 +68,14 @@ public class AccountManagementActivity extends AppCompatActivity
         HpLevel_progBar.setProgress(TheAppManager.User.HP);
         SpLevel_progBar.setProgress(TheAppManager.User.SP);
 
+        if(BacktoryUser.getCurrentUser().isGuest())
+            Signup_btn.setText(R.string.sign_up);
+        else
+        {
+            Signup_btn.setText(R.string.change_account);
+            Login_btn.setVisibility(View.INVISIBLE);
+            Or_txt.setVisibility(View.INVISIBLE);
+        }
         //endregion
     }
 
@@ -64,40 +87,9 @@ public class AccountManagementActivity extends AppCompatActivity
             {
                 Log.d("WorkFlow", "Clicked on sign up btn in account management activity.");
 
-                //https://developer.android.com/guide/topics/ui/dialogs
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext()   );
-                //region complete registration from guest to user
-//
-//                GuestRegistrationParam params = new GuestRegistrationParam.Builder().
-//                        //setFirstName("alireza").
-//                        //setLastName("farahani").
-//                        setEmail("alireza.farahani@gmail.com").
-//                        setNewPassword("123456").
-//                        setNewUsername("a_farahani").
-//                        build();
-//
-//                // CurrentUser is your guest user, so get your currentUser and complete his/her registration
-//                BacktoryUser.getCurrentUser().completeRegistrationInBackground(params,
-//                        new BacktoryCallBack<BacktoryUser>() {
-//
-//                            // CompleteRegistration done (fail or success), handling it:
-//                            @Override
-//                            public void onResponse(BacktoryResponse<BacktoryUser> response) {
-//                                // Checking result of operation
-//                                if (response.isSuccessful()) {
-//                                    // Hooray, You are a normal user now
-//                                    String firstName = response.body().getFirstName();
-//                                    Log.d(TAG, firstName + ", thanks for registration");
-//                                } else if (response.code() == HttpStatusCode.Conflict.code())
-//                                    // You request username(= a_farahani) already exists
-//                                    Log.d(TAG, "a user with this username already exist");
-//                            } else {
-//                                // Operation generally failed, maybe internet connection issue
-//                                Log.d(TAG, "registration failed");
-//                            }
-//                        }
-//            });
-                //endregion
+                //showing dialogue popup to get username, password and email for sign up
+                SignupDialogFragment signupDialogue = new SignupDialogFragment();
+                signupDialogue.show(getFragmentManager(), "SignupDialogFragment");
                 break;
             }
             case R.id.AccountM_Login_btn:
@@ -108,5 +100,47 @@ public class AccountManagementActivity extends AppCompatActivity
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog, String username, String email, String password)
+    {
+        Log.d("WorkFlow", "Clicked Sign up on SignupDialog");
+
+        dialog.dismiss();
+
+        GuestRegistrationParam params = new GuestRegistrationParam.
+                Builder().
+                setNewUsername(username).
+                setEmail(email).
+                setNewPassword(password).
+                build();
+
+        // CurrentUser is your guest user, so get your currentUser and complete his/her registration
+        BacktoryUser.getCurrentUser().completeRegistrationInBackground(params,
+                new BacktoryCallBack<BacktoryUser>()
+                {
+                    @Override
+                    public void onResponse(BacktoryResponse<BacktoryUser> response)
+                    {
+                        if (response.isSuccessful())
+                        {
+                            String uName = response.body().getUsername();
+                            Log.d("Backtory", "Successfully completed registered as " + uName);
+
+                            TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+
+                            Username_txt.setText(uName);
+                        }
+                        else if (response.code() == HttpStatusCode.Conflict.code())
+                        {
+                            Log.d("Backtory", "Failed completing registration: " + response.message());
+                        }
+                        else
+                        {
+                            Log.d("Backtory", "Failed completing registration: " + response.message());
+                        }
+                    }
+                });
     }
 }
