@@ -119,7 +119,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="UiElementsOnClick"
-                    android:text="@string/activities"
+                    android:text="@string/faaliats"
                     android:drawableTop="@drawable/ic_majestic_activities"/>
             </LinearLayout>
 

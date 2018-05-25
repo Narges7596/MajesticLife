@@ -107,8 +107,6 @@ public class AccountManagementActivity extends FragmentActivity
     {
         Log.d("WorkFlow", "Clicked Sign up on SignupDialog");
 
-        dialog.dismiss();
-
         GuestRegistrationParam params = new GuestRegistrationParam.
                 Builder().
                 setNewUsername(username).
@@ -135,10 +133,13 @@ public class AccountManagementActivity extends FragmentActivity
                         else if (response.code() == HttpStatusCode.Conflict.code())
                         {
                             Log.d("Backtory", "Failed completing registration: " + response.message());
+                            Toast.makeText(getApplicationContext(), "Username is already taken! Please try another one.", Toast.LENGTH_LONG).show();
                         }
                         else
                         {
-                            Log.d("Backtory", "Failed completing registration: " + response.message());
+                            Log.d("Backtory", "Failed completing registration: " + response.message() + response.code());
+                            Toast.makeText(getApplicationContext(), "Failed completing registration! Please try again later.", Toast.LENGTH_LONG).show();
+
                         }
                     }
                 });

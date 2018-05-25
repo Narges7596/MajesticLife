@@ -1,10 +1,12 @@
 package com.farazannajmi.majesticlife;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-/**
- * Created by Narges on 4/18/2018.
- */
+import javax.xml.xpath.XPathConstants;
+
 
 public class Faaliat
 {

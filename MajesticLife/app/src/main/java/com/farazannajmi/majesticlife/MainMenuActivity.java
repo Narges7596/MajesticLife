@@ -3,6 +3,8 @@ package com.farazannajmi.majesticlife;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.backtory.java.HttpStatusCode;
 import com.backtory.java.internal.BacktoryCallBack;
@@ -37,64 +40,69 @@ public class MainMenuActivity extends AppCompatActivity
         Username_txt = (TextView) findViewById(R.id.Main_UserName_txt);
         XpLevel_progBar = (ProgressBar) findViewById(R.id.Main_XpLevel_progBar);
 
-        //region handling login user
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        //checking internet connection:
+        ConnectivityManager cm =
+                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        //if it is the first time app runs, the FirstTime value becomes true:
-        boolean firstTime = sharedPref.getBoolean("FirstTime", true);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
-        if(firstTime) //if it's the first time opening the app and hasn't make a user in backtory
+        if(isConnected)
         {
-            Log.d("WorkFlow", "First Time running app.");
+            Toast.makeText(getApplicationContext(), "Connected to the Internet!", Toast.LENGTH_SHORT).show();
 
-            // Request a guest user from backtory:
-            BacktoryUser.loginAsGuestInBackground(new BacktoryCallBack<Void>()
+            //region handling login user
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+            //if it is the first time app runs, the FirstTime value becomes true:
+            boolean firstTime = sharedPref.getBoolean("FirstTime", true);
+
+            if (firstTime) //if it's the first time opening the app and hasn't make a user in backtory
             {
-                @Override
-                public void onResponse(BacktoryResponse<Void> response)
-                {
-                    if(response.isSuccessful())
-                    {
-                        // Getting new username and password from CURRENT user
-                        String newUsername = BacktoryUser.getCurrentUser().getUsername();
-                        String newPassword = BacktoryUser.getCurrentUser().getGuestPassword();
+                Log.d("WorkFlow", "First Time running app.");
 
-                        Log.d("Backtory", "Logged in as guest, username: " + newUsername +
-                                " password: " + newPassword);
+                // Request a guest user from backtory:
+                BacktoryUser.loginAsGuestInBackground(new BacktoryCallBack<Void>() {
+                    @Override
+                    public void onResponse(BacktoryResponse<Void> response) {
+                        if (response.isSuccessful()) {
+                            // Getting new username and password from CURRENT user
+                            String newUsername = BacktoryUser.getCurrentUser().getUsername();
+                            String newPassword = BacktoryUser.getCurrentUser().getGuestPassword();
 
-                        //region saving
-                        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPref.edit();
+                            Log.d("Backtory", "Logged in as guest, username: " + newUsername +
+                                    " password: " + newPassword);
 
-                        editor.putBoolean("FirstTime", false);
-                        editor.putString("UserName", newUsername);
-                        editor.putString("UserPassword", newPassword);
+                            //region saving
+                            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
 
-                        TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-                        Username_txt.setText(newUsername);
+                            editor.putBoolean("FirstTime", false);
+                            editor.putString("UserName", newUsername);
+                            editor.putString("UserPassword", newPassword);
 
-                        editor.commit();
-                        //endregion
+                            TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                            Username_txt.setText(newUsername);
+
+                            editor.commit();
+                            //endregion
+                        } else {
+                            Log.d("Backtory", "Failed log in as guest: " + response.code());
+                        }
                     }
-                    else
-                    {
-                        Log.d("Backtory", "Failed log in as guest: " + response.code());
-                    }
-                }
-            });
-        }
-        else //not the first time logging in
-        {
-            Log.d("WorkFlow", "Not the first Time running app.");
+                });
+            } else //not the first time logging in
+            {
+                Log.d("WorkFlow", "Not the first Time running app.");
 
-            // Fetch username/password from SharedPref
-            String username = sharedPref.getString("UserName", "");
-            String password = sharedPref.getString("UserPassword", "");
+                // Fetch username/password from SharedPref
+                String username = sharedPref.getString("UserName", "");
+                String password = sharedPref.getString("UserPassword", "");
 
-            TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-            Username_txt.setText(TheAppManager.User.CurrentBacktoryUser.getUsername());
+                TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                Username_txt.setText(TheAppManager.User.CurrentBacktoryUser.getUsername());
 
-            Log.d("WorkFlow", "Username: " + TheAppManager.User.CurrentBacktoryUser.getUsername());
+                Log.d("WorkFlow", "Username: " + TheAppManager.User.CurrentBacktoryUser.getUsername());
 
 //            // Pass user info to login
 //            BacktoryUser.loginInBackground(username, password,
@@ -121,8 +129,13 @@ public class MainMenuActivity extends AppCompatActivity
 //                            }
 //                        }
 //                    });
+            }
+            //endregion
         }
-        //endregion
+        else
+        {
+            Toast.makeText(getApplicationContext(), "No internet connection!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void UiElementsOnClick(View view)

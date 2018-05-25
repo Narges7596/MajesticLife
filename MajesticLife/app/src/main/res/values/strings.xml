@@ -3,12 +3,12 @@
     <string name="plan">Plan</string>
     <string name="quests">Quests</string>
     <string name="skills">Skills</string>
-    <string name="activities">Activities</string>
     <string name="username">Username</string>
     <string name="sign_up">Sign Up</string>
     <string name="login">Login</string>
     <string name="Edit">edit</string>
     <string name="Graph">graph</string>
+    <string name="xp">XP</string>
     <string name="hp">HP</string>
     <string name="sp">SP</string>
     <string name="level">Level</string>
@@ -16,4 +16,7 @@
     <string name="ok">OK</string>
     <string name="password">password</string>
     <string name="change_account">Change Account</string>
+    <string name="faaliats">Activities</string>
+    <string name="editFaaliats">Edit Activities</string>
+    <string name="name_colon">Name:</string>
 </resources>
