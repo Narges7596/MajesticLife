@@ -2,8 +2,11 @@ package com.farazannajmi.majesticlife;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
     public NumberPicker XP_numberPicker;
     public NumberPicker HP_numberPicker;
     public NumberPicker SP_numberPicker;
+    public ListView Skills_ListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,18 +38,19 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
 
         Toast.makeText(getApplicationContext(), "clicked, name: " + thisFaaliat.Name, Toast.LENGTH_LONG).show();
 
-        //regoin getting UI elements and setting right values:
+        //region ------------ getting UI elements and setting right values: ------------
         Avatar_img = findViewById(R.id.EditOneF_avatar_img);
         Name_editText = findViewById(R.id.EditOneF_name_editText);
         XP_numberPicker = findViewById(R.id.EditOneF_xp_numberPicker);
         HP_numberPicker = findViewById(R.id.EditOneF_hp_numberPicker);
         SP_numberPicker = findViewById(R.id.EditOneF_sp_numberPicker);
+        Skills_ListView = findViewById(R.id.EditOneF_skills_ListView);
 
         //Avatar_img.setImageBitmap(thisFaaliat.Avatar);
 
         Name_editText.setText(thisFaaliat.Name);
 
-        //region setting min and max values for numberpickers
+        //region ------------ setting min and max values for numberpickers ------------
         final int minNumberPickerValue = -10;
         final int maxNumberPickerValue = 10;
 
@@ -87,10 +92,34 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
                 return Integer.toString(index + minNumberPickerValue);
             }
         });
-        //endregion
+        //endregion ------------------------
 
-        //endregion
+        SettingFaaliatSkills();
+        //endregion ------------------------
 
         //int myNewValue = XP_numberPicker.getValue() + minNumberPickerValue;
+    }
+
+    public void SettingFaaliatSkills()
+    {
+        //create our new array adapter
+        ArrayAdapter<Skill_Time> adapter = new EditFaaliatSkillsListItemArrayAdapter(this, thisFaaliat.SkillTimes);
+
+        //bind the list view with the custom adapter
+        Skills_ListView.setAdapter(adapter);
+    }
+
+    public void UiElementsOnClick(View view)
+    {
+        switch (view.getId())
+        {
+            case R.id.EditOneF_avatar_img:
+            {
+                //todo: showing a popup for choosing a new avatar
+                break;
+            }
+            default:
+                break;
+        }
     }
 }
