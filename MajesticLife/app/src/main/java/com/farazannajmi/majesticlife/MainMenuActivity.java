@@ -21,11 +21,16 @@ import com.backtory.java.internal.BacktoryUser;
 
 public class MainMenuActivity extends AppCompatActivity
 {
-    public AppManager TheAppManager;
+    public static AppManager TheAppManager;
 
     public ImageView UserAvatar_img;
     public TextView Username_txt;
     public ProgressBar XpLevel_progBar;
+
+    public static AppManager getTheAppManager()
+    {
+        return TheAppManager;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

@@ -7,17 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 /**
  * Created by Narges on 5/27/2018.
+ *  https://www.codingdemos.com/android-custom-spinner-images-text/
  */
 
 public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Time>
@@ -32,11 +35,11 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
 
         this.context = context;
         this.skillTimesList = objects;
-        TheAppManager = (AppManager) context;
+        TheAppManager = MainMenuActivity.getTheAppManager();
     }
 
     //called when rendering the list
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         //get the property we are displaying
         Skill_Time skillTime = getItem(position);
@@ -50,10 +53,39 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
         NumberPicker skillTimes_numberPicker = convertView.findViewById(R.id.listItem_editfaaliatskill_times_numberPicker);
 
         //setting info in UI:
+        final int minNumberPickerValue = 0;
+        final int maxNumberPickerValue = 10;
+        skillTimes_numberPicker.setMinValue(minNumberPickerValue);
+        skillTimes_numberPicker.setMaxValue(maxNumberPickerValue);
+        skillTimes_numberPicker.setValue(skillTime.RepeatingTime);
+        skillTimes_numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
+        {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal)
+            {
+                EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).RepeatingTime = newVal;
+            }
+        });
+
         SkillImageSpinnerAdapter spinnerAdapter = new SkillImageSpinnerAdapter(context, TheAppManager.Skills);
         skillsList_spinner.setAdapter(spinnerAdapter);
 
-        //https://www.codingdemos.com/android-custom-spinner-images-text/
+        skillsList_spinner.setSelection(skillTime.indexInAppManager);
+
+        skillsList_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView adapterView, View view, int i, long l)
+            {
+                EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).TheSill = TheAppManager.Skills.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView adapterView)
+            {
+
+            }
+        });
 
         return convertView;
     }

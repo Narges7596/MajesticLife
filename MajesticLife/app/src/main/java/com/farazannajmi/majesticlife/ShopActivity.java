@@ -12,6 +12,6 @@ public class ShopActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
     }
 }

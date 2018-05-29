@@ -12,6 +12,6 @@ public class PlanActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan);
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
     }
 }

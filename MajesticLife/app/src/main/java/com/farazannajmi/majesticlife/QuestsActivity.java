@@ -12,6 +12,6 @@ public class QuestsActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quests);
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
     }
 }

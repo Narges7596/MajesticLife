@@ -16,7 +16,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
 {
     public AppManager TheAppManager;
 
-    private Faaliat thisFaaliat;
+    public static Faaliat thisFaaliat;
 
     public ImageView Avatar_img;
     public EditText Name_editText;
@@ -31,7 +31,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_one_faaliat_popup);
 
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
 
         //getting this current faaliat for editing:
         thisFaaliat = TheAppManager.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
@@ -66,6 +66,14 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
                 return Integer.toString(index + minNumberPickerValue);
             }
         });
+        XP_numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
+        {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal)
+            {
+                thisFaaliat.XpCount = newVal;
+            }
+        });
 
         HP_numberPicker.setMinValue(0);
         HP_numberPicker.setMaxValue(maxNumberPickerValue - minNumberPickerValue);
@@ -79,6 +87,14 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
                 return Integer.toString(index + minNumberPickerValue);
             }
         });
+        HP_numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
+        {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal)
+            {
+                thisFaaliat.HpCount = newVal;
+            }
+        });
 
         SP_numberPicker.setMinValue(0);
         SP_numberPicker.setMaxValue(maxNumberPickerValue - minNumberPickerValue);
@@ -90,6 +106,12 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
             public String format(int index)
             {
                 return Integer.toString(index + minNumberPickerValue);
+            }
+        });
+        SP_numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                thisFaaliat.SpCount = newVal;
             }
         });
         //endregion ------------------------
@@ -116,6 +138,16 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
             case R.id.EditOneF_avatar_img:
             {
                 //todo: showing a popup for choosing a new avatar
+                break;
+            }
+            case R.id.EditOneF_save_btn:
+            {
+                //todo: saving all changes
+                //saving name:
+                thisFaaliat.Name =  Name_editText.getText().toString();
+
+                // todo: saving avatar:
+                //thisFaaliat.Avatar = ;
                 break;
             }
             default:

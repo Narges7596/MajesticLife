@@ -21,7 +21,7 @@ public class SkillsActivity extends AppCompatActivity
         setContentView(R.layout.activity_skills);
 
 
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
 
         //getting UI elements
         skills_listView = (ListView) findViewById(R.id.SkillsActivity_ListView);

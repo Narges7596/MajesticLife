@@ -2,6 +2,7 @@ package com.farazannajmi.majesticlife;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Editable;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import javax.xml.xpath.XPathConstants;
 public class Faaliat
 {
     public String Name;
-    //public Bitmap Avatar;
+    public int Avatar;
 
     public int XpCount;
     public int HpCount;

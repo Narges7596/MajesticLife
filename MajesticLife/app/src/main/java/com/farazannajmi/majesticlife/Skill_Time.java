@@ -8,10 +8,12 @@ public class Skill_Time
 {
     public Skill TheSill;
     public int RepeatingTime;
+    public int indexInAppManager;
 
-    public Skill_Time(Skill TheSill, int RepeatingTime)
+    public Skill_Time(Skill TheSill, int RepeatingTime, int indexInAppManager)
     {
         this.TheSill = TheSill;
         this.RepeatingTime = RepeatingTime;
+        this.indexInAppManager = indexInAppManager;
     }
 }

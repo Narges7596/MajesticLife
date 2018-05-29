@@ -19,4 +19,5 @@
     <string name="faaliats">Activities</string>
     <string name="editFaaliats">Edit Activities</string>
     <string name="name_colon">Name:</string>
+    <string name="save">Save</string>
 </resources>

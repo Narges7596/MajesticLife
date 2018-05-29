@@ -23,7 +23,7 @@ public class EditFaaliatsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_faaliats);
 
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
 
         context = getApplicationContext();
 

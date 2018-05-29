@@ -43,7 +43,7 @@ public class AccountManagementActivity extends FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_management);
 
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
 
         //getting UI elements:
         Avatar_img = findViewById(R.id.AccountM_Avatar_img);

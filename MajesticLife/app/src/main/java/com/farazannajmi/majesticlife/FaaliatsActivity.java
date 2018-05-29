@@ -22,24 +22,30 @@ public class FaaliatsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faaliats);
 
-        TheAppManager = (AppManager) getApplicationContext();
+        TheAppManager = MainMenuActivity.getTheAppManager();
 
         //getting UI elements
         faaliats_listView = (ListView) findViewById(R.id.FaaliatsActivity_ListView);
 
         //region ----------------------------test------------------------------
-        Skill s = new Skill("Elm", 5, 50);
+        Skill s1 = new Skill("Elm", 5, 50);
+        TheAppManager.Skills.add(s1);
         Skill s2 = new Skill("Olom", 2, 25);
-        List<Skill_Time> st = new ArrayList<Skill_Time>();
-        st.add(new Skill_Time(s, 10));
-        st.add(new Skill_Time(s2, 20));
+        TheAppManager.Skills.add(s2);
+        Skill s3 = new Skill("skill3", 5, 50);
+        TheAppManager.Skills.add(s3);
+        Skill s4 = new Skill("skill4", 3, 50);
+        TheAppManager.Skills.add(s4);
+
+        ArrayList<Skill_Time> st = new ArrayList<Skill_Time>();
+        st.add(new Skill_Time(TheAppManager.Skills.get(0), 10, 0));
+        st.add(new Skill_Time(TheAppManager.Skills.get(1), 20, 1));
         TheAppManager.Faaliats.add(new Faaliat("Embroidery", -10, 5, 2, st));
 
-        Skill s3 = new Skill("skill3", 5, 50);
-        Skill s4 = new Skill("skill4", 5, 50);
-        List<Skill_Time> st2 = new ArrayList<Skill_Time>();
-        st2.add(new Skill_Time(s3, 2));
-        st2.add(new Skill_Time(s4, 3));
+
+        ArrayList<Skill_Time> st2 = new ArrayList<Skill_Time>();
+        st2.add(new Skill_Time(TheAppManager.Skills.get(2), 2, 2));
+        st2.add(new Skill_Time(TheAppManager.Skills.get(3), 3, 3));
         TheAppManager.Faaliats.add(new Faaliat("Alaki", -1, 2, 3, st2));
         //endregion
 
