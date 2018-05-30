@@ -15,9 +15,11 @@ import java.util.ArrayList;
 
 public class AppManager extends Application
 {
-    public ArrayList<Faaliat> Faaliats;
-    public ArrayList<Skill> Skills;
-    public User_Majesty User;
+    public static ArrayList<Faaliat> Faaliats;
+    public static ArrayList<Skill> Skills;
+    public static User_Majesty User;
+
+    public static ArrayList<Integer> FaaliatAvatars;
 
     @Override
     public void onCreate()
@@ -39,12 +41,24 @@ public class AppManager extends Application
         Faaliats = new ArrayList<Faaliat>();
         Skills = new ArrayList<Skill>();
         User = new User_Majesty();
-        //User.Avatar = ...
+        User.Avatar = R.drawable.ic_king;
         User.XP = 20;
         User.HP = 2;
         User.SP = 70;
         User.XpLevel = 3;
         User.HpLevel = 1;
         User.SpLevel = 10;
+
+        FaaliatAvatars = new ArrayList<Integer>();
+        FaaliatAvatars.add(R.drawable.ic_skills);
+        FaaliatAvatars.add(R.drawable.ic_circle);
+        FaaliatAvatars.add(R.drawable.ic_coin);
+        FaaliatAvatars.add(R.drawable.ic_queen);
+        FaaliatAvatars.add(R.drawable.ic_king);
+        FaaliatAvatars.add(R.drawable.ic_quests);
+        for (int i = 1; i < 10; i++)
+        {
+            FaaliatAvatars.add(R.drawable.ic_majestic_activities);
+        }
     }
 }

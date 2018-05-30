@@ -11,8 +11,6 @@ import android.widget.ListView;
 
 public class EditFaaliatsActivity extends AppCompatActivity
 {
-    public AppManager TheAppManager;
-
     private ListView editFaaliats_listView;
 
     private static Context context;
@@ -23,15 +21,13 @@ public class EditFaaliatsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_faaliats);
 
-        TheAppManager = MainMenuActivity.getTheAppManager();
-
         context = getApplicationContext();
 
         //getting UI elements
         editFaaliats_listView = (ListView) findViewById(R.id.EditFaaliatsActivity_ListView);
 
         //create our new array adapter
-        ArrayAdapter<Faaliat> adapter = new EditFaaliatsListItemArrayAdapter(this, TheAppManager.Faaliats);
+        ArrayAdapter<Faaliat> adapter = new EditFaaliatsListItemArrayAdapter(this, AppManager.Faaliats);
 
         //bind the list view with the custom adapter
         editFaaliats_listView.setAdapter(adapter);

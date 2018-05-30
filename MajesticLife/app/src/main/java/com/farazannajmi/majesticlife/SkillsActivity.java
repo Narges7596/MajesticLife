@@ -10,8 +10,6 @@ import java.util.List;
 
 public class SkillsActivity extends AppCompatActivity
 {
-    public AppManager TheAppManager;
-
     private ListView skills_listView;
 
     @Override
@@ -20,22 +18,19 @@ public class SkillsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skills);
 
-
-        TheAppManager = MainMenuActivity.getTheAppManager();
-
         //getting UI elements
         skills_listView = (ListView) findViewById(R.id.SkillsActivity_ListView);
 
         //region ----------------------------test------------------------------
         Skill s1 = new Skill("Knowledge", 5, 50);
-        TheAppManager.Skills.add(s1);
+        AppManager.Skills.add(s1);
 
         Skill s2 = new Skill("HandCrafting", 10, 25);
-        TheAppManager.Skills.add(s2);
+        AppManager.Skills.add(s2);
         //endregion
 
         //create our new array adapter
-        ArrayAdapter<Skill> adapter = new SkillsListItemArrayAdapter(this, TheAppManager.Skills);
+        ArrayAdapter<Skill> adapter = new SkillsListItemArrayAdapter(this, AppManager.Skills);
 
         //bind the list view with the custom adapter
         skills_listView.setAdapter(adapter);

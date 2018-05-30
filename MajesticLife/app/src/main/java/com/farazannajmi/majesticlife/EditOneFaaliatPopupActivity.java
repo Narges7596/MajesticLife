@@ -1,21 +1,23 @@
 package com.farazannajmi.majesticlife;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.jar.Attributes;
 
 public class EditOneFaaliatPopupActivity extends AppCompatActivity
 {
-    public AppManager TheAppManager;
-
     public static Faaliat thisFaaliat;
 
     public ImageView Avatar_img;
@@ -31,10 +33,8 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_one_faaliat_popup);
 
-        TheAppManager = MainMenuActivity.getTheAppManager();
-
         //getting this current faaliat for editing:
-        thisFaaliat = TheAppManager.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
+        thisFaaliat = AppManager.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
 
         Toast.makeText(getApplicationContext(), "clicked, name: " + thisFaaliat.Name, Toast.LENGTH_LONG).show();
 
@@ -131,13 +131,37 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         Skills_ListView.setAdapter(adapter);
     }
 
+    private void showAvatarsAlertDialog()
+    {
+        // Prepare grid view
+        GridView gridView = new GridView(this);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        gridView.setAdapter(new ImageAdapter(this, AppManager.FaaliatAvatars));
+        gridView.setNumColumns(3);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Avatar_img.setImageResource(AppManager.FaaliatAvatars.get(position));
+            }
+        });
+
+        // Set grid view to alertDialog
+
+        builder.setView(gridView);
+        builder.setTitle("Select a new avatar");
+        builder.show();
+    }
+
     public void UiElementsOnClick(View view)
     {
         switch (view.getId())
         {
             case R.id.EditOneF_avatar_img:
             {
-                //todo: showing a popup for choosing a new avatar
+                showAvatarsAlertDialog();
                 break;
             }
             case R.id.EditOneF_save_btn:

@@ -13,7 +13,7 @@ public class User_Majesty
     public BacktoryUser CurrentBacktoryUser;
 
     public String Email;
-    public Bitmap Avatar;
+    public int Avatar;
 
     public int XP;
     public int XpLevel;
