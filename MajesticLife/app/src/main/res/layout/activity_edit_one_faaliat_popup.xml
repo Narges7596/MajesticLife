@@ -94,6 +94,14 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Skills:"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+
         <Button
             android:id="@+id/EditOneF_addskill_btn"
             android:layout_width="match_parent"
@@ -101,8 +109,7 @@
             android:text="add skill"
             android:onClick="UiElementsOnClick"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginRight="10dp"/>
 
         <ListView
             android:id="@+id/EditOneF_skills_ListView"

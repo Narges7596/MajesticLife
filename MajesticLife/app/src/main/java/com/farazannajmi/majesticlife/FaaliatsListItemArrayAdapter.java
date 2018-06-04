@@ -76,8 +76,6 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             @Override
             public void onClick(View v)
             {
-                //Toast.makeText(getContext(), "clicked, name: " + faaliat.Name, Toast.LENGTH_LONG).show();
-
                 //opening new activity for editing this faaliat:
                 Intent intent = new Intent(getContext(), EditOneFaaliatPopupActivity.class);
                 intent.putExtra("The_Faaliat", position);

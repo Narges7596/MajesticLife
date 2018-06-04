@@ -31,11 +31,21 @@ public class FaaliatsActivity extends AppCompatActivity
         //bind the list view with the custom adapter
         faaliats_listView.setAdapter(faaliats_listView_adapter);
     }
+
     public void UiElementsOnClick(View view)
     {
         if(view.getId() == R.id.FaaliatsActivity_addFaaliat_btn)
         {
-            //todo: adding a new faaliat
+            Faaliat newFaaliat = new Faaliat("new activity", DataHolder.FaaliatAvatars.get(0), 0, 0, 0,
+                    new ArrayList<Skill_Time>());
+            DataHolder.Faaliats.add(newFaaliat);
+
+            //opening new activity for editing this new faaliat:
+            Intent intent = new Intent(FaaliatsActivity.this, EditOneFaaliatPopupActivity.class);
+            intent.putExtra("The_Faaliat", DataHolder.Faaliats.size() - 1);
+            startActivity(intent);
+
+            faaliats_listView_adapter.notifyDataSetChanged();
         }
     }
 }
