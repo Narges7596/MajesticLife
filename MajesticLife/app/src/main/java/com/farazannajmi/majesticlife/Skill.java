@@ -16,10 +16,10 @@ public class Skill
      */
     public int Progress;
 
-    public Skill (String Name/*, int Avatar*/, int Level, int Progress)
+    public Skill (String Name, int Avatar, int Level, int Progress)
     {
         this.Name = Name;
-        //this.Avatar = Avatar;
+        this.Avatar = Avatar;
         this.Level = Level;
         this.Progress = Progress;
     }

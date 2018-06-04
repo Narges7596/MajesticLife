@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
@@ -49,6 +50,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
         //getting UI elements:
         Spinner skillsList_spinner = convertView.findViewById(R.id.listItem_editfaaliatskill_avatar_spinner);
         NumberPicker skillTimes_numberPicker = convertView.findViewById(R.id.listItem_editfaaliatskill_times_numberPicker);
+        Button remove_btn = convertView.findViewById(R.id.listItem_editfaaliatskill_remove_btn);
 
         //setting info in UI:
         final int minNumberPickerValue = 0;
@@ -68,7 +70,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
         SkillImageSpinnerAdapter spinnerAdapter = new SkillImageSpinnerAdapter(context, DataHolder.Skills);
         skillsList_spinner.setAdapter(spinnerAdapter);
 
-        skillsList_spinner.setSelection(skillTime.indexInAppManager);
+        skillsList_spinner.setSelection(skillTime.index);
 
         skillsList_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -85,6 +87,15 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
             }
         });
 
+        remove_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.remove(position);
+                EditOneFaaliatPopupActivity.Skills_ListView_adapter.notifyDataSetChanged();
+            }
+        });
         return convertView;
     }
 }

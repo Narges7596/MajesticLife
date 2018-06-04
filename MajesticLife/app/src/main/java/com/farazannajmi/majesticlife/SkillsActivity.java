@@ -21,14 +21,6 @@ public class SkillsActivity extends AppCompatActivity
         //getting UI elements
         skills_listView = (ListView) findViewById(R.id.SkillsActivity_ListView);
 
-        //region ----------------------------test------------------------------
-        Skill s1 = new Skill("Knowledge", 5, 50);
-        DataHolder.Skills.add(s1);
-
-        Skill s2 = new Skill("HandCrafting", 10, 25);
-        DataHolder.Skills.add(s2);
-        //endregion
-
         //create our new array adapter
         ArrayAdapter<Skill> adapter = new SkillsListItemArrayAdapter(this, DataHolder.Skills);
 

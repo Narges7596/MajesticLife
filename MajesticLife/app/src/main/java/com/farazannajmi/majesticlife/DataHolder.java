@@ -29,7 +29,7 @@ public class DataHolder
         User.SpLevel = 10;
 
         FaaliatAvatars = new ArrayList<Integer>();
-        FaaliatAvatars.add(R.drawable.ic_skills);
+        FaaliatAvatars.add(R.drawable.ic_majestic_activities);
         FaaliatAvatars.add(R.drawable.ic_circle);
         FaaliatAvatars.add(R.drawable.ic_coin);
         FaaliatAvatars.add(R.drawable.ic_queen);
@@ -51,6 +51,28 @@ public class DataHolder
         {
             FaaliatAvatars.add(R.drawable.ic_skills);
         }
+
+        //region ----------------------------test------------------------------
+        Skill s1 = new Skill("Knowledge", SkillAvatars.get(0), 5, 50);
+        DataHolder.Skills.add(s1);
+        Skill s2 = new Skill("HandCrafting", SkillAvatars.get(1), 10, 25);
+        DataHolder.Skills.add(s2);
+        Skill s3 = new Skill("Elm", SkillAvatars.get(2), 5, 50);
+        DataHolder.Skills.add(s3);
+        Skill s4 = new Skill("Olom", SkillAvatars.get(3), 2, 25);
+        DataHolder.Skills.add(s4);
+
+
+        ArrayList<Skill_Time> st = new ArrayList<Skill_Time>();
+        st.add(new Skill_Time(DataHolder.Skills.get(0), 10, 0));
+        st.add(new Skill_Time(DataHolder.Skills.get(1), 20, 1));
+        DataHolder.Faaliats.add(new Faaliat("Embroidery", FaaliatAvatars.get(0), -10, 5, 2, st));
+
+        ArrayList<Skill_Time> st2 = new ArrayList<Skill_Time>();
+        st2.add(new Skill_Time(DataHolder.Skills.get(2), 2, 2));
+        st2.add(new Skill_Time(DataHolder.Skills.get(3), 3, 3));
+        DataHolder.Faaliats.add(new Faaliat("Alaki", FaaliatAvatars.get(0), -1, 2, 3, st2));
+        //endregion
     }
 
     public static void LoadData()

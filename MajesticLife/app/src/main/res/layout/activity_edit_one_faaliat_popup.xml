@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/EditOneF_avatar_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:onClick="UiElementsOnClick"
                 app:srcCompat="@drawable/ic_quests"
                 tools:ignore="VectorDrawableCompat" />
@@ -93,6 +93,16 @@
                 android:text="@string/sp"
                 android:textSize="18sp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/EditOneF_addskill_btn"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="add skill"
+            android:onClick="UiElementsOnClick"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"/>
 
         <ListView
             android:id="@+id/EditOneF_skills_ListView"
