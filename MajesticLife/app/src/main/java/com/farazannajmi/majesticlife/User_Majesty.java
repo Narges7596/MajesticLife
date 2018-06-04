@@ -23,4 +23,9 @@ public class User_Majesty
 
     public int SP;
     public int SpLevel;
+
+    public User_Majesty()
+    {
+        this.Avatar = R.drawable.ic_king;
+    }
 }

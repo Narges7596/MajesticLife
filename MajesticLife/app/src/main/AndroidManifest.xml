@@ -33,7 +33,6 @@
         <activity android:name=".QuestsActivity" />
         <activity android:name=".ShopActivity" />
         <activity android:name=".FaaliatsActivity" />
-        <activity android:name=".EditFaaliatsActivity" />
         <activity android:name=".EditOneFaaliatPopupActivity"></activity>
     </application>
 

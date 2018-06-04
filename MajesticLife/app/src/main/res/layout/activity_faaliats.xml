@@ -30,12 +30,12 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/FaaliatsActivity_edit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/FaaliatsActivity_addFaaliat_btn"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:onClick="UiElementsOnClick"
             android:layout_marginRight="15dp"
-            android:text="@string/Edit" />
+            android:text="@string/add_new_activity" />
 
         <ListView
             android:id="@+id/FaaliatsActivity_ListView"

@@ -44,9 +44,11 @@
 
             <EditText
                 android:id="@+id/EditOneF_name_editText"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Embroidery" />
+                android:text="Embroidery"
+                android:inputType="text"
+                android:hint="name"/>
         </LinearLayout>
 
         <LinearLayout

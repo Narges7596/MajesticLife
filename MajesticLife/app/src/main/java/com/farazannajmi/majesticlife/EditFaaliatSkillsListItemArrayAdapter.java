@@ -65,7 +65,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
             }
         });
 
-        SkillImageSpinnerAdapter spinnerAdapter = new SkillImageSpinnerAdapter(context, AppManager.Skills);
+        SkillImageSpinnerAdapter spinnerAdapter = new SkillImageSpinnerAdapter(context, DataHolder.Skills);
         skillsList_spinner.setAdapter(spinnerAdapter);
 
         skillsList_spinner.setSelection(skillTime.indexInAppManager);
@@ -75,7 +75,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
             @Override
             public void onItemSelected(AdapterView adapterView, View view, int i, long l)
             {
-                EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).TheSill = AppManager.Skills.get(i);
+                EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).TheSill = DataHolder.Skills.get(i);
             }
 
             @Override

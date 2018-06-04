@@ -13,14 +13,11 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.jar.Attributes;
-
 public class EditOneFaaliatPopupActivity extends AppCompatActivity
 {
     public static Faaliat thisFaaliat;
 
-    public ImageView Avatar_img;
+    public static ImageView Avatar_img;
     public EditText Name_editText;
     public NumberPicker XP_numberPicker;
     public NumberPicker HP_numberPicker;
@@ -34,17 +31,17 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         setContentView(R.layout.activity_edit_one_faaliat_popup);
 
         //getting this current faaliat for editing:
-        thisFaaliat = AppManager.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
+        thisFaaliat = DataHolder.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
 
         Toast.makeText(getApplicationContext(), "clicked, name: " + thisFaaliat.Name, Toast.LENGTH_LONG).show();
 
         //region ------------ getting UI elements and setting right values: ------------
-        Avatar_img = findViewById(R.id.EditOneF_avatar_img);
-        Name_editText = findViewById(R.id.EditOneF_name_editText);
-        XP_numberPicker = findViewById(R.id.EditOneF_xp_numberPicker);
-        HP_numberPicker = findViewById(R.id.EditOneF_hp_numberPicker);
-        SP_numberPicker = findViewById(R.id.EditOneF_sp_numberPicker);
-        Skills_ListView = findViewById(R.id.EditOneF_skills_ListView);
+        Avatar_img = (ImageView) findViewById(R.id.EditOneF_avatar_img);
+        Name_editText = (EditText) findViewById(R.id.EditOneF_name_editText);
+        XP_numberPicker = (NumberPicker) findViewById(R.id.EditOneF_xp_numberPicker);
+        HP_numberPicker = (NumberPicker) findViewById(R.id.EditOneF_hp_numberPicker);
+        SP_numberPicker = (NumberPicker) findViewById(R.id.EditOneF_sp_numberPicker);
+        Skills_ListView = (ListView) findViewById(R.id.EditOneF_skills_ListView);
 
         //Avatar_img.setImageBitmap(thisFaaliat.Avatar);
 
@@ -131,30 +128,6 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         Skills_ListView.setAdapter(adapter);
     }
 
-    private void showAvatarsAlertDialog()
-    {
-        // Prepare grid view
-        GridView gridView = new GridView(this);
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        gridView.setAdapter(new ImageAdapter(this, AppManager.FaaliatAvatars));
-        gridView.setNumColumns(3);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                Avatar_img.setImageResource(AppManager.FaaliatAvatars.get(position));
-            }
-        });
-
-        // Set grid view to alertDialog
-
-        builder.setView(gridView);
-        builder.setTitle("Select a new avatar");
-        builder.show();
-    }
-
     public void UiElementsOnClick(View view)
     {
         switch (view.getId())
@@ -177,5 +150,37 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
             default:
                 break;
         }
+    }
+
+    private void showAvatarsAlertDialog()
+    {
+        //showing dialogue popup to get the new avatar
+        AvatarSelectDialogFragment avatarsDialogue = AvatarSelectDialogFragment.newInstance(DataHolder.FaaliatAvatars);
+        avatarsDialogue.show(getFragmentManager(), "AvatarSelectDialogFragment");
+
+
+//        // Prepare grid view
+//        GridView gridView = new GridView(this);
+//        gridView.setAdapter(new ImageAdapter(this, DataHolder.FaaliatAvatars));
+//        gridView.setNumColumns(3);
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+//        {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+//            {
+//                Avatar_img.setImageResource(DataHolder.FaaliatAvatars.get(position));
+//            }
+//        });
+//
+//        // Set grid view to alertDialog
+//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setView(gridView);
+//        builder.setTitle("Select a new avatar");
+//        builder.show();
+    }
+
+    public static void ChangeAvatar(int imageResource)
+    {
+        Avatar_img.setImageResource(imageResource);
     }
 }

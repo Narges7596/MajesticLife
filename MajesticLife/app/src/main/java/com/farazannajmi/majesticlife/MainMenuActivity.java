@@ -27,10 +27,6 @@ public class MainMenuActivity extends AppCompatActivity
     public TextView Username_txt;
     public ProgressBar XpLevel_progBar;
 
-    public static AppManager getTheAppManager()
-    {
-        return TheAppManager;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,8 +42,7 @@ public class MainMenuActivity extends AppCompatActivity
         XpLevel_progBar = (ProgressBar) findViewById(R.id.Main_XpLevel_progBar);
 
         //checking internet connection:
-        ConnectivityManager cm =
-                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
@@ -65,6 +60,8 @@ public class MainMenuActivity extends AppCompatActivity
             if (firstTime) //if it's the first time opening the app and hasn't make a user in backtory
             {
                 Log.d("WorkFlow", "First Time running app.");
+
+                DataHolder.InitialData();
 
                 // Request a guest user from backtory:
                 BacktoryUser.loginAsGuestInBackground(new BacktoryCallBack<Void>() {
@@ -86,7 +83,7 @@ public class MainMenuActivity extends AppCompatActivity
                             editor.putString("UserName", newUsername);
                             editor.putString("UserPassword", newPassword);
 
-                            TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                            DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
                             Username_txt.setText(newUsername);
 
                             editor.commit();
@@ -96,7 +93,8 @@ public class MainMenuActivity extends AppCompatActivity
                         }
                     }
                 });
-            } else //not the first time logging in
+            }
+            else //not the first time logging in
             {
                 Log.d("WorkFlow", "Not the first Time running app.");
 
@@ -104,10 +102,12 @@ public class MainMenuActivity extends AppCompatActivity
                 String username = sharedPref.getString("UserName", "");
                 String password = sharedPref.getString("UserPassword", "");
 
-                TheAppManager.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-                Username_txt.setText(TheAppManager.User.CurrentBacktoryUser.getUsername());
+                DataHolder.LoadData();
 
-                Log.d("WorkFlow", "Username: " + TheAppManager.User.CurrentBacktoryUser.getUsername());
+                DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                Username_txt.setText(DataHolder.User.CurrentBacktoryUser.getUsername());
+
+                Log.d("WorkFlow", "Username: " + DataHolder.User.CurrentBacktoryUser.getUsername());
 
 //            // Pass user info to login
 //            BacktoryUser.loginInBackground(username, password,

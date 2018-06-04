@@ -1,6 +1,7 @@
 package com.farazannajmi.majesticlife;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,11 +17,13 @@ public class ImageAdapter extends BaseAdapter
 {
     private Context mContext;
     ArrayList<Integer> imagesList;
+    LayoutInflater inflater;
 
     public ImageAdapter(Context context, ArrayList<Integer> imagesList)
     {
         mContext = context;
         this.imagesList = imagesList;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public int getCount()
@@ -30,12 +33,12 @@ public class ImageAdapter extends BaseAdapter
 
     public Object getItem(int position)
     {
-        return null;
+        return imagesList.get(position);
     }
 
     public long getItemId(int position)
     {
-        return 0;
+        return position;
     }
 
     // create a new ImageView for each item referenced by the Adapter
@@ -44,16 +47,9 @@ public class ImageAdapter extends BaseAdapter
         ImageView imageView;
         if (convertView == null)
         {
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(200, 200));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+            convertView = inflater.inflate(R.layout.listitem_avatar, null);
         }
-        else
-        {
-            imageView = (ImageView) convertView;
-        }
+        imageView = (ImageView) convertView.findViewById(R.id.listItem_avatar_img);
 
         imageView.setImageResource(imagesList.get(position));
         return imageView;

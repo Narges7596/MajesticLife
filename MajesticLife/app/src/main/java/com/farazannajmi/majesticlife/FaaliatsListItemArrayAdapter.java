@@ -2,11 +2,13 @@ package com.farazannajmi.majesticlife;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,7 +33,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
     }
 
     //called when rendering the list
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
         //get the property we are displaying
         Faaliat faaliat = getItem(position);
@@ -47,6 +49,9 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         TextView xp_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_xp_txt);
         TextView skills_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_skills_txt);
         ImageView avatar_img = (ImageView) convertView.findViewById(R.id.listItem_faaliat_avatar_img);
+        Button edit_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_edit_btn);
+        Button graph_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_graph_btn);
+        Button pluse_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_pluse_btn);
 
         //setting UI values
         name_txt.setText(faaliat.Name);
@@ -65,6 +70,38 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         //get the image associated with this property
 //        int imageID = context.getResources().getIdentifier(property.getImage(), "drawable", context.getPackageName());
 //        image.setImageResource(imageID);
+
+        edit_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //Toast.makeText(getContext(), "clicked, name: " + faaliat.Name, Toast.LENGTH_LONG).show();
+
+                //opening new activity for editing this faaliat:
+                Intent intent = new Intent(getContext(), EditOneFaaliatPopupActivity.class);
+                intent.putExtra("The_Faaliat", position);
+                context.startActivity(intent);
+            }
+        });
+
+        graph_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //todo
+            }
+        });
+
+        pluse_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //todo
+            }
+        });
 
         return convertView;
     }

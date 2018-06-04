@@ -20,4 +20,5 @@
     <string name="editFaaliats">Edit Activities</string>
     <string name="name_colon">Name:</string>
     <string name="save">Save</string>
+    <string name="add_new_activity">Add New Activity</string>
 </resources>

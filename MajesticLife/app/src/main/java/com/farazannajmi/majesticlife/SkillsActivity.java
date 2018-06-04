@@ -23,14 +23,14 @@ public class SkillsActivity extends AppCompatActivity
 
         //region ----------------------------test------------------------------
         Skill s1 = new Skill("Knowledge", 5, 50);
-        AppManager.Skills.add(s1);
+        DataHolder.Skills.add(s1);
 
         Skill s2 = new Skill("HandCrafting", 10, 25);
-        AppManager.Skills.add(s2);
+        DataHolder.Skills.add(s2);
         //endregion
 
         //create our new array adapter
-        ArrayAdapter<Skill> adapter = new SkillsListItemArrayAdapter(this, AppManager.Skills);
+        ArrayAdapter<Skill> adapter = new SkillsListItemArrayAdapter(this, DataHolder.Skills);
 
         //bind the list view with the custom adapter
         skills_listView.setAdapter(adapter);
