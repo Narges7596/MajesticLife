@@ -48,7 +48,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
         convertView = inflater.inflate(R.layout.listitem_edit_faaliatskills, parent, false);
 
         //getting UI elements:
-        Spinner skillsList_spinner = convertView.findViewById(R.id.listItem_editfaaliatskill_avatar_spinner);
+        final Spinner skillsList_spinner = convertView.findViewById(R.id.listItem_editfaaliatskill_avatar_spinner);
         NumberPicker skillTimes_numberPicker = convertView.findViewById(R.id.listItem_editfaaliatskill_times_numberPicker);
         Button remove_btn = convertView.findViewById(R.id.listItem_editfaaliatskill_remove_btn);
 
@@ -77,7 +77,17 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
             @Override
             public void onItemSelected(AdapterView adapterView, View view, int i, long l)
             {
-                EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).TheSill = DataHolder.Skills.get(i);
+                if(EditOneFaaliatPopupActivity.IsSkillDuplicated(i))
+                {
+                    Toast.makeText(getContext(), "This skill is duplicated.", Toast.LENGTH_SHORT).show();
+                    skillsList_spinner.setSelection(position);
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "NOT duplicated.", Toast.LENGTH_SHORT).show();
+                    EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).TheSill = DataHolder.Skills.get(i);
+                    EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).index = i;
+                }
             }
 
             @Override

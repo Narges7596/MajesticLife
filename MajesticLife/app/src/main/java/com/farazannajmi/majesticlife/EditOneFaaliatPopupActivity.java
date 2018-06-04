@@ -42,8 +42,6 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         //getting this current faaliat for editing:
         thisFaaliat = DataHolder.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
 
-        Toast.makeText(getApplicationContext(), "clicked, name: " + thisFaaliat.Name, Toast.LENGTH_LONG).show();
-
         //region ------------ getting UI elements and setting right values: ------------
         Avatar_img = (ImageView) findViewById(R.id.EditOneF_avatar_img);
         Name_editText = (EditText) findViewById(R.id.EditOneF_name_editText);
@@ -195,5 +193,19 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
     {
         Avatar_img.setImageResource(imageResource);
         thisFaaliat.Avatar = imageResource;
+    }
+
+    public static boolean IsSkillDuplicated(int sillIndex)
+    {
+        boolean isDuplicated = false;
+        for(int i = 0; i < thisFaaliat.SkillTimes.size(); i++)
+        {
+            if(sillIndex == thisFaaliat.SkillTimes.get(i).index)
+            {
+                isDuplicated = true;
+            }
+        }
+
+        return  isDuplicated;
     }
 }
