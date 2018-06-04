@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.farazannajmi.majesticlife.MainMenuActivity">
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Hello"/>-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,52 +23,91 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/Main_UserAvatar_img"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
+                    android:onClick="UiElementsOnClick"
+                    android:padding="5dp"
                     app:srcCompat="@drawable/ic_king"
                     tools:ignore="VectorDrawableCompat"
-                    android:onClick="UiElementsOnClick"/>
+                    android:layout_alignParentLeft="true"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_toRightOf="@id/Main_UserAvatar_img"
+                    android:layout_toLeftOf="@+id/main_coinvalue_parent">
+
                     <TextView
                         android:id="@+id/Main_UserName_txt"
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:text="Username"/>
-                    <ProgressBar
-                        android:id="@+id/Main_XpLevel_progBar"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="160dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="1" />
+                        android:layout_height="wrap_content"
+                        android:padding="3dp"
+                        android:text="Username"
+                        android:textColor="@android:color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Main_XpLevel_txt"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/ic_circle"
+                            android:padding="3dp"
+                            android:text="4"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black" />
+
+                        <ProgressBar
+                            android:id="@+id/Main_Xp_progBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/Main_Coins_txt"
+                <LinearLayout
+                    android:id="@+id/main_coinvalue_parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="500" />
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/Main_Coins_img"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    app:srcCompat="@drawable/ic_coin"
-                    tools:ignore="VectorDrawableCompat"
-                    android:onClick="UiElementsOnClick"/>
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/Main_Coins_txt"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:text="500"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/black"
+                        android:gravity="end" />
 
+                    <ImageView
+                        android:id="@+id/Main_Coins_img"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:onClick="UiElementsOnClick"
+                        app:srcCompat="@drawable/ic_coin"
+                        tools:ignore="VectorDrawableCompat" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
@@ -81,22 +116,70 @@
                 app:srcCompat="@drawable/ic_view"
                 tools:ignore="VectorDrawableCompat" />
 
+                <Button
+                    android:id="@+id/Main_Shop_btn"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:text="Shop"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:onClick="UiElementsOnClick" />
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <ProgressBar
-                    android:id="@+id/Main_HP_progBar"
-                    style="?android:attr/progressBarStyleHorizontal"
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="57dp"
-                    android:layout_weight="1" />
-                <ProgressBar
-                    android:id="@+id/Main_SP_progBar"
-                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:padding="2dp">
+                    <TextView
+                        android:id="@+id/Main_HpLevel_txt"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_circle"
+                        android:padding="3dp"
+                        android:text="2"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black" />
+
+                    <ProgressBar
+                        android:id="@+id/Main_HP_progBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="57dp"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:padding="2dp">
+                    <TextView
+                        android:id="@+id/Main_SpLevel_txt"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_circle"
+                        android:padding="3dp"
+                        android:text="2"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black" />
+
+                    <ProgressBar
+                        android:id="@+id/Main_SP_progBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

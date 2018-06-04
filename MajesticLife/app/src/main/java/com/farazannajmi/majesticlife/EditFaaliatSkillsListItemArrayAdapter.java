@@ -84,7 +84,6 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
                 }
                 else
                 {
-                    Toast.makeText(getContext(), "NOT duplicated.", Toast.LENGTH_SHORT).show();
                     EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).TheSill = DataHolder.Skills.get(i);
                     EditOneFaaliatPopupActivity.thisFaaliat.SkillTimes.get(position).index = i;
                 }

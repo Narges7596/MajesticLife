@@ -21,12 +21,28 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="20dp">
 
-        <ImageView
-            android:id="@+id/AccountM_Avatar_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat= "@drawable/ic_king"
-            tools:ignore="VectorDrawableCompat" />
+        <RelativeLayout
+            android:layout_width="110dp"
+            android:layout_height="110dp">
+
+            <ImageView
+                android:id="@+id/AccountM_Avatar_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat= "@drawable/ic_king"
+                tools:ignore="VectorDrawableCompat"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:id="@+id/AccountM_editAvatar_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:drawableTop="@drawable/ic_edit_pen"
+                tools:ignore="VectorDrawableCompat"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:onClick="UiElementsOnClick"/>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/AccountM_Username_txt"

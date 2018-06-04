@@ -25,7 +25,13 @@ public class MainMenuActivity extends AppCompatActivity
 
     public ImageView UserAvatar_img;
     public TextView Username_txt;
-    public ProgressBar XpLevel_progBar;
+
+    public TextView XpLevel_txt;
+    public TextView HpLevel_txt;
+    public TextView SpLevel_txt;
+    public ProgressBar Xp_progBar;
+    public ProgressBar Hp_progBar;
+    public ProgressBar Sp_progBar;
 
 
     @Override
@@ -36,10 +42,16 @@ public class MainMenuActivity extends AppCompatActivity
 
         TheAppManager = (AppManager) getApplicationContext();
 
-        //getting UI elements
+        //region ----------- getting UI elements -----------
         UserAvatar_img = (ImageView) findViewById(R.id.Main_UserAvatar_img);
         Username_txt = (TextView) findViewById(R.id.Main_UserName_txt);
-        XpLevel_progBar = (ProgressBar) findViewById(R.id.Main_XpLevel_progBar);
+        XpLevel_txt = findViewById(R.id.Main_XpLevel_txt);
+        HpLevel_txt = findViewById(R.id.Main_HpLevel_txt);
+        SpLevel_txt = findViewById(R.id.Main_SpLevel_txt);
+        Xp_progBar = findViewById(R.id.Main_Xp_progBar);
+        Hp_progBar = findViewById(R.id.Main_HP_progBar);
+        Sp_progBar = findViewById(R.id.Main_SP_progBar);
+        //endregion ---------------------------------
 
         //checking internet connection:
         ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -84,7 +96,8 @@ public class MainMenuActivity extends AppCompatActivity
                             editor.putString("UserPassword", newPassword);
 
                             DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-                            Username_txt.setText(newUsername);
+
+                            InitialUIElements();
 
                             editor.commit();
                             //endregion
@@ -105,7 +118,8 @@ public class MainMenuActivity extends AppCompatActivity
                 DataHolder.LoadData();
 
                 DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-                Username_txt.setText(DataHolder.User.CurrentBacktoryUser.getUsername());
+
+                InitialUIElements();
 
                 Log.d("WorkFlow", "Username: " + DataHolder.User.CurrentBacktoryUser.getUsername());
 
@@ -177,8 +191,26 @@ public class MainMenuActivity extends AppCompatActivity
                 startActivity(questsIntent);
                 break;
             }
+            case R.id.Main_Shop_btn:
+            {
+                //todo
+                break;
+            }
             default:
                 break;
         }
+    }
+
+    public void InitialUIElements()
+    {
+        Username_txt.setText(DataHolder.User.CurrentBacktoryUser.getUsername());
+        UserAvatar_img.setImageResource(DataHolder.User.Avatar);
+
+        XpLevel_txt.setText(Integer.toString(DataHolder.User.XpLevel));
+        HpLevel_txt.setText(Integer.toString(DataHolder.User.HpLevel));
+        SpLevel_txt.setText(Integer.toString(DataHolder.User.SpLevel));
+        Xp_progBar.setProgress(DataHolder.User.XP);
+        Hp_progBar.setProgress(DataHolder.User.HP);
+        Sp_progBar.setProgress(DataHolder.User.SP);
     }
 }

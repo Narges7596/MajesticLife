@@ -1,130 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:orientation="horizontal">-->
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/listItem_faaliat_avatar_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/ic_quests"
-            tools:ignore="VectorDrawableCompat"
-            android:layout_gravity="left"/>
+    <ImageView
+        android:id="@+id/listItem_faaliat_avatar_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_quests"
+        tools:ignore="VectorDrawableCompat"
+        android:layout_gravity="left"/>
 
-        <LinearLayout
-            android:id="@+id/list_item_linear1"
+    <LinearLayout
+        android:id="@+id/list_item_linear1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/listItem_faaliat_avatar_img"
+        android:layout_toLeftOf="@+id/list_item_linear2"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/listItem_faaliat_name_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:layout_toRightOf="@id/listItem_faaliat_avatar_img"
-            android:layout_alignParentTop="true">
+            android:padding="2dp"
+            android:text="Reading books"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/listItem_faaliat_name_txt"
+                android:id="@+id/listItem_faaliat_xp_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="Reading books" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/listItem_faaliat_xp_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="10" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="@string/xp" />
-
-                <TextView
-                    android:id="@+id/listItem_faaliat_hp_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="10" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="@string/hp" />
-
-                <TextView
-                    android:id="@+id/listItem_faaliat_sp_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="10" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp"
-                    android:text="@string/sp" />
-            </LinearLayout>
+                android:text="10" />
 
             <TextView
-                android:id="@+id/listItem_faaliat_skills_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:text="+10 Knowlege" />
+                android:text="@string/xp" />
+
+            <TextView
+                android:id="@+id/listItem_faaliat_hp_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@string/hp" />
+
+            <TextView
+                android:id="@+id/listItem_faaliat_sp_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@string/sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/list_item_linear2"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="--------------------"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/listItem_faaliat_skills_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toLeftOf="@id/listItem_faaliat_pluse_btn"
-            android:layout_alignParentTop="true">
+            android:padding="2dp"
+            android:text="+10 Knowlege" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/listItem_faaliat_edit_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:drawableTop="@drawable/ic_edit_pen"
-                tools:ignore="VectorDrawableCompat" />
-
-            <Button
-                android:id="@+id/listItem_faaliat_graph_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:drawableTop="@drawable/ic_graph"
-                tools:ignore="VectorDrawableCompat" />
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/list_item_linear2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toLeftOf="@id/listItem_faaliat_pluse_btn"
+        android:layout_alignParentTop="true">
 
         <Button
-            android:id="@+id/listItem_faaliat_pluse_btn"
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:text="+"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+            android:id="@+id/listItem_faaliat_edit_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableTop="@drawable/ic_edit_pen"
+            tools:ignore="VectorDrawableCompat" />
 
+        <Button
+            android:id="@+id/listItem_faaliat_graph_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:drawableTop="@drawable/ic_graph"
+            tools:ignore="VectorDrawableCompat" />
+    </LinearLayout>
 
-<!--</LinearLayout>-->
+    <Button
+        android:id="@+id/listItem_faaliat_pluse_btn"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:text="+"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

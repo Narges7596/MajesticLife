@@ -1,9 +1,11 @@
 package com.farazannajmi.majesticlife;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,7 +99,11 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             @Override
             public void onClick(View v)
             {
-                //todo
+                Log.d("WorkFlow", "Clicked on pluse faaliat btn.");
+
+                //showing dialogue popup to get how many hours user has done this faaliat
+                PluseFaaliatDialogFragment pluseFaaliatDialog = PluseFaaliatDialogFragment.newInstance(position);
+                pluseFaaliatDialog.show(((Activity) context).getFragmentManager(), "PluseFaaliatDialogFragment");
             }
         });
 

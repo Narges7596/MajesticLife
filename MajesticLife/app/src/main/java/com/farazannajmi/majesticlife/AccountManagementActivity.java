@@ -91,6 +91,12 @@ public class AccountManagementActivity extends FragmentActivity
             case R.id.AccountM_Login_btn:
             {
                 Log.d("WorkFlow", "Clicked on log in btn in account management activity.");
+                //todo
+                break;
+            }
+            case R.id.AccountM_editAvatar_btn:
+            {
+                //todo
                 break;
             }
             default:
