@@ -2,9 +2,11 @@ package com.farazannajmi.majesticlife.FaaliatPackage;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.R;
+import com.farazannajmi.majesticlife.SkillPackage.SkillsActivity;
 
 import java.util.ArrayList;
 
@@ -58,6 +62,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         Button edit_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_edit_btn);
         Button graph_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_graph_btn);
         Button pluse_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_pluse_btn);
+        Button delete_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_delete_btn);
 
         //setting UI values
         name_txt.setText(faaliat.Name);
@@ -83,7 +88,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             public void onClick(View v)
             {
                 //opening new activity for editing this faaliat:
-                Intent intent = new Intent(getContext(), EditOneFaaliatPopupActivity.class);
+                Intent intent = new Intent(getContext(), EditFaaliatActivity.class);
                 intent.putExtra("The_Faaliat", position);
                 context.startActivity(intent);
             }
@@ -111,6 +116,38 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             }
         });
 
+        delete_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //show are you sure dialogue popup:
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                // Add action buttons
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        FaaliatsActivity.DeleteFaaliat(position);
+                        Toast.makeText(context, "Activity deleted successfully.", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.setTitle("Are you sure you want to delete this activity?");
+
+                builder.create();
+                builder.show();
+            }
+        });
         return convertView;
     }
 }

@@ -34,9 +34,15 @@ public class FaaliatsActivity extends AppCompatActivity
 
         //create our new array adapter
         faaliats_listView_adapter = new FaaliatsListItemArrayAdapter(this, DataHolder.Faaliats);
-
         //bind the list view with the custom adapter
         faaliats_listView.setAdapter(faaliats_listView_adapter);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        faaliats_listView_adapter.notifyDataSetChanged();
     }
 
     public void UiElementsOnClick(View view)
@@ -49,11 +55,9 @@ public class FaaliatsActivity extends AppCompatActivity
             DataHolder.Faaliats.add(newFaaliat);
 
             //opening new activity for editing this new faaliat:
-            Intent intent = new Intent(FaaliatsActivity.this, EditOneFaaliatPopupActivity.class);
+            Intent intent = new Intent(FaaliatsActivity.this, EditFaaliatActivity.class);
             intent.putExtra("The_Faaliat", DataHolder.Faaliats.size() - 1);
             startActivity(intent);
-
-            faaliats_listView_adapter.notifyDataSetChanged();
         }
     }
 
@@ -65,5 +69,11 @@ public class FaaliatsActivity extends AppCompatActivity
         //showing dialogue popup to show user how much he has improved
 //        PluseFaaliatDialogFragment pluseFaaliatDialog = PluseFaaliatDialogFragment.newInstance(position);
 //        pluseFaaliatDialog.show(((Activity) context).getFragmentManager(), "PluseFaaliatDialogFragment");
+    }
+
+    public static void DeleteFaaliat(int faaliatIndex)
+    {
+        DataHolder.Faaliats.remove(faaliatIndex);
+        faaliats_listView_adapter.notifyDataSetChanged();
     }
 }

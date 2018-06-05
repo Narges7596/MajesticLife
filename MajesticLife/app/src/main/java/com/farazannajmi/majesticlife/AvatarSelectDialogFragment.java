@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.farazannajmi.majesticlife.FaaliatPackage.EditOneFaaliatPopupActivity;
+import com.farazannajmi.majesticlife.FaaliatPackage.EditFaaliatActivity;
+import com.farazannajmi.majesticlife.SkillPackage.EditSkillActivity;
 
 import java.util.ArrayList;
 
@@ -22,14 +23,16 @@ public class AvatarSelectDialogFragment extends DialogFragment
 {
     private GridView gridView;
     private ArrayList<Integer> imageList;
+    private boolean isSkill;
 
-    public static AvatarSelectDialogFragment newInstance(ArrayList<Integer> imageList)
+    public static AvatarSelectDialogFragment newInstance(ArrayList<Integer> imageList, boolean isSkill)
     {
         AvatarSelectDialogFragment f = new AvatarSelectDialogFragment();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
         args.putIntegerArrayList("imageList", imageList);
+        args.putBoolean("isSkill", isSkill);
         f.setArguments(args);
 
         return f;
@@ -39,6 +42,7 @@ public class AvatarSelectDialogFragment extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
         this.imageList = getArguments().getIntegerArrayList("imageList");
+        this.isSkill = getArguments().getBoolean("isSkill");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -70,7 +74,11 @@ public class AvatarSelectDialogFragment extends DialogFragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                EditOneFaaliatPopupActivity.ChangeAvatar(DataHolder.FaaliatAvatars.get(position));
+                if(isSkill)
+                    EditSkillActivity.ChangeAvatar(DataHolder.SkillAvatars.get(position));
+                else
+                    EditFaaliatActivity.ChangeAvatar(DataHolder.FaaliatAvatars.get(position));
+
                 AvatarSelectDialogFragment.this.getDialog().dismiss();
             }
         });

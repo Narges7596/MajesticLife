@@ -22,7 +22,7 @@ import com.farazannajmi.majesticlife.R;
 
 //color palette from:  http://www.color-hex.com/color-palette/61260
 
-public class EditOneFaaliatPopupActivity extends AppCompatActivity
+public class EditFaaliatActivity extends AppCompatActivity
 {
     public static Context context;
     public static Faaliat thisFaaliat;
@@ -40,6 +40,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
     final int maxNumberPickerValue = 10;
 
     private static int colorIndex;
+    public static int AvatarResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,7 +48,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         context = getApplicationContext();
 
-        setContentView(R.layout.activity_edit_one_faaliat_popup);
+        setContentView(R.layout.activity_edit_faaliat);
 
         //getting this current faaliat for editing:
         thisFaaliat = DataHolder.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
@@ -62,6 +63,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         color_btn = (Button) findViewById(R.id.EditOneF_color_btn);
 
         Avatar_img.setImageResource(thisFaaliat.Avatar);
+        AvatarResource = thisFaaliat.Avatar;
 
         Name_editText.setText(thisFaaliat.Name);
 
@@ -137,6 +139,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
             }
             case R.id.EditOneF_addskill_btn:
             {
+                //region ---------- addskill_btn ----------
                 Skill_Time st = null;
                 //finding a new skill:
                 for(int i = 0; i < DataHolder.Skills.size(); i++)
@@ -168,10 +171,11 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
                     Skills_ListView_adapter.notifyDataSetChanged();
                 }
                 break;
+                //endregion ------------------------------
             }
             case R.id.EditOneF_color_btn:
             {
-                //changing color
+                //region ---------- changing color ----------
                 colorIndex++;
                 if(colorIndex == 6)
                 {
@@ -218,6 +222,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
                 }
                 FaaliatsActivity.faaliats_listView_adapter.notifyDataSetChanged();
                 break;
+                //endregion ------------------------------
             }
             case R.id.EditOneF_save_btn:
             {
@@ -227,6 +232,8 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
                 thisFaaliat.XpCount = XP_numberPicker.getValue() + minNumberPickerValue;
                 thisFaaliat.HpCount = HP_numberPicker.getValue() + minNumberPickerValue;
                 thisFaaliat.SpCount = SP_numberPicker.getValue() + minNumberPickerValue;
+
+                thisFaaliat.Avatar = AvatarResource;
 
                 //returning
                 finish();
@@ -241,14 +248,14 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
     private void showAvatarsAlertDialog()
     {
         //showing dialogue popup to get the new avatar
-        AvatarSelectDialogFragment avatarsDialogue = AvatarSelectDialogFragment.newInstance(DataHolder.FaaliatAvatars);
+        AvatarSelectDialogFragment avatarsDialogue = AvatarSelectDialogFragment.newInstance(DataHolder.FaaliatAvatars, false);
         avatarsDialogue.show(getFragmentManager(), "AvatarSelectDialogFragment");
     }
 
     public static void ChangeAvatar(int imageResource)
     {
         Avatar_img.setImageResource(imageResource);
-        thisFaaliat.Avatar = imageResource;
+        AvatarResource = imageResource;
     }
 
     public static boolean IsSkillDuplicated(int sillIndex)

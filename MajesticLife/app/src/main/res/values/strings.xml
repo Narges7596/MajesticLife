@@ -21,4 +21,7 @@
     <string name="name_colon">Name:</string>
     <string name="save">Save</string>
     <string name="add_new_activity">Add New Activity</string>
+    <string name="add_new_skill">Add New Skill</string>
+    <string name="yes">Yes</string>
+    <string name="no">no</string>
 </resources>
