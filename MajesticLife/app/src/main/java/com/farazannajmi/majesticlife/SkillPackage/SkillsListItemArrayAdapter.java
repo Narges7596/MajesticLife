@@ -1,4 +1,4 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.SkillPackage;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -6,12 +6,14 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.farazannajmi.majesticlife.DataStructures.Skill;
+import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
 

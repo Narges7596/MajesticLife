@@ -1,10 +1,10 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.FaaliatPackage;
 
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Narges on 4/18/2018.
@@ -45,6 +48,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         LayoutInflater inflater = LayoutInflater.from(getContext());
         convertView = inflater.inflate(R.layout.listitem_faaliat, parent, false);
 
+        RelativeLayout layout = (RelativeLayout) convertView.findViewById(R.id.listItem_faaliat_layoutparent);
         TextView name_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_name_txt);
         TextView hp_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_hp_txt);
         TextView sp_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_sp_txt);
@@ -57,6 +61,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
 
         //setting UI values
         name_txt.setText(faaliat.Name);
+        layout.setBackgroundColor(ContextCompat.getColor(context, faaliat.fColor));
         hp_txt.setText(Integer.toString(faaliat.HpCount));
         sp_txt.setText(Integer.toString(faaliat.SpCount));
         xp_txt.setText(Integer.toString(faaliat.XpCount));
@@ -70,8 +75,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         skills_txt.setText(sk_txt);
 
         //get the image associated with this property
-//        int imageID = context.getResources().getIdentifier(property.getImage(), "drawable", context.getPackageName());
-//        image.setImageResource(imageID);
+        avatar_img.setImageResource(faaliat.Avatar);
 
         edit_btn.setOnClickListener(new View.OnClickListener()
         {

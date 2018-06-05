@@ -1,21 +1,20 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.FaaliatPackage;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.farazannajmi.majesticlife.DataHolder;
+import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
+import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
 

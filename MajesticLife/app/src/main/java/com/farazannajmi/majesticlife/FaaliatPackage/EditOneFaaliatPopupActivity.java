@@ -1,19 +1,26 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.FaaliatPackage;
 
 import android.content.Context;
-import android.provider.ContactsContract;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
+
+import com.farazannajmi.majesticlife.AvatarSelectDialogFragment;
+import com.farazannajmi.majesticlife.DataHolder;
+import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.DataStructures.Skill;
+import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
+import com.farazannajmi.majesticlife.R;
+
+//color palette from:  http://www.color-hex.com/color-palette/61260
 
 public class EditOneFaaliatPopupActivity extends AppCompatActivity
 {
@@ -23,6 +30,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
 
     public static ImageView Avatar_img;
     public EditText Name_editText;
+    public Button color_btn;
     public NumberPicker XP_numberPicker;
     public NumberPicker HP_numberPicker;
     public NumberPicker SP_numberPicker;
@@ -30,6 +38,8 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
 
     final int minNumberPickerValue = -10;
     final int maxNumberPickerValue = 10;
+
+    private static int colorIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,6 +59,7 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         HP_numberPicker = (NumberPicker) findViewById(R.id.EditOneF_hp_numberPicker);
         SP_numberPicker = (NumberPicker) findViewById(R.id.EditOneF_sp_numberPicker);
         Skills_ListView = (ListView) findViewById(R.id.EditOneF_skills_ListView);
+        color_btn = (Button) findViewById(R.id.EditOneF_color_btn);
 
         Avatar_img.setImageResource(thisFaaliat.Avatar);
 
@@ -109,16 +120,11 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
         //bind the list view with the custom adapter
         Skills_ListView.setAdapter(Skills_ListView_adapter);
         //endregion ------------------------
-    }
 
-//    public static void SettingFaaliatSkills()
-//    {
-//        //create our new array adapter
-//        Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, thisFaaliat.SkillTimes);
-//
-//        //bind the list view with the custom adapter
-//        Skills_ListView.setAdapter(Skills_ListView_adapter);
-//    }
+        //setting color btn true color:
+        color_btn.setBackgroundColor(ContextCompat.getColor(context, thisFaaliat.fColor));
+        colorIndex = 1;
+    }
 
     public void UiElementsOnClick(View view)
     {
@@ -161,6 +167,56 @@ public class EditOneFaaliatPopupActivity extends AppCompatActivity
                     thisFaaliat.SkillTimes.add(st);
                     Skills_ListView_adapter.notifyDataSetChanged();
                 }
+                break;
+            }
+            case R.id.EditOneF_color_btn:
+            {
+                //changing color
+                colorIndex++;
+                if(colorIndex == 6)
+                {
+                    colorIndex = 1;
+                }
+                switch (colorIndex)
+                {
+                    case 1:
+                    {
+                        color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor1));
+                        thisFaaliat.fColor = R.color.faaliatsColor1;
+                    }
+                        break;
+                    case 2:
+                    {
+                        color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor2));
+                        thisFaaliat.fColor = R.color.faaliatsColor2;
+                        break;
+                    }
+                    case 3:
+                    {
+                        color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor3));
+                        thisFaaliat.fColor = R.color.faaliatsColor3;
+                        break;
+                    }
+                    case 4:
+                    {
+                        color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor4));
+                        thisFaaliat.fColor = R.color.faaliatsColor4;
+                        break;
+                    }
+                    case 5:
+                    {
+                        color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor5));
+                        thisFaaliat.fColor = R.color.faaliatsColor5;
+                        break;
+                    }
+                    default:
+                    {
+                        color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor1));
+                        thisFaaliat.fColor = R.color.faaliatsColor1;
+                        break;
+                    }
+                }
+                FaaliatsActivity.faaliats_listView_adapter.notifyDataSetChanged();
                 break;
             }
             case R.id.EditOneF_save_btn:

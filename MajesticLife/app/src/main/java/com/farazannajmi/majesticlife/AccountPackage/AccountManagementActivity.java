@@ -1,10 +1,7 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.AccountPackage;
 
 import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +16,8 @@ import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryResponse;
 import com.backtory.java.internal.BacktoryUser;
 import com.backtory.java.model.GuestRegistrationParam;
+import com.farazannajmi.majesticlife.DataHolder;
+import com.farazannajmi.majesticlife.R;
 
 public class AccountManagementActivity extends FragmentActivity
         implements SignupDialogFragment.SignupDialogListener

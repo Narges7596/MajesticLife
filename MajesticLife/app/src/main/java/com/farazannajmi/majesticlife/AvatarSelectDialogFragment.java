@@ -1,25 +1,18 @@
 package com.farazannajmi.majesticlife;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.Toast;
+
+import com.farazannajmi.majesticlife.FaaliatPackage.EditOneFaaliatPopupActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Narges on 6/4/2018.

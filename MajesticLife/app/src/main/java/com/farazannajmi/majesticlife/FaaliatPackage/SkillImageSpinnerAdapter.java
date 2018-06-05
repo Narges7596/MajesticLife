@@ -1,4 +1,4 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.FaaliatPackage;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.farazannajmi.majesticlife.DataStructures.Skill;
+import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
 

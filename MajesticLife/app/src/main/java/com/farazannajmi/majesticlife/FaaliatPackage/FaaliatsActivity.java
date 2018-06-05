@@ -1,6 +1,5 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.FaaliatPackage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.farazannajmi.majesticlife.DataHolder;
+import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
+import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FaaliatsActivity extends AppCompatActivity
 {
@@ -41,7 +43,8 @@ public class FaaliatsActivity extends AppCompatActivity
     {
         if(view.getId() == R.id.FaaliatsActivity_addFaaliat_btn)
         {
-            Faaliat newFaaliat = new Faaliat("new activity", DataHolder.FaaliatAvatars.get(0), 0, 0, 0,
+            Faaliat newFaaliat = new Faaliat("new activity", DataHolder.FaaliatAvatars.get(0),R.color.faaliatsColor1,
+                    0, 0, 0,
                     new ArrayList<Skill_Time>());
             DataHolder.Faaliats.add(newFaaliat);
 

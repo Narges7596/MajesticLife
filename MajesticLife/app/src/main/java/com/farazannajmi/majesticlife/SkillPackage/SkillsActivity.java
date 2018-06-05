@@ -1,12 +1,13 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.SkillPackage;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.farazannajmi.majesticlife.DataHolder;
+import com.farazannajmi.majesticlife.DataStructures.Skill;
+import com.farazannajmi.majesticlife.R;
 
 public class SkillsActivity extends AppCompatActivity
 {

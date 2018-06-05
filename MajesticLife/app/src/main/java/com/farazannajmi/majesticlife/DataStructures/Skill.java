@@ -1,4 +1,4 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.DataStructures;
 
 import android.graphics.Bitmap;
 

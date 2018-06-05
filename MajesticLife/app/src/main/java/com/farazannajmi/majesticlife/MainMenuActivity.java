@@ -14,10 +14,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.backtory.java.HttpStatusCode;
 import com.backtory.java.internal.BacktoryCallBack;
 import com.backtory.java.internal.BacktoryResponse;
 import com.backtory.java.internal.BacktoryUser;
+import com.farazannajmi.majesticlife.AccountPackage.AccountManagementActivity;
+import com.farazannajmi.majesticlife.FaaliatPackage.FaaliatsActivity;
+import com.farazannajmi.majesticlife.QuestPackage.QuestsActivity;
+import com.farazannajmi.majesticlife.SkillPackage.SkillsActivity;
 
 public class MainMenuActivity extends AppCompatActivity
 {

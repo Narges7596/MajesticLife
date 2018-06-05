@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="faaliatsColor1">#2b9ddb</color>
+    <color name="faaliatsColor2">#7cfac3</color>
+    <color name="faaliatsColor3">#00ab84</color>
+    <color name="faaliatsColor4">#394856</color>
+    <color name="faaliatsColor5">#e57364</color>
+
+    <color name="white">#fff</color>
+    <color name="lightgray">#d6d6d6</color>
 </resources>

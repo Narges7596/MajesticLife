@@ -1,8 +1,9 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.DataStructures;
 
 import android.graphics.Bitmap;
 
 import com.backtory.java.internal.BacktoryUser;
+import com.farazannajmi.majesticlife.R;
 
 /**
  * Created by Narges on 3/28/2018.

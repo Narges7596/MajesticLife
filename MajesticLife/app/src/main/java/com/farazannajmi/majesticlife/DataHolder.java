@@ -1,5 +1,12 @@
 package com.farazannajmi.majesticlife;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.DataStructures.Skill;
+import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
+import com.farazannajmi.majesticlife.DataStructures.User_Majesty;
+
 import java.util.ArrayList;
 
 /**
@@ -14,6 +21,8 @@ public class DataHolder
 
     public static ArrayList<Integer> FaaliatAvatars;
     public static ArrayList<Integer> SkillAvatars;
+
+    private static SQLiteDatabase database;
 
     public static void InitialData()
     {
@@ -66,24 +75,38 @@ public class DataHolder
         ArrayList<Skill_Time> st = new ArrayList<Skill_Time>();
         st.add(new Skill_Time(DataHolder.Skills.get(0), 10, 0));
         st.add(new Skill_Time(DataHolder.Skills.get(1), 20, 1));
-        DataHolder.Faaliats.add(new Faaliat("Embroidery", FaaliatAvatars.get(0), -10, 5, 2, st));
+        DataHolder.Faaliats.add(new Faaliat("Embroidery", FaaliatAvatars.get(0),
+                R.color.faaliatsColor1, -10, 5, 2, st));
 
         ArrayList<Skill_Time> st2 = new ArrayList<Skill_Time>();
         st2.add(new Skill_Time(DataHolder.Skills.get(2), 2, 2));
         st2.add(new Skill_Time(DataHolder.Skills.get(3), 3, 3));
-        DataHolder.Faaliats.add(new Faaliat("Alaki", FaaliatAvatars.get(0), -1, 2, 3, st2));
+        DataHolder.Faaliats.add(new Faaliat("Alaki", FaaliatAvatars.get(0),
+                R.color.faaliatsColor3, -1, 2, 3, st2));
         //endregion
     }
 
     public static void LoadData()
     {
         //todo
-
-        InitialData();
     }
 
     public static void SaveData ()
     {
         //todo
     }
+
+//    private static boolean InitDataBase ()
+//    {
+//        try
+//        {
+//            database = SQLiteDatabase.openOrCreateDatabase("MajesticLife_DB", null);
+//        }
+//        catch (Exception e)
+//        {
+//            return false;
+//        }
+//
+//        return true;
+//    }
 }

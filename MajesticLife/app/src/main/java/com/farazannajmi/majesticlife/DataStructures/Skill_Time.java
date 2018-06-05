@@ -1,4 +1,6 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.DataStructures;
+
+import com.farazannajmi.majesticlife.DataStructures.Skill;
 
 /**
  * Created by Narges on 3/28/2018.

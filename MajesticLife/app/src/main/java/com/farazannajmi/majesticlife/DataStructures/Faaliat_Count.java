@@ -1,4 +1,6 @@
-package com.farazannajmi.majesticlife;
+package com.farazannajmi.majesticlife.DataStructures;
+
+import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 
 /**
  * Created by Narges on 4/18/2018.

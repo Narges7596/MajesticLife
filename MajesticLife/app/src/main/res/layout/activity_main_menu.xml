@@ -68,12 +68,22 @@
                             android:textAlignment="center"
                             android:textColor="@android:color/black" />
 
-                        <ProgressBar
-                            android:id="@+id/Main_Xp_progBar"
-                            style="?android:attr/progressBarStyleHorizontal"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp" />
+                            android:orientation="vertical"
+                            android:layout_marginLeft="5dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/xp"/>
+                            <ProgressBar
+                                android:id="@+id/Main_Xp_progBar"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp" />
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -148,12 +158,21 @@
                         android:textAlignment="center"
                         android:textColor="@android:color/black" />
 
-                    <ProgressBar
-                        android:id="@+id/Main_HP_progBar"
-                        style="?android:attr/progressBarStyleHorizontal"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp" />
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hp"/>
+                        <ProgressBar
+                            android:id="@+id/Main_HP_progBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -173,12 +192,21 @@
                         android:textAlignment="center"
                         android:textColor="@android:color/black" />
 
-                    <ProgressBar
-                        android:id="@+id/Main_SP_progBar"
-                        style="?android:attr/progressBarStyleHorizontal"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp" />
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sp"/>
+                        <ProgressBar
+                            android:id="@+id/Main_SP_progBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

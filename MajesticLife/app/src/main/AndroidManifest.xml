@@ -27,13 +27,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AccountManagementActivity" />
-        <activity android:name=".SkillsActivity" />
+        <activity android:name=".AccountPackage.AccountManagementActivity" />
+        <activity android:name=".SkillPackage.SkillsActivity" />
         <activity android:name=".PlanActivity" />
-        <activity android:name=".QuestsActivity" />
+        <activity android:name=".QuestPackage.QuestsActivity" />
         <activity android:name=".ShopActivity" />
-        <activity android:name=".FaaliatsActivity" />
-        <activity android:name=".EditOneFaaliatPopupActivity"></activity>
+        <activity android:name=".FaaliatPackage.FaaliatsActivity" />
+        <activity android:name=".FaaliatPackage.EditOneFaaliatPopupActivity"></activity>
     </application>
 
 </manifest>
