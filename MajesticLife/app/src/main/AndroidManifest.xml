@@ -29,7 +29,7 @@
         </activity>
         <activity android:name=".AccountPackage.AccountManagementActivity" />
         <activity android:name=".SkillPackage.SkillsActivity" />
-        <activity android:name=".PlanActivity" />
+        <activity android:name=".PlanPackage.PlanActivity" />
         <activity android:name=".QuestPackage.QuestsActivity" />
         <activity android:name=".ShopActivity" />
         <activity android:name=".FaaliatPackage.FaaliatsActivity" />

@@ -19,6 +19,7 @@ import com.backtory.java.internal.BacktoryResponse;
 import com.backtory.java.internal.BacktoryUser;
 import com.farazannajmi.majesticlife.AccountPackage.AccountManagementActivity;
 import com.farazannajmi.majesticlife.FaaliatPackage.FaaliatsActivity;
+import com.farazannajmi.majesticlife.PlanPackage.PlanActivity;
 import com.farazannajmi.majesticlife.QuestPackage.QuestsActivity;
 import com.farazannajmi.majesticlife.SkillPackage.SkillsActivity;
 
@@ -118,13 +119,18 @@ public class MainMenuActivity extends AppCompatActivity
                 String username = sharedPref.getString("UserName", "");
                 String password = sharedPref.getString("UserPassword", "");
 
+
                 DataHolder.LoadData();
 
-                DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                //todo
+                //DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                DataHolder.User.Username = username;
+                DataHolder.User.Password = password;
 
                 InitialUIElements();
 
-                Log.d("WorkFlow", "Username: " + DataHolder.User.CurrentBacktoryUser.getUsername());
+                //todo
+                //Log.d("WorkFlow", "Username: " + DataHolder.User.CurrentBacktoryUser.getUsername());
 
 //            // Pass user info to login
 //            BacktoryUser.loginInBackground(username, password,
@@ -206,7 +212,7 @@ public class MainMenuActivity extends AppCompatActivity
 
     public void InitialUIElements()
     {
-        Username_txt.setText(DataHolder.User.CurrentBacktoryUser.getUsername());
+        Username_txt.setText(DataHolder.User.Username);
         UserAvatar_img.setImageResource(DataHolder.User.Avatar);
 
         XpLevel_txt.setText(Integer.toString(DataHolder.User.XpLevel));

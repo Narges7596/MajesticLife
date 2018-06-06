@@ -89,6 +89,7 @@ public class DataHolder
     public static void LoadData()
     {
         //todo
+        InitialData();
     }
 
     public static void SaveData ()

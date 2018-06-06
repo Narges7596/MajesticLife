@@ -12,6 +12,8 @@ import com.farazannajmi.majesticlife.R;
 public class User_Majesty
 {
     public BacktoryUser CurrentBacktoryUser;
+    public String Username;
+    public String Password;
 
     public String Email;
     public int Avatar;
@@ -25,8 +27,11 @@ public class User_Majesty
     public int SP;
     public int SpLevel;
 
-    public User_Majesty()
+    public User_Majesty(/*String username, String password, int avatar*/)
     {
+//        this.Username = username;
+//        this.Password = password;
+//        this.Avatar = avatar;
         this.Avatar = R.drawable.ic_king;
     }
 }
