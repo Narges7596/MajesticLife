@@ -15,9 +15,11 @@ import java.util.ArrayList;
 
 public class DataHolder
 {
+    public static User_Majesty User;
     public static ArrayList<Faaliat> Faaliats;
     public static ArrayList<Skill> Skills;
-    public static User_Majesty User;
+
+    public static Faaliat[][] WeeklyPlan;
 
     public static ArrayList<Integer> FaaliatAvatars;
     public static ArrayList<Integer> SkillAvatars;
@@ -26,6 +28,7 @@ public class DataHolder
 
     public static void InitialData()
     {
+        //todo: remove tests and initial all user xp & ... with 0
         Faaliats = new ArrayList<Faaliat>();
         Skills = new ArrayList<Skill>();
         User = new User_Majesty();
@@ -36,6 +39,16 @@ public class DataHolder
         User.XpLevel = 3;
         User.HpLevel = 1;
         User.SpLevel = 10;
+
+        WeeklyPlan = new Faaliat[17][7];
+        for(int dayCounter = 0; dayCounter < 7; dayCounter++)
+        {
+            for(int hourCounter = 0; hourCounter < 17; hourCounter++)
+            {
+                WeeklyPlan[hourCounter][dayCounter] =
+                        new Faaliat("empty", 0,0,0,0,0,null);
+            }
+        }
 
         FaaliatAvatars = new ArrayList<Integer>();
         FaaliatAvatars.add(R.drawable.ic_majestic_activities);
