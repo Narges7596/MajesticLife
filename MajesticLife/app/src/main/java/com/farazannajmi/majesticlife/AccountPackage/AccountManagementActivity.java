@@ -54,14 +54,14 @@ public class AccountManagementActivity extends FragmentActivity
         Or_txt = findViewById(R.id.AccountM_or_txt);
 
         //region setting right UI values!
-        Avatar_img.setImageResource(DataHolder.User.Avatar);
-        Username_txt.setText(DataHolder.User.CurrentBacktoryUser.getUsername());
-        XpLevel_txt.setText(Integer.toString(DataHolder.User.XpLevel));
-        HpLevel_txt.setText(Integer.toString(DataHolder.User.HpLevel));
-        SpLevel_txt.setText(Integer.toString(DataHolder.User.SpLevel));
-        XpLevel_progBar.setProgress(DataHolder.User.XP);
-        HpLevel_progBar.setProgress(DataHolder.User.HP);
-        SpLevel_progBar.setProgress(DataHolder.User.SP);
+        Avatar_img.setImageResource(DataHolder.User.getAvatar_ResIndex());
+        Username_txt.setText(DataHolder.CurrentBacktoryUser.getUsername());
+        XpLevel_txt.setText(Integer.toString(DataHolder.User.getXpLevel()));
+        HpLevel_txt.setText(Integer.toString(DataHolder.User.getHpLevel()));
+        SpLevel_txt.setText(Integer.toString(DataHolder.User.getSpLevel()));
+        XpLevel_progBar.setProgress(DataHolder.User.getXP());
+        HpLevel_progBar.setProgress(DataHolder.User.getHP());
+        SpLevel_progBar.setProgress(DataHolder.User.getSP());
 
         if(BacktoryUser.getCurrentUser().isGuest())
             Signup_btn.setText(R.string.sign_up);
@@ -127,7 +127,7 @@ public class AccountManagementActivity extends FragmentActivity
                             String uName = response.body().getUsername();
                             Log.d("Backtory", "Successfully completed registered as " + uName);
 
-                            DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                            DataHolder.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
 
                             Username_txt.setText(uName);
                         }

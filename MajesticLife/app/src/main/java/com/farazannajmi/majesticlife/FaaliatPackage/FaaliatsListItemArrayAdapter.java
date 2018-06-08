@@ -65,22 +65,22 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         Button delete_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_delete_btn);
 
         //setting UI values
-        name_txt.setText(faaliat.Name);
-        layout.setBackgroundColor(ContextCompat.getColor(context, faaliat.fColor));
-        hp_txt.setText(Integer.toString(faaliat.HpCount));
-        sp_txt.setText(Integer.toString(faaliat.SpCount));
-        xp_txt.setText(Integer.toString(faaliat.XpCount));
+        name_txt.setText(faaliat.getFaaliat_Name());
+        layout.setBackgroundColor(ContextCompat.getColor(context, faaliat.getColor_ResIndex()));
+        hp_txt.setText(Integer.toString(faaliat.getHpCount()));
+        sp_txt.setText(Integer.toString(faaliat.getSpCount()));
+        xp_txt.setText(Integer.toString(faaliat.getXpCount()));
 
         String sk_txt = "";
         for (int i = 0; i < faaliat.SkillTimes.size(); i++)
         {
-            sk_txt += "+" + faaliat.SkillTimes.get(i).RepeatingTime + " " + faaliat.SkillTimes.get(i).TheSill.Name + "\n";
+            sk_txt += "+" + faaliat.SkillTimes.get(i).RepeatingTime + " " + faaliat.SkillTimes.get(i).TheSill.getSkill_Name() + "\n";
         }
 
         skills_txt.setText(sk_txt);
 
         //get the image associated with this property
-        avatar_img.setImageResource(faaliat.Avatar);
+        avatar_img.setImageResource(faaliat.getAvatar_ResIndex());
 
         edit_btn.setOnClickListener(new View.OnClickListener()
         {

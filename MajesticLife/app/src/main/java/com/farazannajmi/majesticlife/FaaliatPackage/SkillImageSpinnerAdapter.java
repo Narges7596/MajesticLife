@@ -32,11 +32,11 @@ public class SkillImageSpinnerAdapter extends ArrayAdapter<String>
 
         this.spinnerTitles = new String[skills.size()];
         for(int i = 0; i < skills.size(); i ++)
-            spinnerTitles[i] = skills.get(i).Name;
+            spinnerTitles[i] = skills.get(i).getSkill_Name();
 
         this.spinnerImages = new int[skills.size()];
         for(int i = 0; i < skills.size(); i ++)
-            spinnerImages[i] = skills.get(i).Avatar;
+            spinnerImages[i] = skills.get(i).getAvatar_ResIndex();
 
         this.context = context;
     }

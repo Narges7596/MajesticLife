@@ -40,10 +40,10 @@ public class EditSkillActivity extends AppCompatActivity
         Name_editText = (EditText) findViewById(R.id.EditSkill_name_editText);
         //color_btn = (Button) findViewById(R.id.EditSkill_color_btn);
 
-        Avatar_img.setImageResource(thisSkill.Avatar);
-        AvatarResource = thisSkill.Avatar;
+        Avatar_img.setImageResource(thisSkill.getAvatar_ResIndex());
+        AvatarResource = thisSkill.getAvatar_ResIndex();
 
-        Name_editText.setText(thisSkill.Name);
+        Name_editText.setText(thisSkill.getSkill_Name());
 
         //setting color btn true color:
         //color_btn.setBackgroundColor(ContextCompat.getColor(context, thisFaaliat.fColor));
@@ -113,8 +113,8 @@ public class EditSkillActivity extends AppCompatActivity
             case R.id.EditSkill_save_btn:
             {
                 //saving name:
-                    thisSkill.Name =  Name_editText.getText().toString();
-                    thisSkill.Avatar = AvatarResource;
+                    thisSkill.setSkill_Name(Name_editText.getText().toString());
+                    thisSkill.setAvatar_ResIndex(AvatarResource);
                     //returning
                     finish();
                     SkillsActivity.skill_gridview_adapter.notifyDataSetChanged();

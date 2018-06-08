@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.farazannajmi.majesticlife.AvatarSelectDialogFragment;
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.Skill;
-import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
 import com.farazannajmi.majesticlife.R;
 
 //color palette from:  http://www.color-hex.com/color-palette/61260
@@ -26,7 +26,7 @@ public class EditFaaliatActivity extends AppCompatActivity
 {
     public static Context context;
     public static Faaliat thisFaaliat;
-    public static ArrayAdapter<Skill_Time> Skills_ListView_adapter;
+    public static ArrayAdapter<FaaliatSkill> Skills_ListView_adapter;
 
     public static ImageView Avatar_img;
     public EditText Name_editText;
@@ -62,16 +62,16 @@ public class EditFaaliatActivity extends AppCompatActivity
         Skills_ListView = (ListView) findViewById(R.id.EditOneF_skills_ListView);
         color_btn = (Button) findViewById(R.id.EditOneF_color_btn);
 
-        Avatar_img.setImageResource(thisFaaliat.Avatar);
-        AvatarResource = thisFaaliat.Avatar;
+        Avatar_img.setImageResource(thisFaaliat.getAvatar_ResIndex());
+        AvatarResource = thisFaaliat.getAvatar_ResIndex();
 
-        Name_editText.setText(thisFaaliat.Name);
+        Name_editText.setText(thisFaaliat.getFaaliat_Name());
 
         //region ------------ setting min and max values for numberpickers ------------
         XP_numberPicker.setMinValue(0);
         XP_numberPicker.setMaxValue(maxNumberPickerValue - minNumberPickerValue);
         XP_numberPicker.setValue(0);
-        XP_numberPicker.setValue(thisFaaliat.XpCount - minNumberPickerValue);
+        XP_numberPicker.setValue(thisFaaliat.getXpCount() - minNumberPickerValue);
         XP_numberPicker.setFormatter(new NumberPicker.Formatter()
         {
             @Override
@@ -92,7 +92,7 @@ public class EditFaaliatActivity extends AppCompatActivity
         HP_numberPicker.setMinValue(0);
         HP_numberPicker.setMaxValue(maxNumberPickerValue - minNumberPickerValue);
         HP_numberPicker.setValue(0);
-        HP_numberPicker.setValue(thisFaaliat.HpCount - minNumberPickerValue);
+        HP_numberPicker.setValue(thisFaaliat.getHpCount() - minNumberPickerValue);
         HP_numberPicker.setFormatter(new NumberPicker.Formatter()
         {
             @Override
@@ -105,7 +105,7 @@ public class EditFaaliatActivity extends AppCompatActivity
         SP_numberPicker.setMinValue(0);
         SP_numberPicker.setMaxValue(maxNumberPickerValue - minNumberPickerValue);
         SP_numberPicker.setValue(0);
-        SP_numberPicker.setValue(thisFaaliat.SpCount - minNumberPickerValue);
+        SP_numberPicker.setValue(thisFaaliat.getSpCount() - minNumberPickerValue);
         SP_numberPicker.setFormatter(new NumberPicker.Formatter()
         {
             @Override
@@ -124,7 +124,7 @@ public class EditFaaliatActivity extends AppCompatActivity
         //endregion ------------------------
 
         //setting color btn true color:
-        color_btn.setBackgroundColor(ContextCompat.getColor(context, thisFaaliat.fColor));
+        color_btn.setBackgroundColor(ContextCompat.getColor(context, thisFaaliat.getColor_ResIndex()));
         colorIndex = 1;
     }
 
@@ -140,7 +140,7 @@ public class EditFaaliatActivity extends AppCompatActivity
             case R.id.EditOneF_addskill_btn:
             {
                 //region ---------- addskill_btn ----------
-                Skill_Time st = null;
+                FaaliatSkill st = null;
                 //finding a new skill:
                 for(int i = 0; i < DataHolder.Skills.size(); i++)
                 {
@@ -156,7 +156,7 @@ public class EditFaaliatActivity extends AppCompatActivity
                     if(!found)
                     {
                         Skill newSkill = DataHolder.Skills.get(i);
-                        st = new Skill_Time(newSkill, 1, i);
+                        st = new FaaliatSkill(newSkill, 1, i);
                         break;
                     }
                 }
@@ -186,37 +186,37 @@ public class EditFaaliatActivity extends AppCompatActivity
                     case 1:
                     {
                         color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor1));
-                        thisFaaliat.fColor = R.color.faaliatsColor1;
+                        thisFaaliat.setColor_ResIndex(R.color.faaliatsColor1);
                     }
                         break;
                     case 2:
                     {
                         color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor2));
-                        thisFaaliat.fColor = R.color.faaliatsColor2;
+                        thisFaaliat.setColor_ResIndex(R.color.faaliatsColor2);
                         break;
                     }
                     case 3:
                     {
                         color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor3));
-                        thisFaaliat.fColor = R.color.faaliatsColor3;
+                        thisFaaliat.setColor_ResIndex(R.color.faaliatsColor3);
                         break;
                     }
                     case 4:
                     {
                         color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor4));
-                        thisFaaliat.fColor = R.color.faaliatsColor4;
+                        thisFaaliat.setColor_ResIndex(R.color.faaliatsColor4);
                         break;
                     }
                     case 5:
                     {
                         color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor5));
-                        thisFaaliat.fColor = R.color.faaliatsColor5;
+                        thisFaaliat.setColor_ResIndex(R.color.faaliatsColor5);
                         break;
                     }
                     default:
                     {
                         color_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.faaliatsColor1));
-                        thisFaaliat.fColor = R.color.faaliatsColor1;
+                        thisFaaliat.setColor_ResIndex(R.color.faaliatsColor1);
                         break;
                     }
                 }
@@ -227,13 +227,13 @@ public class EditFaaliatActivity extends AppCompatActivity
             case R.id.EditOneF_save_btn:
             {
                 //saving name:
-                thisFaaliat.Name =  Name_editText.getText().toString();
+                thisFaaliat.setFaaliat_Name(Name_editText.getText().toString());
 
-                thisFaaliat.XpCount = XP_numberPicker.getValue() + minNumberPickerValue;
-                thisFaaliat.HpCount = HP_numberPicker.getValue() + minNumberPickerValue;
-                thisFaaliat.SpCount = SP_numberPicker.getValue() + minNumberPickerValue;
+                thisFaaliat.setXpCount(XP_numberPicker.getValue() + minNumberPickerValue);
+                thisFaaliat.setHpCount(HP_numberPicker.getValue() + minNumberPickerValue);
+                thisFaaliat.setSpCount(SP_numberPicker.getValue() + minNumberPickerValue);
 
-                thisFaaliat.Avatar = AvatarResource;
+                thisFaaliat.setAvatar_ResIndex(AvatarResource);
 
                 //returning
                 finish();

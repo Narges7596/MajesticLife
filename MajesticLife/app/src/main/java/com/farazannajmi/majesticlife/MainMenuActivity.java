@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.backtory.java.internal.BacktoryCallBack;
@@ -99,7 +100,7 @@ public class MainMenuActivity extends AppCompatActivity
                             editor.putString("UserName", newUsername);
                             editor.putString("UserPassword", newPassword);
 
-                            DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                            DataHolder.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
 
                             InitialUIElements();
 
@@ -124,8 +125,8 @@ public class MainMenuActivity extends AppCompatActivity
 
                 //todo
                 //DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-                DataHolder.User.Username = username;
-                DataHolder.User.Password = password;
+                DataHolder.User.setUsername(username);
+                //DataHolder.User.Password = password;
 
                 InitialUIElements();
 
@@ -212,14 +213,14 @@ public class MainMenuActivity extends AppCompatActivity
 
     public void InitialUIElements()
     {
-        Username_txt.setText(DataHolder.User.Username);
-        UserAvatar_img.setImageResource(DataHolder.User.Avatar);
+        Username_txt.setText(DataHolder.User.getUsername());
+        UserAvatar_img.setImageResource(DataHolder.User.getAvatar_ResIndex());
 
-        XpLevel_txt.setText(Integer.toString(DataHolder.User.XpLevel));
-        HpLevel_txt.setText(Integer.toString(DataHolder.User.HpLevel));
-        SpLevel_txt.setText(Integer.toString(DataHolder.User.SpLevel));
-        Xp_progBar.setProgress(DataHolder.User.XP);
-        Hp_progBar.setProgress(DataHolder.User.HP);
-        Sp_progBar.setProgress(DataHolder.User.SP);
+        XpLevel_txt.setText(Integer.toString(DataHolder.User.getXpLevel()));
+        HpLevel_txt.setText(Integer.toString(DataHolder.User.getHpLevel()));
+        SpLevel_txt.setText(Integer.toString(DataHolder.User.getSpLevel()));
+        Xp_progBar.setProgress(DataHolder.User.getXP());
+        Hp_progBar.setProgress(DataHolder.User.getHP());
+        Sp_progBar.setProgress(DataHolder.User.getSP());
     }
 }

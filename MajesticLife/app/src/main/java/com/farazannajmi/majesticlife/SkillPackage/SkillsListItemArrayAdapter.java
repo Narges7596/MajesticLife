@@ -59,18 +59,18 @@ public class SkillsListItemArrayAdapter extends ArrayAdapter<Skill>
         Button delete_btn = (Button) convertView.findViewById(R.id.listItem_skill_delete_btn);
 
         //setting info in UI:
-        name_txt.setText(skill.Name);
-        level_txt.setText(Integer.toString(skill.Level));
+        name_txt.setText(skill.getSkill_Name());
+        level_txt.setText(Integer.toString(skill.getLevel()));
 
         progress_Bar.setMax(100);
-        progress_Bar.setProgress(skill.Progress);
-        ObjectAnimator animation = ObjectAnimator.ofInt(progress_Bar, "progress", 0, skill.Progress); // see this max value coming back here, we animate towards that value
+        progress_Bar.setProgress(skill.getProgress());
+        ObjectAnimator animation = ObjectAnimator.ofInt(progress_Bar, "progress", 0, skill.getProgress()); // see this max value coming back here, we animate towards that value
         animation.setDuration(1000); // in milliseconds
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
 
         //get the image associated with this property
-        avatar_img.setImageResource(skill.Avatar);
+        avatar_img.setImageResource(skill.getAvatar_ResIndex());
 
         edit_btn.setOnClickListener(new View.OnClickListener()
         {

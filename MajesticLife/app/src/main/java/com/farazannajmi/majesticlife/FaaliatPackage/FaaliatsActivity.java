@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
-import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
@@ -49,9 +49,9 @@ public class FaaliatsActivity extends AppCompatActivity
     {
         if(view.getId() == R.id.FaaliatsActivity_addFaaliat_btn)
         {
-            Faaliat newFaaliat = new Faaliat("new activity", DataHolder.FaaliatAvatars.get(0),R.color.faaliatsColor1,
-                    0, 0, 0,
-                    new ArrayList<Skill_Time>());
+            Faaliat newFaaliat = new Faaliat(DataHolder.Faaliats.size(), "new activity", DataHolder.FaaliatAvatars.get(0),R.color.faaliatsColor1,
+                    0, 0, 0, DataHolder.User.getUser_ID());
+            newFaaliat.SkillTimes = new ArrayList<FaaliatSkill>();
             DataHolder.Faaliats.add(newFaaliat);
 
             //opening new activity for editing this new faaliat:

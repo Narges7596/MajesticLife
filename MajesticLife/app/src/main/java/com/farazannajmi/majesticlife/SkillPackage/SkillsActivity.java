@@ -9,14 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
 import com.farazannajmi.majesticlife.DataHolder;
-import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.Skill;
-import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
-import com.farazannajmi.majesticlife.FaaliatPackage.EditFaaliatActivity;
-import com.farazannajmi.majesticlife.FaaliatPackage.FaaliatsActivity;
 import com.farazannajmi.majesticlife.R;
-
-import java.util.ArrayList;
 
 public class SkillsActivity extends AppCompatActivity
 {
@@ -44,7 +38,7 @@ public class SkillsActivity extends AppCompatActivity
     {
         if (view.getId() ==R.id.SkillsActivity_addSkill_btn)
         {
-            Skill newSkill = new Skill("new skill", DataHolder.SkillAvatars.get(0),1,0);
+            Skill newSkill = new Skill("new skill", DataHolder.SkillAvatars.get(0),1,0, DataHolder.User.getUser_ID());
             DataHolder.Skills.add(newSkill);
 
             //opening new activity for editing this new faaliat:

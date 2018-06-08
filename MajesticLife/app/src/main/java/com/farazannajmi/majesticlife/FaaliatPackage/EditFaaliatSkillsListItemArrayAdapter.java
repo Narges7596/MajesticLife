@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.farazannajmi.majesticlife.DataHolder;
-import com.farazannajmi.majesticlife.DataStructures.Skill_Time;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
@@ -23,12 +23,12 @@ import java.util.ArrayList;
  *  https://www.codingdemos.com/android-custom-spinner-images-text/
  */
 
-public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Time>
+public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatSkill>
 {
     private Context context;
-    private ArrayList<Skill_Time> skillTimesList;
+    private ArrayList<FaaliatSkill> skillTimesList;
 
-    public EditFaaliatSkillsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<Skill_Time> objects)
+    public EditFaaliatSkillsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<FaaliatSkill> objects)
     {
         super(context, R.layout.listitem_faaliat, objects);
 
@@ -40,7 +40,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<Skill_Ti
     public View getView(final int position, View convertView, ViewGroup parent)
     {
         //get the property we are displaying
-        Skill_Time skillTime = getItem(position);
+        FaaliatSkill skillTime = getItem(position);
 
         //get the inflater and inflate the XML layout for each item
         LayoutInflater inflater = LayoutInflater.from(getContext());
