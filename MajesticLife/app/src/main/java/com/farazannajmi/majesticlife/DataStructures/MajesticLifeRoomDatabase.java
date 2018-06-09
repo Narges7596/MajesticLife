@@ -11,6 +11,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.farazannajmi.majesticlife.R;
+
 /**
  * Created by Narges on 6/7/2018.
  * https://www.youtube.com/watch?v=9xdtVdO-XAA
@@ -44,6 +46,24 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             MajesticLifeRoomDatabase.class, "MajesticLife_database")
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    public static MajesticLifeRoomDatabase InitialDatabase(final Context context)
+    {
+        if (INSTANCE == null)
+        {
+            synchronized (MajesticLifeRoomDatabase.class)
+            {
+                if (INSTANCE == null)
+                {
+                    // Create database here
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            MajesticLifeRoomDatabase.class, "MajesticLife_database")
                             .addCallback(sRoomDatabaseCallback) //for initial data to database
                             .build();
                 }
@@ -64,22 +84,58 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void>
     {
-        private final PlanCellDao mDao;
+        private final UserDao userDao;
+        private final FaaliatDao faaliatDao;
+        private final SkillDao skillDao;
+        private final QuestDao questDao;
+        private final PlanCellDao planCellDao;
+        private final FaaliatSkillDao faaliatSkillDao;
+        private final QuestSkillDao questSkillDao;
 
         PopulateDbAsync(MajesticLifeRoomDatabase db)
         {
-            mDao = db.planCellDao();
+            userDao = db.userDao();
+            faaliatDao = db.faaliatDao();
+            skillDao = db.skillDao();
+            questDao = db.questDao();
+            planCellDao = db.planCellDao();
+            faaliatSkillDao = db.faaliatSkillDao();
+            questSkillDao = db.questSkillDao();
         }
 
         @Override
         protected Void doInBackground(final Void... params)
         {
-            //todo
-            mDao.deleteAll();
-            PlanCell planCell = new PlanCell(0,0,0,0);
-            mDao.insert(planCell);
-//            word = new Word("World");
-//            mDao.insert(word);
+            //User:
+            userDao.deleteAll();
+            User user = new User(0, "username", "username@mail.com",
+                    R.drawable.ic_king, 0, 1,0, 1, 0, 1);
+            userDao.insert(user);
+
+            faaliatDao.deleteAll();
+            Faaliat faaliat = new Faaliat(0, "Reading book",
+                    R.drawable.ic_majestic_activities, R.color.faaliatsColor1, 10,0,-1,0);
+            faaliatDao.insert(faaliat);
+
+            skillDao.deleteAll();
+            Skill skill = new Skill("Knowledge", R.drawable.ic_skills, 1, 0, 0);
+            skillDao.insert(skill);
+
+            faaliatSkillDao.deleteAll();
+            FaaliatSkill faaliatSkill = new FaaliatSkill(0, 0, 5);
+            faaliatSkillDao.insert(faaliatSkill);
+
+            planCellDao.deleteAll();
+            PlanCell planCell = new PlanCell(0, 0, 0,5);
+            planCellDao.insert(planCell);
+
+            questDao.deleteAll();
+            Quest quest = new Quest(0, "Pass exam", "20181203"); //todo: wrong DuaDate param
+            questDao.insert(quest);
+
+            questSkillDao.deleteAll();
+            QuestSkill questSkill = new QuestSkill(0, 0, 2);
+            questSkillDao.insert(questSkill);
             return null;
         }
     }

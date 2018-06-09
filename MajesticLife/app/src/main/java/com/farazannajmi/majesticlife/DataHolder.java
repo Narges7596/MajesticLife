@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import com.backtory.java.internal.BacktoryUser;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
+import com.farazannajmi.majesticlife.DataStructures.MajesticLifeRoomDatabase;
 import com.farazannajmi.majesticlife.DataStructures.PlanCell;
 import com.farazannajmi.majesticlife.DataStructures.PlanCellViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Quest;
@@ -104,7 +105,7 @@ public class DataHolder
 
     public static void InitialDataBase (FragmentActivity activity, LifecycleOwner owner)
     {
-
+        MajesticLifeRoomDatabase.InitialDatabase(activity);
 
         //getting user:
         UserViewModel userViewModel = ViewModelProviders.of(activity).get(UserViewModel.class);

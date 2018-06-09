@@ -1,10 +1,14 @@
 package com.farazannajmi.majesticlife.FaaliatPackage;
 
 import android.app.Activity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -19,10 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
+import com.farazannajmi.majesticlife.DataStructures.Skill;
 import com.farazannajmi.majesticlife.R;
 import com.farazannajmi.majesticlife.SkillPackage.SkillsActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Narges on 4/18/2018.
@@ -31,14 +41,16 @@ import java.util.ArrayList;
 public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
 {
     private Context context;
+    private Activity activity;
     private ArrayList<Faaliat> faaliatList;
 
-    public FaaliatsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<Faaliat> objects)
+    public FaaliatsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<Faaliat> objects, @Nonnull Activity activity)
     {
         super(context, R.layout.listitem_faaliat, objects);
 
         this.context = context;
         this.faaliatList = objects;
+        this.activity = activity;
     }
 
     //called when rendering the list
@@ -46,6 +58,15 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
     {
         //get the property we are displaying
         Faaliat faaliat = getItem(position);
+        final ArrayList<FaaliatSkill> faaliatSkills;
+//        //getting FaaliatSkills: //todo
+//        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of((FragmentActivity) activity).get(FaaliatSkillViewModel.class);
+//        faaliatSkillViewModel.getSkillsForFaaliat(faaliat).observe(this, new Observer<List<Skill>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Skill> skills) {
+//                faaliatSkills = (ArrayList) skills;
+//            }
+//        });
 
         //get the inflater and inflate the XML layout for each item
         //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -71,13 +92,14 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         sp_txt.setText(Integer.toString(faaliat.getSpCount()));
         xp_txt.setText(Integer.toString(faaliat.getXpCount()));
 
-        String sk_txt = "";
-        for (int i = 0; i < faaliat.SkillTimes.size(); i++)
-        {
-            sk_txt += "+" + faaliat.SkillTimes.get(i).RepeatingTime + " " + faaliat.SkillTimes.get(i).TheSill.getSkill_Name() + "\n";
-        }
 
-        skills_txt.setText(sk_txt);
+//todo    String sk_txt = "";
+//        for (int i = 0; i < faaliat.SkillTimes.size(); i++)
+//        {
+//            sk_txt += "+" + faaliat.SkillTimes.get(i).RepeatingTime + " " + faaliat.SkillTimes.get(i).TheSill.getSkill_Name() + "\n";
+//        }
+
+// todo       skills_txt.setText(sk_txt);
 
         //get the image associated with this property
         avatar_img.setImageResource(faaliat.getAvatar_ResIndex());

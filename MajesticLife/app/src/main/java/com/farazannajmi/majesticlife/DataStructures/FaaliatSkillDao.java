@@ -34,5 +34,5 @@ public interface FaaliatSkillDao
     @Query("SELECT * FROM Skill_table INNER JOIN FaaliatSkill_table ON" +
             " Skill_table.Skill_ID = FaaliatSkill_table.Skill_ID " +
             "WHERE FaaliatSkill_table.Faaliat_ID=:faaliatID")
-    List<Skill> getSkillsForFaaliat(final int faaliatID);
+    LiveData<List<Skill>> getSkillsForFaaliat(final int faaliatID);
 }

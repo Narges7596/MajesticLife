@@ -115,25 +115,8 @@ public class FaaliatSkillRepository
         }
     }
 
-    public void getSkillsForFaaliat (Faaliat faaliat)
+    public LiveData<List<Skill>> getSkillsForFaaliat (Faaliat faaliat)
     {
-        new FaaliatSkillRepository.getSkillsForFaaliatAllAsyncTask(mFaaliatSkillDao).execute(faaliat);
-    }
-    private static class getSkillsForFaaliatAllAsyncTask extends AsyncTask<Faaliat, Void, Void>
-    {
-        private FaaliatSkillDao mAsyncTaskDao;
-        public static List<Skill> skills;
-
-        getSkillsForFaaliatAllAsyncTask(FaaliatSkillDao dao)
-        {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(Faaliat... params)
-        {
-            skills = mAsyncTaskDao.getSkillsForFaaliat(params[0].getFaaliat_ID());
-            return null;
-        }
+        return mFaaliatSkillDao.getSkillsForFaaliat(faaliat.getFaaliat_ID());
     }
 }

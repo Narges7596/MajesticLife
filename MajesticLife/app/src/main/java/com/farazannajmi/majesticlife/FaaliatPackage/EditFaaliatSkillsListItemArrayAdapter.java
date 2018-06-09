@@ -26,21 +26,21 @@ import java.util.ArrayList;
 public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatSkill>
 {
     private Context context;
-    private ArrayList<FaaliatSkill> skillTimesList;
+    private ArrayList<FaaliatSkill> faaliatSkillList;
 
     public EditFaaliatSkillsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<FaaliatSkill> objects)
     {
         super(context, R.layout.listitem_faaliat, objects);
 
         this.context = context;
-        this.skillTimesList = objects;
+        this.faaliatSkillList = objects;
     }
 
     //called when rendering the list
     public View getView(final int position, View convertView, ViewGroup parent)
     {
         //get the property we are displaying
-        FaaliatSkill skillTime = getItem(position);
+        FaaliatSkill faaliatSkill = getItem(position);
 
         //get the inflater and inflate the XML layout for each item
         LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -56,20 +56,20 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
         final int maxNumberPickerValue = 10;
         skillTimes_numberPicker.setMinValue(minNumberPickerValue);
         skillTimes_numberPicker.setMaxValue(maxNumberPickerValue);
-        skillTimes_numberPicker.setValue(skillTime.RepeatingTime);
+        skillTimes_numberPicker.setValue(faaliatSkill.getRepetitionCount());
         skillTimes_numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
         {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal)
             {
-                EditFaaliatActivity.thisFaaliat.SkillTimes.get(position).RepeatingTime = newVal;
+                EditFaaliatActivity.thisFaaliatSkills.get(position).setRepetitionCount(newVal);
             }
         });
 
         SkillImageSpinnerAdapter spinnerAdapter = new SkillImageSpinnerAdapter(context, DataHolder.Skills);
         skillsList_spinner.setAdapter(spinnerAdapter);
 
-        skillsList_spinner.setSelection(skillTime.index);
+        skillsList_spinner.setSelection(faaliatSkill.getSkill_ID());
 
         skillsList_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -83,8 +83,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
                 }
                 else
                 {
-                    EditFaaliatActivity.thisFaaliat.SkillTimes.get(position).TheSill = DataHolder.Skills.get(i);
-                    EditFaaliatActivity.thisFaaliat.SkillTimes.get(position).index = i;
+                    EditFaaliatActivity.thisFaaliatSkills.get(position).setSkill_ID(DataHolder.Skills.get(i).getSkill_ID());
                 }
             }
 
@@ -100,7 +99,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
             @Override
             public void onClick(View v)
             {
-                EditFaaliatActivity.thisFaaliat.SkillTimes.remove(position);
+                EditFaaliatActivity.thisFaaliatSkills.remove(position);
                 EditFaaliatActivity.Skills_ListView_adapter.notifyDataSetChanged();
             }
         });

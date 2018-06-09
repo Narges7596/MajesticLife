@@ -33,7 +33,7 @@ public class FaaliatsActivity extends AppCompatActivity
         faaliats_listView = (ListView) findViewById(R.id.FaaliatsActivity_ListView);
 
         //create our new array adapter
-        faaliats_listView_adapter = new FaaliatsListItemArrayAdapter(this, DataHolder.Faaliats);
+        faaliats_listView_adapter = new FaaliatsListItemArrayAdapter(this, DataHolder.Faaliats, this);
         //bind the list view with the custom adapter
         faaliats_listView.setAdapter(faaliats_listView_adapter);
     }
@@ -51,7 +51,7 @@ public class FaaliatsActivity extends AppCompatActivity
         {
             Faaliat newFaaliat = new Faaliat(DataHolder.Faaliats.size(), "new activity", DataHolder.FaaliatAvatars.get(0),R.color.faaliatsColor1,
                     0, 0, 0, DataHolder.ThisUser.getUser_ID());
-            newFaaliat.SkillTimes = new ArrayList<FaaliatSkill>();
+            //newFaaliat.SkillTimes = new ArrayList<FaaliatSkill>(); //todo
             DataHolder.Faaliats.add(newFaaliat);
 
             //opening new activity for editing this new faaliat:
