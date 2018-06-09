@@ -50,7 +50,7 @@ public class FaaliatsActivity extends AppCompatActivity
         if(view.getId() == R.id.FaaliatsActivity_addFaaliat_btn)
         {
             Faaliat newFaaliat = new Faaliat(DataHolder.Faaliats.size(), "new activity", DataHolder.FaaliatAvatars.get(0),R.color.faaliatsColor1,
-                    0, 0, 0, DataHolder.User.getUser_ID());
+                    0, 0, 0, DataHolder.ThisUser.getUser_ID());
             newFaaliat.SkillTimes = new ArrayList<FaaliatSkill>();
             DataHolder.Faaliats.add(newFaaliat);
 

@@ -125,7 +125,7 @@ public class MainMenuActivity extends AppCompatActivity
 
                 //todo
                 //DataHolder.User.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-                DataHolder.User.setUsername(username);
+                DataHolder.ThisUser.setUsername(username);
                 //DataHolder.User.Password = password;
 
                 InitialUIElements();
@@ -213,14 +213,14 @@ public class MainMenuActivity extends AppCompatActivity
 
     public void InitialUIElements()
     {
-        Username_txt.setText(DataHolder.User.getUsername());
-        UserAvatar_img.setImageResource(DataHolder.User.getAvatar_ResIndex());
+        Username_txt.setText(DataHolder.ThisUser.getUsername());
+        UserAvatar_img.setImageResource(DataHolder.ThisUser.getAvatar_ResIndex());
 
-        XpLevel_txt.setText(Integer.toString(DataHolder.User.getXpLevel()));
-        HpLevel_txt.setText(Integer.toString(DataHolder.User.getHpLevel()));
-        SpLevel_txt.setText(Integer.toString(DataHolder.User.getSpLevel()));
-        Xp_progBar.setProgress(DataHolder.User.getXP());
-        Hp_progBar.setProgress(DataHolder.User.getHP());
-        Sp_progBar.setProgress(DataHolder.User.getSP());
+        XpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getXpLevel()));
+        HpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getHpLevel()));
+        SpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getSpLevel()));
+        Xp_progBar.setProgress(DataHolder.ThisUser.getXP());
+        Hp_progBar.setProgress(DataHolder.ThisUser.getHP());
+        Sp_progBar.setProgress(DataHolder.ThisUser.getSP());
     }
 }

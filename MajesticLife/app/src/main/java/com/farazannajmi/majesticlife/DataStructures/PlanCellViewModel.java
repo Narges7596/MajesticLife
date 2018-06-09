@@ -13,9 +13,9 @@ import java.util.List;
 public class PlanCellViewModel extends AndroidViewModel
 {
     private PlanCellRepository mRepository;
-
     private LiveData<List<PlanCell>> mAllPlanCells;
-    public LiveData<List<PlanCell>> getmAllPlanCellss() { return mAllPlanCells; }
+
+    public LiveData<List<PlanCell>> getAllPlanCells() {return mAllPlanCells;}
 
     public PlanCellViewModel (Application application)
     {
@@ -24,5 +24,8 @@ public class PlanCellViewModel extends AndroidViewModel
         mAllPlanCells = mRepository.getAllPlanCells();
     }
 
-    public void insert(PlanCell planCell) { mRepository.insert(planCell); }
+    public void insert(PlanCell planCell)
+    {
+        mRepository.insert(planCell);
+    }
 }

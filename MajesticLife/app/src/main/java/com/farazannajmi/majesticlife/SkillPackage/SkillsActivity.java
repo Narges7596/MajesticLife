@@ -38,7 +38,7 @@ public class SkillsActivity extends AppCompatActivity
     {
         if (view.getId() ==R.id.SkillsActivity_addSkill_btn)
         {
-            Skill newSkill = new Skill("new skill", DataHolder.SkillAvatars.get(0),1,0, DataHolder.User.getUser_ID());
+            Skill newSkill = new Skill("new skill", DataHolder.SkillAvatars.get(0),1,0, DataHolder.ThisUser.getUser_ID());
             DataHolder.Skills.add(newSkill);
 
             //opening new activity for editing this new faaliat:

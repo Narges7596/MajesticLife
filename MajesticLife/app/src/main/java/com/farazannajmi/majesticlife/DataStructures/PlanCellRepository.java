@@ -15,7 +15,7 @@ public class PlanCellRepository
     private PlanCellDao mPlanCellDao;
     private LiveData<List<PlanCell>> mAllPlanCells;
 
-    PlanCellRepository(Application application)
+    public PlanCellRepository(Application application)
     {
         MajesticLifeRoomDatabase db = MajesticLifeRoomDatabase.getDatabase(application);
         mPlanCellDao = db.planCellDao();
