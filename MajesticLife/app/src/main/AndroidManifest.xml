@@ -20,11 +20,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainMenuActivity">
+        <activity android:name=".LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainMenuActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".AccountPackage.AccountManagementActivity" />
@@ -34,7 +41,7 @@
         <activity android:name=".ShopActivity" />
         <activity android:name=".FaaliatPackage.FaaliatsActivity" />
         <activity android:name=".FaaliatPackage.EditFaaliatActivity" />
-        <activity android:name=".SkillPackage.EditSkillActivity"></activity>
+        <activity android:name=".SkillPackage.EditSkillActivity" />
     </application>
 
 </manifest>

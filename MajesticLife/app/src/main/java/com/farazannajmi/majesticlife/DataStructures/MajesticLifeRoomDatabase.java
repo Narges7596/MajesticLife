@@ -1,16 +1,15 @@
 package com.farazannajmi.majesticlife.DataStructures;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
 import android.arch.persistence.room.Database;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.farazannajmi.majesticlife.LoadingActivity;
 import com.farazannajmi.majesticlife.R;
 
 /**
@@ -25,6 +24,9 @@ import com.farazannajmi.majesticlife.R;
         version = 1)
 public abstract class MajesticLifeRoomDatabase extends RoomDatabase
 {
+    private static final String DB_NAME = "MajesticLifeDatabase.db";
+    private static volatile MajesticLifeRoomDatabase INSTANCE;
+
     public abstract UserDao userDao();
     public abstract FaaliatDao faaliatDao();
     public abstract SkillDao skillDao();
@@ -32,8 +34,6 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
     public abstract PlanCellDao planCellDao();
     public abstract FaaliatSkillDao faaliatSkillDao();
     public abstract QuestSkillDao questSkillDao();
-
-    private static MajesticLifeRoomDatabase INSTANCE;
 
     public static MajesticLifeRoomDatabase getDatabase(final Context context)
     {
@@ -45,7 +45,9 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 {
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            MajesticLifeRoomDatabase.class, "MajesticLife_database")
+                            MajesticLifeRoomDatabase.class, DB_NAME)
+                            .addCallback(sRoomDatabaseCallback) //for initial data to database
+                            .fallbackToDestructiveMigration() //drop and recreate the whole database if db version goes up
                             .build();
                 }
             }
@@ -63,7 +65,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 {
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            MajesticLifeRoomDatabase.class, "MajesticLife_database")
+                            MajesticLifeRoomDatabase.class, DB_NAME)
                             .addCallback(sRoomDatabaseCallback) //for initial data to database
                             .build();
                 }
@@ -108,7 +110,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
         {
             //User:
             userDao.deleteAll();
-            User user = new User(0, "username", "username@mail.com",
+            User user = new User(0, "NewKing", "king@mail.com",
                     R.drawable.ic_king, 0, 1,0, 1, 0, 1);
             userDao.insert(user);
 
@@ -136,6 +138,9 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
             questSkillDao.deleteAll();
             QuestSkill questSkill = new QuestSkill(0, 0, 2);
             questSkillDao.insert(questSkill);
+
+            Log.d("Data", "Database Initialed!");
+            LoadingActivity.LoadingDone = true;
             return null;
         }
     }

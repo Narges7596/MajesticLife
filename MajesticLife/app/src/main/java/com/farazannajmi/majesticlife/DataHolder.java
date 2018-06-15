@@ -7,14 +7,17 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.backtory.java.internal.BacktoryUser;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
 import com.farazannajmi.majesticlife.DataStructures.MajesticLifeRoomDatabase;
 import com.farazannajmi.majesticlife.DataStructures.PlanCell;
 import com.farazannajmi.majesticlife.DataStructures.PlanCellViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Quest;
+import com.farazannajmi.majesticlife.DataStructures.QuestSkill;
 import com.farazannajmi.majesticlife.DataStructures.QuestViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Skill;
 import com.farazannajmi.majesticlife.DataStructures.SkillViewModel;
@@ -42,14 +45,8 @@ public class DataHolder
 
     private static SQLiteDatabase database;
 
-    public static void InitialData()
+    public static void InitialDataStructures()
     {
-        //todo: remove tests and initial all user xp & ... with 0
-        Faaliats = new ArrayList<Faaliat>();
-        Skills = new ArrayList<Skill>();
-        ThisUser = new User(0, "UserName", "hello@mail.com",
-                R.drawable.ic_king, 20, 3, 2, 1, 70, 10);
-
         FaaliatAvatars = new ArrayList<Integer>();
         FaaliatAvatars.add(R.drawable.ic_majestic_activities);
         FaaliatAvatars.add(R.drawable.ic_circle);
@@ -74,38 +71,42 @@ public class DataHolder
             FaaliatAvatars.add(R.drawable.ic_skills);
         }
 
+        //Faaliats = new ArrayList<Faaliat>();
+        //Skills = new ArrayList<Skill>();
+        //ThisUser = new User(0, "UserName", "hello@mail.com", R.drawable.ic_king, 20, 3, 2, 1, 70, 10);
+
         //region ----------------------------test------------------------------
-        Skill s1 = new Skill("Knowledge", SkillAvatars.get(0), 5, 50, ThisUser.getUser_ID());
-        DataHolder.Skills.add(s1);
-        Skill s2 = new Skill("HandCrafting", SkillAvatars.get(1), 10, 25, ThisUser.getUser_ID());
-        DataHolder.Skills.add(s2);
-        Skill s3 = new Skill("Elm", SkillAvatars.get(2), 5, 50, ThisUser.getUser_ID());
-        DataHolder.Skills.add(s3);
-        Skill s4 = new Skill("Olom", SkillAvatars.get(3), 2, 25, ThisUser.getUser_ID());
-        DataHolder.Skills.add(s4);
-
-
-        Faaliat f0 = new Faaliat(0, "Embroidery", FaaliatAvatars.get(0),
-                R.color.faaliatsColor1, -10, 5, 2, ThisUser.getUser_ID());
-//        ArrayList<FaaliatSkill> st = new ArrayList<FaaliatSkill>();
-//        st.add(new FaaliatSkill(DataHolder.Skills.get(0), 10, 0));
-//        st.add(new FaaliatSkill(DataHolder.Skills.get(1), 20, 1));
-//        f0.SkillTimes = st;
-        DataHolder.Faaliats.add(f0);
-
-        Faaliat f1 = new Faaliat(1, "Alaki", FaaliatAvatars.get(0),
-                R.color.faaliatsColor3, -1, 2, 3,  ThisUser.getUser_ID());
-//        ArrayList<FaaliatSkill> st2 = new ArrayList<FaaliatSkill>();
-//        st2.add(new FaaliatSkill(DataHolder.Skills.get(2), 2, 2));
-//        st2.add(new FaaliatSkill(DataHolder.Skills.get(3), 3, 3));
-//        f1.SkillTimes = st2;
-        DataHolder.Faaliats.add(f1);
+//        Skill s1 = new Skill("Knowledge", SkillAvatars.get(0), 5, 50, ThisUser.getUser_ID());
+//        DataHolder.Skills.add(s1);
+//        Skill s2 = new Skill("HandCrafting", SkillAvatars.get(1), 10, 25, ThisUser.getUser_ID());
+//        DataHolder.Skills.add(s2);
+//        Skill s3 = new Skill("Elm", SkillAvatars.get(2), 5, 50, ThisUser.getUser_ID());
+//        DataHolder.Skills.add(s3);
+//        Skill s4 = new Skill("Olom", SkillAvatars.get(3), 2, 25, ThisUser.getUser_ID());
+//        DataHolder.Skills.add(s4);
+//
+//
+//        Faaliat f0 = new Faaliat(0, "Embroidery", FaaliatAvatars.get(0),
+//                R.color.faaliatsColor1, -10, 5, 2, ThisUser.getUser_ID());
+//        //ArrayList<FaaliatSkill> st = new ArrayList<FaaliatSkill>();
+//        //st.add(new FaaliatSkill(DataHolder.Skills.get(0), 10, 0));
+//        //st.add(new FaaliatSkill(DataHolder.Skills.get(1), 20, 1));
+//        //f0.SkillTimes = st;
+//        DataHolder.Faaliats.add(f0);
+//
+//        Faaliat f1 = new Faaliat(1, "Alaki", FaaliatAvatars.get(0),
+//                R.color.faaliatsColor3, -1, 2, 3,  ThisUser.getUser_ID());
+//        //ArrayList<FaaliatSkill> st2 = new ArrayList<FaaliatSkill>();
+//        //st2.add(new FaaliatSkill(DataHolder.Skills.get(2), 2, 2));
+//        //st2.add(new FaaliatSkill(DataHolder.Skills.get(3), 3, 3));
+//        //f1.SkillTimes = st2;
+//        DataHolder.Faaliats.add(f1);
         //endregion
     }
 
-    public static void InitialDataBase (FragmentActivity activity, LifecycleOwner owner)
+    public static void LoadData(FragmentActivity activity, LifecycleOwner owner)
     {
-        MajesticLifeRoomDatabase.InitialDatabase(activity);
+        Log.d("WorkFlow", "Loading data from Database");
 
         //getting user:
         UserViewModel userViewModel = ViewModelProviders.of(activity).get(UserViewModel.class);
@@ -152,23 +153,6 @@ public class DataHolder
             }
         });
     }
-
-    public static void LoadData()
-    {
-        //todo
-        InitialData();
-    }
-
-    /* --------------using database--------------
-    UserDao userDao = RepoDatabase
-        .getInstance(context)
-        .getUserDao();
-
-userDao.insert(new User(1,
-        "Jake Wharton",
-        "https://avatars0.githubusercontent.com/u/66577"));
-
-     */
 
 
     public static void SaveData (Activity activity)

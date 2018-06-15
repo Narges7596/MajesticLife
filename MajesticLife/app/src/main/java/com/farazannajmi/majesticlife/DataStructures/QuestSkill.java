@@ -6,6 +6,8 @@ import android.arch.persistence.room.ForeignKey;
 
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 /**
  * Created by Narges on 4/18/2018.
  * join entity table of Quest and Skill
@@ -16,10 +18,12 @@ import com.farazannajmi.majesticlife.DataStructures.Faaliat;
         foreignKeys = {
                 @ForeignKey(entity = Quest.class,
                         parentColumns = "Quest_ID",
-                        childColumns = "Quest_ID"),
+                        childColumns = "Quest_ID",
+                        onDelete = CASCADE),
                 @ForeignKey(entity = Skill.class,
                         parentColumns = "Skill_ID",
-                        childColumns = "Skill_ID")
+                        childColumns = "Skill_ID",
+                        onDelete = CASCADE)
         })
 public class QuestSkill
 {
