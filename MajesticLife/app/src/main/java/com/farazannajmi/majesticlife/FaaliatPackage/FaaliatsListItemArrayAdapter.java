@@ -1,6 +1,7 @@
 package com.farazannajmi.majesticlife.FaaliatPackage;
 
 import android.app.Activity;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -22,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
@@ -43,6 +45,8 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
     private Context context;
     private Activity activity;
     private ArrayList<Faaliat> faaliatList;
+    //static ArrayList<FaaliatSkill> faaliatSkills;
+    static String sk_txt;
 
     public FaaliatsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<Faaliat> objects, @Nonnull Activity activity)
     {
@@ -58,15 +62,6 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
     {
         //get the property we are displaying
         Faaliat faaliat = getItem(position);
-        final ArrayList<FaaliatSkill> faaliatSkills;
-//        //getting FaaliatSkills: //todo
-//        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of((FragmentActivity) activity).get(FaaliatSkillViewModel.class);
-//        faaliatSkillViewModel.getSkillsForFaaliat(faaliat).observe(this, new Observer<List<Skill>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Skill> skills) {
-//                faaliatSkills = (ArrayList) skills;
-//            }
-//        });
 
         //get the inflater and inflate the XML layout for each item
         //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -78,7 +73,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         TextView hp_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_hp_txt);
         TextView sp_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_sp_txt);
         TextView xp_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_xp_txt);
-        TextView skills_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_skills_txt);
+        //TextView skills_txt = (TextView) convertView.findViewById(R.id.listItem_faaliat_skills_txt);
         ImageView avatar_img = (ImageView) convertView.findViewById(R.id.listItem_faaliat_avatar_img);
         Button edit_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_edit_btn);
         Button graph_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_graph_btn);
@@ -93,13 +88,25 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         xp_txt.setText(Integer.toString(faaliat.getXpCount()));
 
 
-//todo    String sk_txt = "";
-//        for (int i = 0; i < faaliat.SkillTimes.size(); i++)
-//        {
-//            sk_txt += "+" + faaliat.SkillTimes.get(i).RepeatingTime + " " + faaliat.SkillTimes.get(i).TheSill.getSkill_Name() + "\n";
-//        }
+        //getting FaaliatSkills and setting it in UI:
+        final View finalConvertView = convertView;
+        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of((FragmentActivity) activity).get(FaaliatSkillViewModel.class);
+        faaliatSkillViewModel.getSkillsForFaaliat(faaliat).observe((LifecycleOwner) context, new Observer<List<FaaliatSkill>>() {
+            @Override
+            public void onChanged(@Nullable List<FaaliatSkill> skills) {
+                ArrayList<FaaliatSkill> faaliatSkills = (ArrayList) skills;
 
-// todo       skills_txt.setText(sk_txt);
+                String sk_txt = "";
+                for (int i = 0; i < faaliatSkills.size(); i++)
+                {
+                    sk_txt += "+" + faaliatSkills.get(i).getRepetitionCount() + " " +
+                            DataHolder.Skills.get(faaliatSkills.get(i).getSkill_ID()).getSkill_Name() + "\n";
+                }
+
+                TextView skills_txt = (TextView) finalConvertView.findViewById(R.id.listItem_faaliat_skills_txt);
+                skills_txt.setText(sk_txt);
+            }
+        });
 
         //get the image associated with this property
         avatar_img.setImageResource(faaliat.getAvatar_ResIndex());

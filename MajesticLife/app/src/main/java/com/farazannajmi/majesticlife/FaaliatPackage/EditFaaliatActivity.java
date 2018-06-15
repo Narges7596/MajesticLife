@@ -67,10 +67,10 @@ public class EditFaaliatActivity extends AppCompatActivity
         thisFaaliat = DataHolder.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
         //getting FaaliatSkills:
         FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(this).get(FaaliatSkillViewModel.class);
-        faaliatSkillViewModel.getSkillsForFaaliat(thisFaaliat).observe(this, new Observer<List<Skill>>() {
+        faaliatSkillViewModel.getSkillsForFaaliat(thisFaaliat).observe(this, new Observer<List<FaaliatSkill>>() {
             @Override
-            public void onChanged(@Nullable List<Skill> skills) {
-                thisFaaliatSkills = (ArrayList) skills;
+            public void onChanged(@Nullable List<FaaliatSkill> faaliatSkills) {
+                thisFaaliatSkills = (ArrayList) faaliatSkills;
             }
         });
 

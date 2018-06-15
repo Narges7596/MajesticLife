@@ -1,7 +1,11 @@
 package com.farazannajmi.majesticlife.FaaliatPackage;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,9 +16,14 @@ import android.widget.ListView;
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
+import com.farazannajmi.majesticlife.DataStructures.Skill;
+import com.farazannajmi.majesticlife.DataStructures.SkillViewModel;
 import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FaaliatsActivity extends AppCompatActivity
 {
@@ -49,10 +58,13 @@ public class FaaliatsActivity extends AppCompatActivity
     {
         if(view.getId() == R.id.FaaliatsActivity_addFaaliat_btn)
         {
-            Faaliat newFaaliat = new Faaliat(DataHolder.Faaliats.size(), "new activity", DataHolder.FaaliatAvatars.get(0),R.color.faaliatsColor1,
-                    0, 0, 0, DataHolder.ThisUser.getUser_ID());
-            //newFaaliat.SkillTimes = new ArrayList<FaaliatSkill>(); //todo
+            Faaliat newFaaliat = new Faaliat(DataHolder.Faaliats.size(), "new activity", DataHolder.FaaliatAvatars.get(0),
+                    R.color.faaliatsColor1, 0, 0, 0, DataHolder.ThisUser.getUser_ID());
             DataHolder.Faaliats.add(newFaaliat);
+
+            //adding skill in database:
+            FaaliatViewModel faaliatViewModel = ViewModelProviders.of(this).get(FaaliatViewModel.class);
+            faaliatViewModel.insert(newFaaliat);
 
             //opening new activity for editing this new faaliat:
             Intent intent = new Intent(FaaliatsActivity.this, EditFaaliatActivity.class);

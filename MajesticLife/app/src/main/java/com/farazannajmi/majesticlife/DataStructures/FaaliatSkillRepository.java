@@ -115,7 +115,7 @@ public class FaaliatSkillRepository
         }
     }
 
-    public LiveData<List<Skill>> getSkillsForFaaliat (Faaliat faaliat)
+    public LiveData<List<FaaliatSkill>> getSkillsForFaaliat (Faaliat faaliat)
     {
         return mFaaliatSkillDao.getSkillsForFaaliat(faaliat.getFaaliat_ID());
     }

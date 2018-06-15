@@ -44,7 +44,7 @@ public class FaaliatSkillViewModel extends AndroidViewModel
         mRepository.deleteAll();
     }
 
-    public LiveData<List<Skill>> getSkillsForFaaliat(Faaliat faaliat)
+    public LiveData<List<FaaliatSkill>> getSkillsForFaaliat(Faaliat faaliat)
     {
         return mRepository.getSkillsForFaaliat(faaliat);
     }
