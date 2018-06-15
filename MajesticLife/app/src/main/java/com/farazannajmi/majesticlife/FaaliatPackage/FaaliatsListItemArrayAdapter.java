@@ -27,6 +27,7 @@ import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Skill;
 import com.farazannajmi.majesticlife.R;
 import com.farazannajmi.majesticlife.SkillPackage.SkillsActivity;
@@ -116,10 +117,12 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             @Override
             public void onClick(View v)
             {
+                //region edit btn
                 //opening new activity for editing this faaliat:
                 Intent intent = new Intent(getContext(), EditFaaliatActivity.class);
                 intent.putExtra("The_Faaliat", position);
                 context.startActivity(intent);
+                //endregion
             }
         });
 
@@ -128,7 +131,9 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             @Override
             public void onClick(View v)
             {
+                //region graph btn
                 //todo
+                //endregion
             }
         });
 
@@ -137,11 +142,13 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             @Override
             public void onClick(View v)
             {
+                //region plus btn
                 Log.d("WorkFlow", "Clicked on pluse faaliat btn.");
 
                 //showing dialogue popup to get how many hours user has done this faaliat
                 PluseFaaliatDialogFragment pluseFaaliatDialog = PluseFaaliatDialogFragment.newInstance(position);
                 pluseFaaliatDialog.show(((Activity) context).getFragmentManager(), "PluseFaaliatDialogFragment");
+                //endregion
             }
         });
 
@@ -150,6 +157,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             @Override
             public void onClick(View v)
             {
+                //region delete btn
                 //show are you sure dialogue popup:
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 // Add action buttons
@@ -159,6 +167,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
                     public void onClick(DialogInterface dialog, int id)
                     {
                         FaaliatsActivity.DeleteFaaliat(position);
+
                         Toast.makeText(context, "Activity deleted successfully.", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
@@ -175,6 +184,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
 
                 builder.create();
                 builder.show();
+                //endregion
             }
         });
         return convertView;

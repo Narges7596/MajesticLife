@@ -1,7 +1,11 @@
 package com.farazannajmi.majesticlife.FaaliatPackage;
 
+import android.app.Activity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +18,13 @@ import android.widget.Toast;
 
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
 import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Narges on 5/27/2018.
@@ -26,14 +34,14 @@ import java.util.ArrayList;
 public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatSkill>
 {
     private Context context;
-    private ArrayList<FaaliatSkill> faaliatSkillList;
+    private ArrayList<FaaliatSkill> faaliatSkillsList;
 
     public EditFaaliatSkillsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<FaaliatSkill> objects)
     {
         super(context, R.layout.listitem_faaliat, objects);
 
         this.context = context;
-        this.faaliatSkillList = objects;
+        this.faaliatSkillsList = objects;
     }
 
     //called when rendering the list
@@ -99,7 +107,12 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
             @Override
             public void onClick(View v)
             {
+                //delete in database:
+                FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(EditFaaliatActivity.appCompatActivity).get(FaaliatSkillViewModel.class);
+                faaliatSkillViewModel.delete(EditFaaliatActivity.thisFaaliatSkills.get(position));
+
                 EditFaaliatActivity.thisFaaliatSkills.remove(position);
+
                 EditFaaliatActivity.Skills_ListView_adapter.notifyDataSetChanged();
             }
         });

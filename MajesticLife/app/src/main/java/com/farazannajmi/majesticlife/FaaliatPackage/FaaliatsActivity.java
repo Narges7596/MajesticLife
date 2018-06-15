@@ -85,6 +85,10 @@ public class FaaliatsActivity extends AppCompatActivity
 
     public static void DeleteFaaliat(int faaliatIndex)
     {
+        //delete from database:
+        FaaliatViewModel faaliatViewModel = ViewModelProviders.of((AppCompatActivity)context).get(FaaliatViewModel.class);
+        faaliatViewModel.delete(DataHolder.Faaliats.get(faaliatIndex));
+
         DataHolder.Faaliats.remove(faaliatIndex);
         faaliats_listView_adapter.notifyDataSetChanged();
     }

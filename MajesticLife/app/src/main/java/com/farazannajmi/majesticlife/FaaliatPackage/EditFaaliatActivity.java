@@ -1,5 +1,6 @@
 package com.farazannajmi.majesticlife.FaaliatPackage;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -37,6 +38,7 @@ import java.util.List;
 public class EditFaaliatActivity extends AppCompatActivity
 {
     public static Context context;
+    public static AppCompatActivity appCompatActivity;
     public static Faaliat thisFaaliat;
     public static ArrayList<FaaliatSkill> thisFaaliatSkills;
     public static ArrayAdapter<FaaliatSkill> Skills_ListView_adapter;
@@ -60,17 +62,26 @@ public class EditFaaliatActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         context = getApplicationContext();
+        appCompatActivity = this;
 
         setContentView(R.layout.activity_edit_faaliat);
 
         //getting this current faaliat for editing:
         thisFaaliat = DataHolder.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
+
         //getting FaaliatSkills:
         FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(this).get(FaaliatSkillViewModel.class);
         faaliatSkillViewModel.getSkillsForFaaliat(thisFaaliat).observe(this, new Observer<List<FaaliatSkill>>() {
             @Override
-            public void onChanged(@Nullable List<FaaliatSkill> faaliatSkills) {
+            public void onChanged(@Nullable List<FaaliatSkill> faaliatSkills)
+            {
                 thisFaaliatSkills = (ArrayList) faaliatSkills;
+
+                //create our new array adapter
+                Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, thisFaaliatSkills);
+
+                //bind the list view with the custom adapter
+                Skills_ListView.setAdapter(Skills_ListView_adapter);
             }
         });
 
@@ -87,6 +98,9 @@ public class EditFaaliatActivity extends AppCompatActivity
         AvatarResource = thisFaaliat.getAvatar_ResIndex();
 
         Name_editText.setText(thisFaaliat.getFaaliat_Name());
+
+        color_btn.setBackgroundColor(ContextCompat.getColor(context, thisFaaliat.getColor_ResIndex()));
+        colorIndex = 1;
 
         //region ------------ setting min and max values for numberpickers ------------
         XP_numberPicker.setMinValue(0);
@@ -137,16 +151,12 @@ public class EditFaaliatActivity extends AppCompatActivity
         });
         //endregion ------------------------
 
-        //create our new array adapter
-        Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, thisFaaliatSkills);
-
-        //bind the list view with the custom adapter
-        Skills_ListView.setAdapter(Skills_ListView_adapter);
+//        //create our new array adapter
+//        Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, thisFaaliatSkills);
+//
+//        //bind the list view with the custom adapter
+//        Skills_ListView.setAdapter(Skills_ListView_adapter);
         //endregion ------------------------
-
-        //setting color btn true color:
-        color_btn.setBackgroundColor(ContextCompat.getColor(context, thisFaaliat.getColor_ResIndex()));
-        colorIndex = 1;
     }
 
     public void UiElementsOnClick(View view)
@@ -252,6 +262,7 @@ public class EditFaaliatActivity extends AppCompatActivity
             }
             case R.id.EditOneF_save_btn:
             {
+                //region ---------- saving ----------
                 //saving name:
                 thisFaaliat.setFaaliat_Name(Name_editText.getText().toString());
 
@@ -275,6 +286,7 @@ public class EditFaaliatActivity extends AppCompatActivity
                 finish();
                 FaaliatsActivity.faaliats_listView_adapter.notifyDataSetChanged();
                 break;
+                //endregion ------------------------------
             }
             default:
                 break;
