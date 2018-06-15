@@ -55,8 +55,9 @@ public class Skill
     public void setProgress (int Progress){this.Progress = Progress;}
     public void setUser_ID (int User_ID){this.User_ID = User_ID;}
 
-    public Skill (String Skill_Name, int Avatar_ResIndex, int Level, int Progress, int User_ID)
+    public Skill (int Skill_ID, String Skill_Name, int Avatar_ResIndex, int Level, int Progress, int User_ID)
     {
+        this.Skill_ID = Skill_ID;
         this.Skill_Name = Skill_Name;
         this.Avatar_ResIndex = Avatar_ResIndex;
         this.Level = Level;

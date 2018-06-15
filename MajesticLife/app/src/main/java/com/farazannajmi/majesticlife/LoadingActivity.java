@@ -19,10 +19,6 @@ public class LoadingActivity extends AppCompatActivity
 
         final AppCompatActivity context = this;
 
-        if (getIntent().getBooleanExtra("EXIT", false)) {
-            finish();
-        }
-
 
         DataHolder.InitialDataStructures();
         DataHolder.LoadData(this, this);

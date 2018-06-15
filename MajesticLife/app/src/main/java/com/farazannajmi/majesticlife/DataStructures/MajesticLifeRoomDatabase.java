@@ -120,7 +120,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
             faaliatDao.insert(faaliat);
 
             skillDao.deleteAll();
-            Skill skill = new Skill("Knowledge", R.drawable.ic_skills, 1, 0, 0);
+            Skill skill = new Skill(0, "Knowledge", R.drawable.ic_skills, 1, 0, 0);
             skillDao.insert(skill);
 
             faaliatSkillDao.deleteAll();

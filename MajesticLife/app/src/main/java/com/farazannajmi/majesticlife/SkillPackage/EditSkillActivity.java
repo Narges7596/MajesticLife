@@ -1,16 +1,17 @@
 package com.farazannajmi.majesticlife.SkillPackage;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.farazannajmi.majesticlife.AvatarSelectDialogFragment;
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Skill;
+import com.farazannajmi.majesticlife.DataStructures.SkillViewModel;
 import com.farazannajmi.majesticlife.R;
 
 public class EditSkillActivity extends AppCompatActivity
@@ -113,11 +114,16 @@ public class EditSkillActivity extends AppCompatActivity
             case R.id.EditSkill_save_btn:
             {
                 //saving name:
-                    thisSkill.setSkill_Name(Name_editText.getText().toString());
-                    thisSkill.setAvatar_ResIndex(AvatarResource);
-                    //returning
-                    finish();
-                    SkillsActivity.skill_gridview_adapter.notifyDataSetChanged();
+                thisSkill.setSkill_Name(Name_editText.getText().toString());
+                thisSkill.setAvatar_ResIndex(AvatarResource);
+
+                //saving skill in database:
+                SkillViewModel skillViewModel = ViewModelProviders.of(this).get(SkillViewModel.class);
+                skillViewModel.update(thisSkill);
+
+                //returning
+                finish();
+                SkillsActivity.skill_gridview_adapter.notifyDataSetChanged();
 
                 break;
             }
