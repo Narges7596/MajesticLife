@@ -237,6 +237,13 @@ public class MainMenuActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+        InitialUIElements();
+    }
+
+    @Override
     public void onBackPressed()
     {
         try
