@@ -15,14 +15,14 @@ import com.farazannajmi.majesticlife.R;
  * Created by Narges on 6/4/2018.
  */
 
-public class PluseFaaliatDialogFragment extends DialogFragment
+public class PlusFaaliatDialogFragment extends DialogFragment
 {
     private int faaliatIndex;
     private NumberPicker times_numberPicker;
 
-    public static PluseFaaliatDialogFragment newInstance(int faaliatIndex)
+    public static PlusFaaliatDialogFragment newInstance(int faaliatIndex)
     {
-        PluseFaaliatDialogFragment f = new PluseFaaliatDialogFragment();
+        PlusFaaliatDialogFragment f = new PlusFaaliatDialogFragment();
 
         // Supply num input as an argument.
         Bundle args = new Bundle();
@@ -41,7 +41,7 @@ public class PluseFaaliatDialogFragment extends DialogFragment
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_plusefaaliat, null);
+        View view = inflater.inflate(R.layout.dialog_plusefaaliat, null);
 
         times_numberPicker = view.findViewById(R.id.pluseFaaliatD__times_numberPicker);
         times_numberPicker.setMaxValue(4);

@@ -116,7 +116,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
 
             faaliatDao.deleteAll();
             Faaliat faaliat = new Faaliat(0, "Reading book",
-                    R.drawable.ic_majestic_activities, R.color.faaliatsColor1, 10,0,-1,0);
+                    R.drawable.ic_majestic_activities, R.color.faaliatsColor1, 10,0,1,0);
             faaliatDao.insert(faaliat);
 
             skillDao.deleteAll();

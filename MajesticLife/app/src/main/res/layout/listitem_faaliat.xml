@@ -115,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_toLeftOf="@id/listItem_faaliat_pluse_btn"
+        android:layout_toLeftOf="@id/listItem_faaliat_plus_btn"
         android:layout_centerInParent="true">
 
         <Button
@@ -134,7 +134,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/listItem_faaliat_pluse_btn"
+        android:id="@+id/listItem_faaliat_plus_btn"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:text="+"

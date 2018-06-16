@@ -1,5 +1,6 @@
 package com.farazannajmi.majesticlife.FaaliatPackage;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.farazannajmi.majesticlife.AccountPackage.SignupDialogFragment;
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
@@ -28,6 +30,7 @@ import java.util.List;
 public class FaaliatsActivity extends AppCompatActivity
 {
     public static Context context;
+    public static AppCompatActivity appCompatActivity;
     public static ArrayAdapter<Faaliat> faaliats_listView_adapter;
     private ListView faaliats_listView;
 
@@ -36,7 +39,8 @@ public class FaaliatsActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faaliats);
-        context = getApplicationContext();
+        context = this;
+        appCompatActivity = this;
 
         //getting UI elements
         faaliats_listView = (ListView) findViewById(R.id.FaaliatsActivity_ListView);
@@ -77,10 +81,9 @@ public class FaaliatsActivity extends AppCompatActivity
     {
         Log.d("WorkFlow", "Clicked on sign up btn in account management activity.");
 
-        //todo
         //showing dialogue popup to show user how much he has improved
-//        PluseFaaliatDialogFragment pluseFaaliatDialog = PluseFaaliatDialogFragment.newInstance(position);
-//        pluseFaaliatDialog.show(((Activity) context).getFragmentManager(), "PluseFaaliatDialogFragment");
+        GainedFromFaaliatDialogFragment gainedFromFaaliatDialog = GainedFromFaaliatDialogFragment.newInstance(faaliatIndex, times);
+        gainedFromFaaliatDialog.show(((Activity) context).getFragmentManager(), "GainedFromFaaliatDialogFragment");
     }
 
     public static void DeleteFaaliat(int faaliatIndex)

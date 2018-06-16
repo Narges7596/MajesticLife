@@ -42,9 +42,9 @@ public class MainMenuActivity extends AppCompatActivity
     public ProgressBar Hp_progBar;
     public ProgressBar Sp_progBar;
 
-    private boolean _firstTime;
+    public static boolean FirstTime;
     private boolean _isConnected;
-    private boolean _GuestNotLoggedIn;
+    public static boolean GuestNotLoggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -75,10 +75,10 @@ public class MainMenuActivity extends AppCompatActivity
         //region ----------- load or initial data -----------
         //if it is the first time app runs, the FirstTime value becomes true:
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        _firstTime = sharedPref.getBoolean("FirstTime", true);
-        _GuestNotLoggedIn = sharedPref.getBoolean("GuestNotLoggedIn", true);
+        FirstTime = sharedPref.getBoolean("FirstTime", true);
+        GuestNotLoggedIn = sharedPref.getBoolean("GuestNotLoggedIn", true);
 
-        if(_firstTime)
+        if(FirstTime)
         {
             //region first time
             Log.d("WorkFlow", "First Time running app.");
@@ -143,7 +143,7 @@ public class MainMenuActivity extends AppCompatActivity
 
             if(_isConnected)
             {
-                if(_GuestNotLoggedIn)
+                if(GuestNotLoggedIn)
                 {
                     // Request a guest user from backtory:
                     BacktoryUser.loginAsGuestInBackground(new BacktoryCallBack<Void>() {

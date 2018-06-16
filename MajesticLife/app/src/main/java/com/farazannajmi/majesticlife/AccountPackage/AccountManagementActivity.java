@@ -1,8 +1,14 @@
 package com.farazannajmi.majesticlife.AccountPackage;
 
 import android.app.DialogFragment;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +23,14 @@ import com.backtory.java.internal.BacktoryResponse;
 import com.backtory.java.internal.BacktoryUser;
 import com.backtory.java.model.GuestRegistrationParam;
 import com.farazannajmi.majesticlife.DataHolder;
+import com.farazannajmi.majesticlife.DataStructures.UserViewModel;
 import com.farazannajmi.majesticlife.R;
 
-public class AccountManagementActivity extends FragmentActivity
+public class AccountManagementActivity extends AppCompatActivity
         implements SignupDialogFragment.SignupDialogListener
 {
+    public static AppCompatActivity appCompatActivity;
+
     public ImageView Avatar_img;
     public TextView Username_txt;
     public TextView XpLevel_txt;
@@ -39,6 +48,7 @@ public class AccountManagementActivity extends FragmentActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_management);
+        appCompatActivity = this;
 
         //getting UI elements:
         Avatar_img = findViewById(R.id.AccountM_Avatar_img);
@@ -55,7 +65,7 @@ public class AccountManagementActivity extends FragmentActivity
 
         //region setting right UI values!
         Avatar_img.setImageResource(DataHolder.ThisUser.getAvatar_ResIndex());
-        Username_txt.setText(DataHolder.CurrentBacktoryUser.getUsername());
+        Username_txt.setText(DataHolder.ThisUser.getUsername());
         XpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getXpLevel()));
         HpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getHpLevel()));
         SpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getSpLevel()));
@@ -63,13 +73,28 @@ public class AccountManagementActivity extends FragmentActivity
         HpLevel_progBar.setProgress(DataHolder.ThisUser.getHP());
         SpLevel_progBar.setProgress(DataHolder.ThisUser.getSP());
 
-        if(BacktoryUser.getCurrentUser().isGuest())
+
+        //for checking internet connection:
+        ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean _isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        if(_isConnected && BacktoryUser.getCurrentUser().isGuest())
+        {
             Signup_btn.setText(R.string.sign_up);
-        else
+        }
+        else if(_isConnected)
         {
             Signup_btn.setText(R.string.change_account);
             Login_btn.setVisibility(View.INVISIBLE);
             Or_txt.setVisibility(View.INVISIBLE);
+        }
+        else if(!_isConnected)
+        {
+            //todo
+//            Signup_btn.setText(R.string.change_account);
+//            Login_btn.setVisibility(View.INVISIBLE);
+//            Or_txt.setVisibility(View.INVISIBLE);
         }
         //endregion
     }
@@ -104,7 +129,7 @@ public class AccountManagementActivity extends FragmentActivity
     }
 
     @Override
-    public void onDialogPositiveClick(DialogFragment dialog, String username, String email, String password)
+    public void onDialogPositiveClick(DialogFragment dialog, final String username, final String email, String password)
     {
         Log.d("WorkFlow", "Clicked Sign up on SignupDialog");
 
@@ -127,9 +152,15 @@ public class AccountManagementActivity extends FragmentActivity
                             String uName = response.body().getUsername();
                             Log.d("Backtory", "Successfully completed registered as " + uName);
 
-                            DataHolder.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
-
                             Username_txt.setText(uName);
+
+                            DataHolder.CurrentBacktoryUser = BacktoryUser.getCurrentUser();
+                            DataHolder.ThisUser.setUsername(username);
+                            DataHolder.ThisUser.setEmail(email);
+
+                            //saving in database:
+                            UserViewModel userViewModel = ViewModelProviders.of(appCompatActivity).get(UserViewModel.class);
+                            userViewModel.update(DataHolder.ThisUser);
                         }
                         else if (response.code() == HttpStatusCode.Conflict.code())
                         {

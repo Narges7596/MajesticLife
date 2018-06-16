@@ -27,10 +27,7 @@ import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
-import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
-import com.farazannajmi.majesticlife.DataStructures.Skill;
 import com.farazannajmi.majesticlife.R;
-import com.farazannajmi.majesticlife.SkillPackage.SkillsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +75,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         ImageView avatar_img = (ImageView) convertView.findViewById(R.id.listItem_faaliat_avatar_img);
         Button edit_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_edit_btn);
         Button graph_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_graph_btn);
-        Button pluse_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_pluse_btn);
+        Button plus_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_plus_btn);
         Button delete_btn = (Button) convertView.findViewById(R.id.listItem_faaliat_delete_btn);
 
         //setting UI values
@@ -137,17 +134,17 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             }
         });
 
-        pluse_btn.setOnClickListener(new View.OnClickListener()
+        plus_btn.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 //region plus btn
-                Log.d("WorkFlow", "Clicked on pluse faaliat btn.");
+                Log.d("WorkFlow", "Clicked on plus faaliat btn.");
 
                 //showing dialogue popup to get how many hours user has done this faaliat
-                PluseFaaliatDialogFragment pluseFaaliatDialog = PluseFaaliatDialogFragment.newInstance(position);
-                pluseFaaliatDialog.show(((Activity) context).getFragmentManager(), "PluseFaaliatDialogFragment");
+                PlusFaaliatDialogFragment pluseFaaliatDialog = PlusFaaliatDialogFragment.newInstance(position);
+                pluseFaaliatDialog.show(((Activity) context).getFragmentManager(), "PlusFaaliatDialogFragment");
                 //endregion
             }
         });
