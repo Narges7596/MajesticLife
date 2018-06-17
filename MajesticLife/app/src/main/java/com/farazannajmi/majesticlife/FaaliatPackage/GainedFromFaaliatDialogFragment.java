@@ -18,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -150,8 +151,11 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                         int oneFifty = getActivity().getResources().getDimensionPixelSize(R.dimen.onefivezero);
 
                         LinearLayout row = new LinearLayout(view.getContext());
-                        row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                         row.setOrientation(LinearLayout.HORIZONTAL);
+                        row.setGravity(Gravity.RIGHT);
+                        row.setGravity(Gravity.CENTER_HORIZONTAL);
+                        row.setGravity(Gravity.CENTER_VERTICAL);
 
                         TextView skillName_tv = new TextView(view.getContext());
                         LinearLayout.LayoutParams tv_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -166,7 +170,7 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                         relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 
                             ImageView imageView = new ImageView(view.getContext());
-                            RelativeLayout.LayoutParams image_params = new RelativeLayout.LayoutParams(fifty, fifty);
+                            RelativeLayout.LayoutParams image_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                             image_params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
                             imageView.setLayoutParams(image_params);
                             imageView.setImageResource(R.drawable.ic_circle);
@@ -185,7 +189,7 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                         row.addView(relativeLayout);
 
                         ProgressBar progressBar = new ProgressBar(view.getContext(), null, android.R.attr.progressBarStyleHorizontal);
-                        LinearLayout.LayoutParams prog_params = new LinearLayout.LayoutParams(fifty, oneFifty);
+                        LinearLayout.LayoutParams prog_params = new LinearLayout.LayoutParams(oneFifty, LinearLayout.LayoutParams.WRAP_CONTENT);
                         prog_params.setMargins(10,0,0,0);
                         progressBar.setLayoutParams(prog_params);
                         progressBar.setMax(100);
