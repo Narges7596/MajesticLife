@@ -130,6 +130,10 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             {
                 //region graph btn
                 //todo
+                //showing dialogue popup to get how many hours user has done this faaliat
+                GraphDialogFragment graphDialogFragment = GraphDialogFragment.newInstance(position);
+                graphDialogFragment.show(((Activity) context).getFragmentManager(), "PlusFaaliatDialogFragment");
+
                 //endregion
             }
         });
