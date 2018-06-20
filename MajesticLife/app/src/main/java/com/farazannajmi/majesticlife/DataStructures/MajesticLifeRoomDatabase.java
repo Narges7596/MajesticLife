@@ -20,8 +20,9 @@ import com.farazannajmi.majesticlife.R;
  */
 
 //@Database(entities = {Word.class}, version = 1)
-@Database(entities = {User.class, Faaliat.class, Skill.class, Quest.class, PlanCell.class, FaaliatSkill.class, QuestSkill.class},
-        version = 1)
+@Database(entities = {User.class, Faaliat.class, Skill.class, Quest.class, PlanCell.class,
+        FaaliatSkill.class, QuestSkill.class, FaaliatRepetitions.class},
+        version = 3)
 public abstract class MajesticLifeRoomDatabase extends RoomDatabase
 {
     private static final String DB_NAME = "MajesticLifeDatabase.db";
@@ -34,6 +35,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
     public abstract PlanCellDao planCellDao();
     public abstract FaaliatSkillDao faaliatSkillDao();
     public abstract QuestSkillDao questSkillDao();
+    public abstract FaaliatRepetitionsDao faaliatRepetitionsDao();
 
     public static MajesticLifeRoomDatabase getDatabase(final Context context)
     {
@@ -93,6 +95,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
         private final PlanCellDao planCellDao;
         private final FaaliatSkillDao faaliatSkillDao;
         private final QuestSkillDao questSkillDao;
+        private final FaaliatRepetitionsDao faaliatRepetitionsDao;
 
         PopulateDbAsync(MajesticLifeRoomDatabase db)
         {
@@ -103,6 +106,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
             planCellDao = db.planCellDao();
             faaliatSkillDao = db.faaliatSkillDao();
             questSkillDao = db.questSkillDao();
+            faaliatRepetitionsDao = db.faaliatRepetitionsDao();
         }
 
         @Override
@@ -138,6 +142,28 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
             questSkillDao.deleteAll();
             QuestSkill questSkill = new QuestSkill(0, 0, 2);
             questSkillDao.insert(questSkill);
+
+            //no initial FaaliatRepetitions
+
+            //todo test:
+            faaliatRepetitionsDao.deleteAll();
+            FaaliatRepetitions fr1 = new FaaliatRepetitions(0, 1, "2018/6/10", 1);
+            FaaliatRepetitions fr2 = new FaaliatRepetitions(0, 2, "2018/6/11", 3);
+            FaaliatRepetitions fr3 = new FaaliatRepetitions(0, 3, "2018/6/12", 2);
+            FaaliatRepetitions fr4 = new FaaliatRepetitions(0, 4, "2018/6/13", 5);
+            FaaliatRepetitions fr5 = new FaaliatRepetitions(0, 6, "2018/6/15",3);
+            FaaliatRepetitions fr6 = new FaaliatRepetitions(0, 1, "2018/6/17", 1);
+            FaaliatRepetitions fr7 = new FaaliatRepetitions(0, 3, "2018/6/19", 1);
+            FaaliatRepetitions fr8 = new FaaliatRepetitions(0, 4, "2018/6/20", 2);
+            faaliatRepetitionsDao.insert(fr1);
+            faaliatRepetitionsDao.insert(fr2);
+            faaliatRepetitionsDao.insert(fr3);
+            faaliatRepetitionsDao.insert(fr4);
+            faaliatRepetitionsDao.insert(fr5);
+            faaliatRepetitionsDao.insert(fr6);
+            faaliatRepetitionsDao.insert(fr7);
+            faaliatRepetitionsDao.insert(fr8);
+
 
             Log.d("Data", "Database Initialed!");
             LoadingActivity.LoadingDone = true;

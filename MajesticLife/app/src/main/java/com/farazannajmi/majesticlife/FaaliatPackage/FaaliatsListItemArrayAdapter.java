@@ -129,11 +129,8 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
             public void onClick(View v)
             {
                 //region graph btn
-                //todo
-                //showing dialogue popup to get how many hours user has done this faaliat
                 GraphDialogFragment graphDialogFragment = GraphDialogFragment.newInstance(position);
                 graphDialogFragment.show(((Activity) context).getFragmentManager(), "PlusFaaliatDialogFragment");
-
                 //endregion
             }
         });
@@ -146,6 +143,7 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
                 //region plus btn
                 Log.d("WorkFlow", "Clicked on plus faaliat btn.");
 
+                FaaliatsActivity.faaliatRepAdded = false;
                 //showing dialogue popup to get how many hours user has done this faaliat
                 PlusFaaliatDialogFragment pluseFaaliatDialog = PlusFaaliatDialogFragment.newInstance(position);
                 pluseFaaliatDialog.show(((Activity) context).getFragmentManager(), "PlusFaaliatDialogFragment");

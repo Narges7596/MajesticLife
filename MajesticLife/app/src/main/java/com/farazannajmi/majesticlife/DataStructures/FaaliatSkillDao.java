@@ -31,8 +31,8 @@ public interface FaaliatSkillDao
     @Query("SELECT * FROM FaaliatSkill_table ORDER BY Faaliat_ID, Skill_ID")
     LiveData<List<FaaliatSkill>> getAllFaaliatSkills();
 
-    @Query("SELECT * FROM Skill_table INNER JOIN FaaliatSkill_table ON" +
-            " Skill_table.Skill_ID = FaaliatSkill_table.Skill_ID " +
+    @Query("SELECT * FROM Skill_table INNER JOIN FaaliatSkill_table ON " +
+            "Skill_table.Skill_ID = FaaliatSkill_table.Skill_ID " +
             "WHERE FaaliatSkill_table.Faaliat_ID=:faaliatID")
     LiveData<List<FaaliatSkill>> getSkillsForFaaliat(final int faaliatID);
 }

@@ -11,6 +11,8 @@ import android.util.Log;
 
 import com.backtory.java.internal.BacktoryUser;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatRepetitions;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatRepetitionsViewModel;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
 import com.farazannajmi.majesticlife.DataStructures.MajesticLifeRoomDatabase;
@@ -39,6 +41,7 @@ public class DataHolder
     public static ArrayList<Skill> Skills;
     public static ArrayList<PlanCell> PlanCells;
     public static ArrayList<Quest> Quests;
+    public static int FaaliatRepetitionsIdCounter;
 
     public static ArrayList<Integer> FaaliatAvatars;
     public static ArrayList<Integer> SkillAvatars;
@@ -150,6 +153,15 @@ public class DataHolder
             @Override
             public void onChanged(@Nullable List<Quest> quests) {
                 DataHolder.Quests = (ArrayList) quests;
+            }
+        });
+
+        //getting FaaliatRepetitions
+        FaaliatRepetitionsViewModel faaliatRepetitionsViewModel = ViewModelProviders.of(activity).get(FaaliatRepetitionsViewModel.class);
+        faaliatRepetitionsViewModel.getAllFaaliatRepetitions().observe(owner, new Observer<List<FaaliatRepetitions>>() {
+            @Override
+            public void onChanged(@Nullable List<FaaliatRepetitions> faaliatRepetitions) {
+                FaaliatRepetitionsIdCounter = faaliatRepetitions.size();
             }
         });
     }

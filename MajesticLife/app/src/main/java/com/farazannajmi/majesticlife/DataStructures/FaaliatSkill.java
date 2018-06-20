@@ -33,35 +33,18 @@ public class FaaliatSkill
     @ColumnInfo(name = "RepetitionCount")
     private int RepetitionCount;
 
-//    @ColumnInfo(name = "ListIndex")
-//    private int ListIndex;
-
     public int getFaaliat_ID() {return Faaliat_ID;}
     public int getSkill_ID() {return Skill_ID;}
     public int getRepetitionCount() {return RepetitionCount;}
-//    public int getListIndex() {return ListIndex;}
 
     public void setFaaliat_ID(int faaliat_ID) {Faaliat_ID = faaliat_ID;}
     public void setSkill_ID(int skill_ID) {Skill_ID = skill_ID;}
     public void setRepetitionCount(int repetitionCount) {RepetitionCount = repetitionCount;}
-//    public void setListIndex(int listIndex) {ListIndex = listIndex;}
 
     public FaaliatSkill(int Faaliat_ID, int Skill_ID, int RepetitionCount/*, int ListIndex*/)
     {
         this.Faaliat_ID = Faaliat_ID;
         this.Skill_ID = Skill_ID;
         this.RepetitionCount = RepetitionCount;
-//        this.ListIndex = ListIndex;
     }
-
-//    public Skill TheSkill;
-//    public int RepeatingTime;
-//    public int index;
-
-//    public FaaliatSkill(Skill TheSill, int RepeatingTime, int index)
-//    {
-//        this.TheSill = TheSill;
-//        this.RepeatingTime = RepeatingTime;
-//        this.index = index;
-//    }
 }
