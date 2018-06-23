@@ -112,61 +112,62 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
         @Override
         protected Void doInBackground(final Void... params)
         {
-            //User:
-            userDao.deleteAll();
-            User user = new User(0, "NewKing", "king@mail.com",
-                    R.drawable.ic_king, 0, 1,0, 1, 0, 1);
-            userDao.insert(user);
+            if(LoadingActivity.isFirstTime)
+            {
+                //User:
+                userDao.deleteAll();
+                User user = new User(0, "NewKing", "king@mail.com",
+                        R.drawable.ic_king, 0, 1,0, 1, 0, 1);
+                userDao.insert(user);
 
-            faaliatDao.deleteAll();
-            Faaliat faaliat = new Faaliat(0, "Reading book",
-                    R.drawable.ic_majestic_activities, R.color.faaliatsColor1, 10,0,1,0);
-            faaliatDao.insert(faaliat);
+                faaliatDao.deleteAll();
+                Faaliat faaliat = new Faaliat(0, "Reading book",
+                        R.drawable.ic_majestic_activities, R.color.faaliatsColor1, 10,0,1,0);
+                faaliatDao.insert(faaliat);
 
-            skillDao.deleteAll();
-            Skill skill = new Skill(0, "Knowledge", R.drawable.ic_skills, 1, 0, 0);
-            skillDao.insert(skill);
+                skillDao.deleteAll();
+                Skill skill = new Skill(0, "Knowledge", R.drawable.ic_skills, 1, 0, 0);
+                skillDao.insert(skill);
 
-            faaliatSkillDao.deleteAll();
-            FaaliatSkill faaliatSkill = new FaaliatSkill(0, 0, 5);
-            faaliatSkillDao.insert(faaliatSkill);
+                faaliatSkillDao.deleteAll();
+                FaaliatSkill faaliatSkill = new FaaliatSkill(0, 0, 5);
+                faaliatSkillDao.insert(faaliatSkill);
 
-            planCellDao.deleteAll();
-            PlanCell planCell = new PlanCell(0, 0, 0,5);
-            planCellDao.insert(planCell);
+                planCellDao.deleteAll();
+                PlanCell planCell = new PlanCell(0, 0, 0,5);
+                planCellDao.insert(planCell);
 
-            questDao.deleteAll();
-            Quest quest = new Quest(0, "Pass exam", "20181203"); //todo: wrong DuaDate param
-            questDao.insert(quest);
+                questDao.deleteAll();
+                Quest quest = new Quest(0, "Pass exam", "20181203"); //todo: wrong DuaDate param
+                questDao.insert(quest);
 
-            questSkillDao.deleteAll();
-            QuestSkill questSkill = new QuestSkill(0, 0, 2);
-            questSkillDao.insert(questSkill);
+                questSkillDao.deleteAll();
+                QuestSkill questSkill = new QuestSkill(0, 0, 2);
+                questSkillDao.insert(questSkill);
 
-            //no initial FaaliatRepetitions
+                //no initial FaaliatRepetitions
 
-            //todo test:
-            faaliatRepetitionsDao.deleteAll();
-            FaaliatRepetitions fr1 = new FaaliatRepetitions(0, 1, "2018/6/10", 1);
-            FaaliatRepetitions fr2 = new FaaliatRepetitions(0, 2, "2018/6/11", 3);
-            FaaliatRepetitions fr3 = new FaaliatRepetitions(0, 3, "2018/6/12", 2);
-            FaaliatRepetitions fr4 = new FaaliatRepetitions(0, 4, "2018/6/13", 5);
-            FaaliatRepetitions fr5 = new FaaliatRepetitions(0, 6, "2018/6/15",3);
-            FaaliatRepetitions fr6 = new FaaliatRepetitions(0, 1, "2018/6/17", 1);
-            FaaliatRepetitions fr7 = new FaaliatRepetitions(0, 3, "2018/6/19", 1);
-            FaaliatRepetitions fr8 = new FaaliatRepetitions(0, 4, "2018/6/20", 2);
-            faaliatRepetitionsDao.insert(fr1);
-            faaliatRepetitionsDao.insert(fr2);
-            faaliatRepetitionsDao.insert(fr3);
-            faaliatRepetitionsDao.insert(fr4);
-            faaliatRepetitionsDao.insert(fr5);
-            faaliatRepetitionsDao.insert(fr6);
-            faaliatRepetitionsDao.insert(fr7);
-            faaliatRepetitionsDao.insert(fr8);
+                //todo test:
+                faaliatRepetitionsDao.deleteAll();
+                FaaliatRepetitions fr1 = new FaaliatRepetitions(0, 1, "2018/6/10", 1);
+                FaaliatRepetitions fr2 = new FaaliatRepetitions(0, 2, "2018/6/11", 3);
+                FaaliatRepetitions fr3 = new FaaliatRepetitions(0, 3, "2018/6/12", 2);
+                FaaliatRepetitions fr4 = new FaaliatRepetitions(0, 4, "2018/6/13", 5);
+                FaaliatRepetitions fr5 = new FaaliatRepetitions(0, 6, "2018/6/15",3);
+                FaaliatRepetitions fr6 = new FaaliatRepetitions(0, 1, "2018/6/17", 1);
+                FaaliatRepetitions fr7 = new FaaliatRepetitions(0, 3, "2018/6/19", 1);
+                FaaliatRepetitions fr8 = new FaaliatRepetitions(0, 4, "2018/6/20", 2);
+                faaliatRepetitionsDao.insert(fr1);
+                faaliatRepetitionsDao.insert(fr2);
+                faaliatRepetitionsDao.insert(fr3);
+                faaliatRepetitionsDao.insert(fr4);
+                faaliatRepetitionsDao.insert(fr5);
+                faaliatRepetitionsDao.insert(fr6);
+                faaliatRepetitionsDao.insert(fr7);
+                faaliatRepetitionsDao.insert(fr8);
 
-
-            Log.d("Data", "Database Initialed!");
-            LoadingActivity.LoadingDone = true;
+                Log.d("Data", "Database Initialed!");
+            }
             return null;
         }
     }

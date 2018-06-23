@@ -73,12 +73,13 @@
             android:drawableTop="@drawable/ic_edit_pen"
             tools:ignore="VectorDrawableCompat" />
 
-        <Button
-            android:id="@+id/listItem_skill_graph_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:drawableTop="@drawable/ic_graph"
-            tools:ignore="VectorDrawableCompat" />
+        <!--<Button-->
+            <!--android:id="@+id/listItem_skill_graph_btn"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:drawableTop="@drawable/ic_graph"-->
+            <!--android:visibility="visible"-->
+            <!--tools:ignore="VectorDrawableCompat" />-->
 
         <Button
             android:id="@+id/listItem_skill_delete_btn"

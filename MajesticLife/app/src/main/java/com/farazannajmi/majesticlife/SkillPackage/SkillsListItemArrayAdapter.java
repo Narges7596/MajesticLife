@@ -55,7 +55,8 @@ public class SkillsListItemArrayAdapter extends ArrayAdapter<Skill>
         ImageView avatar_img = (ImageView) convertView.findViewById(R.id.listItem_skill_avatar_img);
         ProgressBar progress_Bar = (ProgressBar) convertView.findViewById(R.id.listItem_skill_progressBar);
         Button edit_btn = (Button) convertView.findViewById(R.id.listItem_skill_edit_btn);
-        Button graph_btn = (Button) convertView.findViewById(R.id.listItem_skill_graph_btn);
+//        Button graph_btn = (Button) convertView.findViewById(R.id.listItem_skill_graph_btn);
+//         //todo: activating skill graph (It's deactive now!)
         Button delete_btn = (Button) convertView.findViewById(R.id.listItem_skill_delete_btn);
 
         //setting info in UI:
@@ -84,14 +85,14 @@ public class SkillsListItemArrayAdapter extends ArrayAdapter<Skill>
             }
         });
 
-        graph_btn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                //todo
-            }
-        });
+//        graph_btn.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                //todo
+//            }
+//        });
 
         delete_btn.setOnClickListener(new View.OnClickListener()
         {

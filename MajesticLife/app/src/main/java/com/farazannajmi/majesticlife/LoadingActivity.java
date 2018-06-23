@@ -1,6 +1,8 @@
 package com.farazannajmi.majesticlife;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +11,7 @@ import android.util.Log;
 
 public class LoadingActivity extends AppCompatActivity
 {
-    public static boolean LoadingDone = false;
+    public static boolean isFirstTime = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -17,8 +19,8 @@ public class LoadingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        final AppCompatActivity context = this;
-
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        isFirstTime = sharedPref.getBoolean("FirstTime", true);
 
         DataHolder.InitialDataStructures();
         DataHolder.LoadData(this, this);
@@ -33,7 +35,5 @@ public class LoadingActivity extends AppCompatActivity
                 startActivity(MainMenuIntent);
             }
         }, 2000);
-
     }
-
 }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:id="@+id/listItem_faaliat_layoutparent">
 
     <LinearLayout
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="2dp"
-            android:text="+10 Skill"/>
+            android:text="+10 Skill \n+10 Skill\n +10 Skill\n +10 Skill\n +10 Skill"/>
     </LinearLayout>
 
     <LinearLayout
@@ -139,6 +139,7 @@
         android:layout_height="120dp"
         android:text="+"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

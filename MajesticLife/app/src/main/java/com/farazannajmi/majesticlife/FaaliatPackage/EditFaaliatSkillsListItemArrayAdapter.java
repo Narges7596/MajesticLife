@@ -86,8 +86,8 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
             {
                 if(EditFaaliatActivity.IsSkillDuplicated(i))
                 {
-                    Toast.makeText(getContext(), "This skill is duplicated.", Toast.LENGTH_SHORT).show();
-                    skillsList_spinner.setSelection(position);
+//                    Toast.makeText(getContext(), "This skill is duplicated.", Toast.LENGTH_SHORT).show();
+//                    skillsList_spinner.setSelection(position);
                 }
                 else
                 {
