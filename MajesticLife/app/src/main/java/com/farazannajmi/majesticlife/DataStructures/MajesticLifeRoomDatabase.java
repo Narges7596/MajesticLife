@@ -52,27 +52,12 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                             .fallbackToDestructiveMigration() //drop and recreate the whole database if db version goes up
                             .build();
                 }
+                else
+                    LoadingActivity.isDataLoaded = true;
             }
         }
-        return INSTANCE;
-    }
-
-    public static MajesticLifeRoomDatabase InitialDatabase(final Context context)
-    {
-        if (INSTANCE == null)
-        {
-            synchronized (MajesticLifeRoomDatabase.class)
-            {
-                if (INSTANCE == null)
-                {
-                    // Create database here
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            MajesticLifeRoomDatabase.class, DB_NAME)
-                            .addCallback(sRoomDatabaseCallback) //for initial data to database
-                            .build();
-                }
-            }
-        }
+        else
+            LoadingActivity.isDataLoaded = true;
         return INSTANCE;
     }
 
@@ -82,7 +67,21 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 public void onOpen (@NonNull SupportSQLiteDatabase db)
                 {
                     super.onOpen(db);
+                    if(!LoadingActivity.isFirstTime)
+                    {
+                        Log.d("Data", "Database has been initialed!");
+                    }
+                    LoadingActivity.isDataLoaded = true;
+
+                    Log.d("Data", "Database opened!");
+                }
+
+                @Override
+                public void onCreate(@NonNull SupportSQLiteDatabase db)
+                {
+                    super.onCreate(db);
                     new PopulateDbAsync(INSTANCE).execute();
+                    Log.d("Data", "Database created!");
                 }
             };
 
@@ -166,7 +165,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 faaliatRepetitionsDao.insert(fr7);
                 faaliatRepetitionsDao.insert(fr8);
 
-                Log.d("Data", "Database Initialed!");
+                Log.d("Data", "Database initialed!");
             }
             return null;
         }

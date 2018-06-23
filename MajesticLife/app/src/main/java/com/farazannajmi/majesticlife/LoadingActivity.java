@@ -11,6 +11,7 @@ import android.util.Log;
 
 public class LoadingActivity extends AppCompatActivity
 {
+    public static boolean isDataLoaded = false;
     public static boolean isFirstTime = true;
 
     @Override
@@ -19,21 +20,34 @@ public class LoadingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
+        isDataLoaded = false;
+        isFirstTime = true;
+
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         isFirstTime = sharedPref.getBoolean("FirstTime", true);
 
+        //loading data
         DataHolder.InitialDataStructures();
         DataHolder.LoadData(this, this);
 
+        //calling this every 1 second so that if data has been loaded then load new scene
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
-            public void run() {
-               // Log.d("Data", "Database Initialed!" + DataHolder.ThisUser.getUsername());
+            public void run()
+            {
+                if(isDataLoaded)
+                {
+                    Log.d("WorkFlow", "Loading new activity for " + DataHolder.ThisUser.getUsername());
 
-                Intent MainMenuIntent = new Intent(LoadingActivity.this, MainMenuActivity.class);
-                startActivity(MainMenuIntent);
+                    Intent MainMenuIntent = new Intent(LoadingActivity.this, MainMenuActivity.class);
+                    startActivity(MainMenuIntent);
+                }
+                else
+                {
+                    handler.postDelayed(this, 1000);
+                }
             }
-        }, 2000);
+        }, 1000);
     }
 }
