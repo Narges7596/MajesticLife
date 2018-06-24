@@ -17,6 +17,7 @@ import com.farazannajmi.majesticlife.R;
  * https://www.youtube.com/watch?v=9xdtVdO-XAA
  * https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#0
  * https://android.jlelse.eu/android-architecture-components-room-introduction-4774dd72a1ae
+ * https://medium.com/@srinuraop/database-create-and-open-callbacks-in-room-7ca98c3286ab
  */
 
 //@Database(entities = {Word.class}, version = 1)
