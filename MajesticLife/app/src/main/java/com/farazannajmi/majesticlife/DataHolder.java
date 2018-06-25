@@ -31,6 +31,7 @@ import java.util.List;
 
 /**
  * Created by Narges on 5/30/2018.
+ * <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="leaf">leaf</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
  */
 
 public class DataHolder
@@ -52,59 +53,51 @@ public class DataHolder
     {
         FaaliatAvatars = new ArrayList<Integer>();
         FaaliatAvatars.add(R.drawable.ic_majestic_activities);
-        FaaliatAvatars.add(R.drawable.ic_circle);
-        FaaliatAvatars.add(R.drawable.ic_coin);
-        FaaliatAvatars.add(R.drawable.ic_queen);
-        FaaliatAvatars.add(R.drawable.ic_king);
-        FaaliatAvatars.add(R.drawable.ic_quests);
-        for (int i = 1; i < 10; i++)
-        {
-            FaaliatAvatars.add(R.drawable.ic_majestic_activities);
-        }
+        FaaliatAvatars.add(R.drawable.ic_bag);
+        FaaliatAvatars.add(R.drawable.ic_book);
+        FaaliatAvatars.add(R.drawable.ic_camera);
+        FaaliatAvatars.add(R.drawable.ic_computer);
+        FaaliatAvatars.add(R.drawable.ic_conversation);
+        FaaliatAvatars.add(R.drawable.ic_diamond);
+        FaaliatAvatars.add(R.drawable.ic_edit);
+        FaaliatAvatars.add(R.drawable.ic_eye);
+        FaaliatAvatars.add(R.drawable.ic_flask);
+        FaaliatAvatars.add(R.drawable.ic_gamepad);
+        FaaliatAvatars.add(R.drawable.ic_idea);
+        FaaliatAvatars.add(R.drawable.ic_leaf);
+        FaaliatAvatars.add(R.drawable.ic_list);
+        FaaliatAvatars.add(R.drawable.ic_music);
+        FaaliatAvatars.add(R.drawable.ic_news);
+        FaaliatAvatars.add(R.drawable.ic_paint);
+        FaaliatAvatars.add(R.drawable.ic_real_state);
+        FaaliatAvatars.add(R.drawable.ic_rocket);
+        FaaliatAvatars.add(R.drawable.ic_search);
+        FaaliatAvatars.add(R.drawable.ic_speed);
+        FaaliatAvatars.add(R.drawable.ic_target);
 
         SkillAvatars = new ArrayList<Integer>();
         SkillAvatars.add(R.drawable.ic_skills);
-        SkillAvatars.add(R.drawable.ic_circle);
-        SkillAvatars.add(R.drawable.ic_coin);
-        SkillAvatars.add(R.drawable.ic_queen);
-        SkillAvatars.add(R.drawable.ic_king);
-        SkillAvatars.add(R.drawable.ic_quests);
-        for (int i = 1; i < 10; i++)
-        {
-            FaaliatAvatars.add(R.drawable.ic_skills);
-        }
-
-        //Faaliats = new ArrayList<Faaliat>();
-        //Skills = new ArrayList<Skill>();
-        //ThisUser = new User(0, "UserName", "hello@mail.com", R.drawable.ic_king, 20, 3, 2, 1, 70, 10);
-
-        //region ----------------------------test------------------------------
-//        Skill s1 = new Skill("Knowledge", SkillAvatars.get(0), 5, 50, ThisUser.getUser_ID());
-//        DataHolder.Skills.add(s1);
-//        Skill s2 = new Skill("HandCrafting", SkillAvatars.get(1), 10, 25, ThisUser.getUser_ID());
-//        DataHolder.Skills.add(s2);
-//        Skill s3 = new Skill("Elm", SkillAvatars.get(2), 5, 50, ThisUser.getUser_ID());
-//        DataHolder.Skills.add(s3);
-//        Skill s4 = new Skill("Olom", SkillAvatars.get(3), 2, 25, ThisUser.getUser_ID());
-//        DataHolder.Skills.add(s4);
-//
-//
-//        Faaliat f0 = new Faaliat(0, "Embroidery", FaaliatAvatars.get(0),
-//                R.color.faaliatsColor1, -10, 5, 2, ThisUser.getUser_ID());
-//        //ArrayList<FaaliatSkill> st = new ArrayList<FaaliatSkill>();
-//        //st.add(new FaaliatSkill(DataHolder.Skills.get(0), 10, 0));
-//        //st.add(new FaaliatSkill(DataHolder.Skills.get(1), 20, 1));
-//        //f0.SkillTimes = st;
-//        DataHolder.Faaliats.add(f0);
-//
-//        Faaliat f1 = new Faaliat(1, "Alaki", FaaliatAvatars.get(0),
-//                R.color.faaliatsColor3, -1, 2, 3,  ThisUser.getUser_ID());
-//        //ArrayList<FaaliatSkill> st2 = new ArrayList<FaaliatSkill>();
-//        //st2.add(new FaaliatSkill(DataHolder.Skills.get(2), 2, 2));
-//        //st2.add(new FaaliatSkill(DataHolder.Skills.get(3), 3, 3));
-//        //f1.SkillTimes = st2;
-//        DataHolder.Faaliats.add(f1);
-        //endregion
+        SkillAvatars.add(R.drawable.ic_bag);
+        SkillAvatars.add(R.drawable.ic_book);
+        SkillAvatars.add(R.drawable.ic_camera);
+        SkillAvatars.add(R.drawable.ic_computer);
+        SkillAvatars.add(R.drawable.ic_conversation);
+        SkillAvatars.add(R.drawable.ic_diamond);
+        SkillAvatars.add(R.drawable.ic_edit);
+        SkillAvatars.add(R.drawable.ic_eye);
+        SkillAvatars.add(R.drawable.ic_flask);
+        SkillAvatars.add(R.drawable.ic_gamepad);
+        SkillAvatars.add(R.drawable.ic_idea);
+        SkillAvatars.add(R.drawable.ic_leaf);
+        SkillAvatars.add(R.drawable.ic_list);
+        SkillAvatars.add(R.drawable.ic_music);
+        SkillAvatars.add(R.drawable.ic_news);
+        SkillAvatars.add(R.drawable.ic_paint);
+        SkillAvatars.add(R.drawable.ic_real_state);
+        SkillAvatars.add(R.drawable.ic_rocket);
+        SkillAvatars.add(R.drawable.ic_search);
+        SkillAvatars.add(R.drawable.ic_speed);
+        SkillAvatars.add(R.drawable.ic_target);
     }
 
     public static void LoadData(FragmentActivity activity, LifecycleOwner owner)
