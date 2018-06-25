@@ -10,6 +10,10 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.backtory.java.internal.BacktoryUser;
+import com.farazannajmi.majesticlife.DataStructures.Avatar;
+import com.farazannajmi.majesticlife.DataStructures.AvatarItem;
+import com.farazannajmi.majesticlife.DataStructures.AvatarItemViewModel;
+import com.farazannajmi.majesticlife.DataStructures.AvatarViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatRepetitions;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatRepetitionsViewModel;
@@ -32,17 +36,20 @@ import java.util.List;
 /**
  * Created by Narges on 5/30/2018.
  * <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="leaf">leaf</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+ * https://www.flaticon.com/packs/user-interface-30/2
  */
 
 public class DataHolder
 {
-    public static com.farazannajmi.majesticlife.DataStructures.User ThisUser;
+    public static User ThisUser;
     public static BacktoryUser CurrentBacktoryUser;
     public static ArrayList<Faaliat> Faaliats;
     public static ArrayList<Skill> Skills;
     public static ArrayList<PlanCell> PlanCells;
     public static ArrayList<Quest> Quests;
     public static int FaaliatRepetitionsIdCounter;
+    public static Avatar UserAvatar;
+    public static ArrayList<AvatarItem> AvatarItems;
 
     public static ArrayList<Integer> FaaliatAvatars;
     public static ArrayList<Integer> SkillAvatars;
@@ -155,6 +162,24 @@ public class DataHolder
             @Override
             public void onChanged(@Nullable List<FaaliatRepetitions> faaliatRepetitions) {
                 FaaliatRepetitionsIdCounter = faaliatRepetitions.size();
+            }
+        });
+
+        //getting UserAvatar
+        AvatarViewModel avatarViewModel = ViewModelProviders.of(activity).get(AvatarViewModel.class);
+        avatarViewModel.getAvatar().observe(owner, new Observer<Avatar>() {
+            @Override
+            public void onChanged(@Nullable Avatar avatar) {
+                UserAvatar = avatar;
+            }
+        });
+
+        //getting AvatarItems
+        AvatarItemViewModel avatarItemViewModel = ViewModelProviders.of(activity).get(AvatarItemViewModel.class);
+        avatarItemViewModel.getAvatarItems().observe(owner, new Observer<List<AvatarItem>>() {
+            @Override
+            public void onChanged(@Nullable List<AvatarItem> avatarItems) {
+                AvatarItems = (ArrayList) avatarItems;
             }
         });
     }

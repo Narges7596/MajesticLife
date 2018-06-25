@@ -23,7 +23,7 @@ import com.farazannajmi.majesticlife.R;
 //@Database(entities = {Word.class}, version = 1)
 @Database(entities = {User.class, Faaliat.class, Skill.class, Quest.class, PlanCell.class,
         FaaliatSkill.class, QuestSkill.class, FaaliatRepetitions.class},
-        version = 3)
+        version = 4)
 public abstract class MajesticLifeRoomDatabase extends RoomDatabase
 {
     private static final String DB_NAME = "MajesticLifeDatabase.db";
@@ -37,6 +37,8 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
     public abstract FaaliatSkillDao faaliatSkillDao();
     public abstract QuestSkillDao questSkillDao();
     public abstract FaaliatRepetitionsDao faaliatRepetitionsDao();
+    public abstract AvatarDao avatarDao();
+    public abstract AvatarItemDao avatarItemDao();
 
     public static MajesticLifeRoomDatabase getDatabase(final Context context)
     {
@@ -96,6 +98,8 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
         private final FaaliatSkillDao faaliatSkillDao;
         private final QuestSkillDao questSkillDao;
         private final FaaliatRepetitionsDao faaliatRepetitionsDao;
+        private final AvatarDao avatarDao;
+        private final AvatarItemDao avatarItemDao;
 
         PopulateDbAsync(MajesticLifeRoomDatabase db)
         {
@@ -107,6 +111,8 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
             faaliatSkillDao = db.faaliatSkillDao();
             questSkillDao = db.questSkillDao();
             faaliatRepetitionsDao = db.faaliatRepetitionsDao();
+            avatarDao = db.avatarDao();
+            avatarItemDao = db.avatarItemDao();
         }
 
         @Override
@@ -117,7 +123,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 //User:
                 userDao.deleteAll();
                 User user = new User(0, "NewKing", "king@mail.com",
-                        R.drawable.ic_king, 0, 1,0, 1, 0, 1);
+                        R.drawable.ic_king, 0, 1,0, 1, 0, 1, 100);
                 userDao.insert(user);
 
                 faaliatDao.deleteAll();
@@ -144,6 +150,51 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 questSkillDao.deleteAll();
                 QuestSkill questSkill = new QuestSkill(0, 0, 2);
                 questSkillDao.insert(questSkill);
+
+                avatarDao.deleteAll();
+                Avatar avatar = new Avatar(0,0, true, R.drawable.ava_back1,
+                        R.drawable.ava_skin_white, R.drawable.ava_cloth1,
+                        R.drawable.ava_eyes1, R.drawable.ava_mouth1, R.drawable.ava_crown1);
+                avatarDao.insert(avatar);
+
+                //region ---------- initial avatarItems ----------
+                //backgrounds:
+                avatarItemDao.deleteAll();
+                AvatarItem ava_back1 = new AvatarItem(R.drawable.ava_back1, true, 0);
+                avatarItemDao.insert(ava_back1);
+                AvatarItem ava_back2 = new AvatarItem(R.drawable.ava_back2, false, 0);
+                avatarItemDao.insert(ava_back2);
+                AvatarItem ava_back3 = new AvatarItem(R.drawable.ava_back3, false, 0);
+                avatarItemDao.insert(ava_back3);
+                AvatarItem ava_back4 = new AvatarItem(R.drawable.ava_back4, false, 0);
+                avatarItemDao.insert(ava_back4);
+                AvatarItem ava_back5 = new AvatarItem(R.drawable.ava_back5, false, 0);
+                avatarItemDao.insert(ava_back5);
+                AvatarItem ava_back6 = new AvatarItem(R.drawable.ava_back6, false, 0);
+                avatarItemDao.insert(ava_back6);
+                AvatarItem ava_back7 = new AvatarItem(R.drawable.ava_back7, false, 0);
+                avatarItemDao.insert(ava_back7);
+
+                //Clothes
+                AvatarItem ava_cloth1 = new AvatarItem(R.drawable.ava_cloth1, true, 0);
+                avatarItemDao.insert(ava_cloth1);
+                //todo: insert other clothes
+
+                //Eyes
+                AvatarItem ava_eyes1 = new AvatarItem(R.drawable.ava_eyes1, true, 0);
+                avatarItemDao.insert(ava_eyes1);
+                //todo: insert other eyes
+
+                //Mouths
+                AvatarItem ava_mouth1 = new AvatarItem(R.drawable.ava_mouth1, true, 0);
+                avatarItemDao.insert(ava_mouth1);
+                //todo: insert other mouths
+
+                //Crowns
+                AvatarItem ava_crown1 = new AvatarItem(R.drawable.ava_crown1, true, 0);
+                avatarItemDao.insert(ava_crown1);
+                //todo: insert other crowns
+                //endregion ------------------------------
 
                 //no initial FaaliatRepetitions
 

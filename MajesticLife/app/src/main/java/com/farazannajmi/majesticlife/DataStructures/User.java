@@ -44,6 +44,9 @@ public class User
     @ColumnInfo(name = "SpLevel")
     private int SpLevel;
 
+    @ColumnInfo(name = "Coins")
+    private int Coins;
+
     @Nonnull
     public int getUser_ID(){return this.User_ID;}
     public String getUsername(){return this.Username;}
@@ -55,6 +58,7 @@ public class User
     public int getHpLevel(){return this.HpLevel;}
     public int getSP(){return this.SP;}
     public int getSpLevel(){return this.SpLevel;}
+    public int getCoins(){return this.Coins;}
 
     public void setUser_ID(int User_ID){this.User_ID = User_ID;}
     public void setUsername(String Username){this.Username = Username;}
@@ -66,9 +70,10 @@ public class User
     public void setHpLevel(int HpLevel){this.HpLevel = HpLevel;}
     public void setSP(int SP){this.SP = SP;}
     public void setSpLevel(int SpLevel){this.SpLevel = SpLevel;}
+    public void setCoins(int Coins){this.Coins = Coins;}
 
     public User(int User_ID, String Username, String Email, int Avatar_ResIndex,
-                int XP, int XpLevel, int HP, int HpLevel, int SP, int SpLevel)
+                int XP, int XpLevel, int HP, int HpLevel, int SP, int SpLevel, int Coins)
     {
         this.User_ID = User_ID;
         this.Username = Username;
@@ -80,5 +85,6 @@ public class User
         this.HpLevel = HpLevel;
         this.SP = SP;
         this.SpLevel = SpLevel;
+        this.Coins = Coins;
     }
 }
