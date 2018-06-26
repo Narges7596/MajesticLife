@@ -1,5 +1,6 @@
 package com.farazannajmi.majesticlife.AccountPackage;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.farazannajmi.majesticlife.R;
 public class AvatarShopActivity extends AppCompatActivity
 {
     public static Context context;
+    public static AppCompatActivity appCompatActivity;
     public static ArrayAdapter<AvatarItem> avatarItems_gridview_adapter;
 
     private GridView avatarItems_gridview;
@@ -41,6 +43,8 @@ public class AvatarShopActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar_shop);
+        context = this;
+        appCompatActivity = this;
 
         //region ---------- getting UI elements: ----------
         main_back_img = findViewById(R.id.AvatarShop_Back_img);
@@ -119,6 +123,7 @@ public class AvatarShopActivity extends AppCompatActivity
         if(view.getId() == R.id.AvatarShop_save_btn)
         {
             SavingChanges();
+            finish();
         }
     }
 

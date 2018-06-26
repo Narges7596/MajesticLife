@@ -27,15 +27,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/Main_UserAvatar_img"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:onClick="UiElementsOnClick"
-                    android:padding="5dp"
-                    app:srcCompat="@drawable/ic_king"
-                    tools:ignore="VectorDrawableCompat"
-                    android:layout_alignParentLeft="true"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/Main_UserAvatar_img"-->
+                    <!--android:layout_width="70dp"-->
+                    <!--android:layout_height="70dp"-->
+                    <!--android:onClick="UiElementsOnClick"-->
+                    <!--android:padding="5dp"-->
+                    <!--app:srcCompat="@drawable/ic_king"-->
+                    <!--tools:ignore="VectorDrawableCompat"-->
+                    <!--android:layout_alignParentLeft="true"/>-->
+            <RelativeLayout
+                android:id="@+id/Main_UserAvatar_img"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:onClick="UiElementsOnClick"
+                android:padding="5dp"
+                android:layout_alignParentLeft="true">
+
+                    <ImageView
+                        android:id="@+id/MainM_Back_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ava_back1"
+                        android:layout_centerInParent="true"/>
+                    <ImageView
+                        android:id="@+id/MainM_skin_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ava_skin_white"
+                        android:layout_centerInParent="true"/>
+                    <ImageView
+                        android:id="@+id/MainM_hair_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ava_queen"
+                        android:layout_centerInParent="true"/>
+                    <ImageView
+                        android:id="@+id/MainM_cloth_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ava_cloth1"
+                        android:layout_centerInParent="true"/>
+                    <ImageView
+                        android:id="@+id/MainM_eyes_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ava_eyes1"
+                        android:layout_centerInParent="true"/>
+                    <ImageView
+                        android:id="@+id/MainM_mouth_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ava_mouth1"
+                        android:layout_centerInParent="true"/>
+                    <ImageView
+                        android:id="@+id/MainM_crown_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ava_crown1"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"

@@ -33,7 +33,6 @@ public class AccountManagementActivity extends AppCompatActivity
 {
     public static AppCompatActivity appCompatActivity;
 
-    public ImageView Avatar_img;
     public TextView Username_txt;
     public TextView XpLevel_txt;
     public TextView HpLevel_txt;
@@ -45,6 +44,14 @@ public class AccountManagementActivity extends AppCompatActivity
     public Button Login_btn;
     public TextView Or_txt;
 
+    public ImageView Avatar_back_img;
+    public ImageView Avatar_skin_img;
+    public ImageView Avatar_cloth_img;
+    public ImageView Avatar_eyes_img;
+    public ImageView Avatar_mouth_img;
+    public ImageView Avatar_crown_img;
+    public ImageView Avatar_hair_img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -53,7 +60,6 @@ public class AccountManagementActivity extends AppCompatActivity
         appCompatActivity = this;
 
         //getting UI elements:
-        Avatar_img = findViewById(R.id.AccountM_Avatar_img);
         Username_txt = findViewById(R.id.AccountM_Username_txt);
         XpLevel_txt = findViewById(R.id.AccountM_XpLevel_txt);
         HpLevel_txt = findViewById(R.id.AccountM_HpLevel_txt);
@@ -64,9 +70,15 @@ public class AccountManagementActivity extends AppCompatActivity
         Signup_btn = findViewById(R.id.AccountM_Signup_btn);
         Login_btn = findViewById(R.id.AccountM_Login_btn);
         Or_txt = findViewById(R.id.AccountM_or_txt);
+        Avatar_back_img = findViewById(R.id.AccountM_Back_img);
+        Avatar_skin_img = findViewById(R.id.AccountM_skin_img);
+        Avatar_cloth_img = findViewById(R.id.AccountM_cloth_img);
+        Avatar_eyes_img = findViewById(R.id.AccountM_eyes_img);
+        Avatar_mouth_img = findViewById(R.id.AccountM_mouth_img);
+        Avatar_crown_img = findViewById(R.id.AccountM_crown_img);
+        Avatar_hair_img = findViewById(R.id.AccountM_hair_img);
 
         //region setting right UI values!
-        Avatar_img.setImageResource(DataHolder.ThisUser.getAvatar_ResIndex());
         Username_txt.setText(DataHolder.ThisUser.getUsername());
         XpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getXpLevel()));
         HpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getHpLevel()));
@@ -75,6 +87,7 @@ public class AccountManagementActivity extends AppCompatActivity
         HpLevel_progBar.setProgress(DataHolder.ThisUser.getHP());
         SpLevel_progBar.setProgress(DataHolder.ThisUser.getSP());
 
+        SetUserAvatarInUI();
 
         //for checking internet connection:
         ConnectivityManager cm = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -99,6 +112,32 @@ public class AccountManagementActivity extends AppCompatActivity
 //            Or_txt.setVisibility(View.INVISIBLE);
         }
         //endregion
+    }
+
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        SetUserAvatarInUI();
+    }
+
+    private void SetUserAvatarInUI()
+    {
+        Avatar_back_img.setImageResource(DataHolder.UserAvatar.getBackground_ResIndex());
+        Avatar_skin_img.setImageResource(DataHolder.UserAvatar.getSkin_ResIndex());
+        Avatar_cloth_img.setImageResource(DataHolder.UserAvatar.getCloth_ResIndex());
+        Avatar_eyes_img.setImageResource(DataHolder.UserAvatar.getEyes_ResIndex());
+        Avatar_mouth_img.setImageResource(DataHolder.UserAvatar.getMouth_ResIndex());
+        Avatar_crown_img.setImageResource(DataHolder.UserAvatar.getCrown_ResIndex());
+        if(DataHolder.UserAvatar.getIsKing())
+        {
+            Avatar_hair_img.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            Avatar_hair_img.setVisibility(View.VISIBLE);
+        }
     }
 
     public void UiElementsOnClick(View view)

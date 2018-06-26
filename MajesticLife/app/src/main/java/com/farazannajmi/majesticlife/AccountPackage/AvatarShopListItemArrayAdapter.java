@@ -1,6 +1,8 @@
 package com.farazannajmi.majesticlife.AccountPackage;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +21,8 @@ import android.widget.Toast;
 
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.AvatarItem;
+import com.farazannajmi.majesticlife.DataStructures.AvatarItemViewModel;
+import com.farazannajmi.majesticlife.DataStructures.AvatarViewModel;
 import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
@@ -80,6 +84,9 @@ public class AvatarShopListItemArrayAdapter extends ArrayAdapter<AvatarItem>
                         AvatarShopActivity.coins_txt.setText(Integer.toString((DataHolder.ThisUser.getCoins())));
                         avatarItem.setIsBought(true);
                         SelectItem(avatarItem);
+
+                        AvatarItemViewModel avatarItemViewModel = ViewModelProviders.of(AvatarShopActivity.appCompatActivity).get(AvatarItemViewModel.class);
+                        avatarItemViewModel.update(avatarItem);
                     }
                     else
                         Toast.makeText(context, "Not enough coins!", Toast.LENGTH_SHORT).show();

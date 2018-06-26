@@ -29,6 +29,7 @@ public class LoadingActivity extends AppCompatActivity
         //loading data
         DataHolder.InitialDataStructures();
         DataHolder.LoadUser(this, this);
+        DataHolder.LoadData(this, this);
 
         //calling this every 1 second so that if data has been loaded then load new scene
         final Handler handler = new Handler();

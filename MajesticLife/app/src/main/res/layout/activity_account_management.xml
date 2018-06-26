@@ -25,13 +25,53 @@
             android:layout_width="110dp"
             android:layout_height="110dp">
 
-            <ImageView
-                android:id="@+id/AccountM_Avatar_img"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:srcCompat= "@drawable/ic_king"
-                tools:ignore="VectorDrawableCompat"
-                android:layout_centerInParent="true"/>
+            <!--<RelativeLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <ImageView
+                    android:id="@+id/AccountM_Back_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ava_back1"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/AccountM_skin_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ava_skin_white"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/AccountM_hair_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ava_queen"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/AccountM_cloth_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ava_cloth1"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/AccountM_eyes_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ava_eyes1"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/AccountM_mouth_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ava_mouth1"
+                    android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/AccountM_crown_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ava_crown1"
+                    android:layout_centerInParent="true"/>
+            <!--</RelativeLayout>-->
 
             <Button
                 android:id="@+id/AccountM_editAvatar_btn"

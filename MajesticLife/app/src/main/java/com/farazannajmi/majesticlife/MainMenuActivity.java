@@ -42,6 +42,14 @@ public class MainMenuActivity extends AppCompatActivity
     public ProgressBar Hp_progBar;
     public ProgressBar Sp_progBar;
 
+    public ImageView Avatar_back_img;
+    public ImageView Avatar_skin_img;
+    public ImageView Avatar_cloth_img;
+    public ImageView Avatar_eyes_img;
+    public ImageView Avatar_mouth_img;
+    public ImageView Avatar_crown_img;
+    public ImageView Avatar_hair_img;
+
     public static boolean FirstTime;
     private boolean _isConnected;
     public static boolean GuestNotLoggedIn;
@@ -57,7 +65,6 @@ public class MainMenuActivity extends AppCompatActivity
         TheAppManager = (AppManager) getApplicationContext();
 
         //region ----------- getting UI elements -----------
-        UserAvatar_img = (ImageView) findViewById(R.id.Main_UserAvatar_img);
         Username_txt = (TextView) findViewById(R.id.Main_UserName_txt);
         XpLevel_txt = findViewById(R.id.Main_XpLevel_txt);
         HpLevel_txt = findViewById(R.id.Main_HpLevel_txt);
@@ -65,6 +72,14 @@ public class MainMenuActivity extends AppCompatActivity
         Xp_progBar = findViewById(R.id.Main_Xp_progBar);
         Hp_progBar = findViewById(R.id.Main_HP_progBar);
         Sp_progBar = findViewById(R.id.Main_SP_progBar);
+
+        Avatar_back_img = findViewById(R.id.MainM_Back_img);
+        Avatar_skin_img = findViewById(R.id.MainM_skin_img);
+        Avatar_cloth_img = findViewById(R.id.MainM_cloth_img);
+        Avatar_eyes_img = findViewById(R.id.MainM_eyes_img);
+        Avatar_mouth_img = findViewById(R.id.MainM_mouth_img);
+        Avatar_crown_img = findViewById(R.id.MainM_crown_img);
+        Avatar_hair_img = findViewById(R.id.MainM_hair_img);
         //endregion ---------------------------------
 
         //for checking internet connection:
@@ -306,7 +321,6 @@ public class MainMenuActivity extends AppCompatActivity
     public void InitialUIElements()
     {
         Username_txt.setText(DataHolder.ThisUser.getUsername());
-        UserAvatar_img.setImageResource(DataHolder.ThisUser.getAvatar_ResIndex());
 
         XpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getXpLevel()));
         HpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getHpLevel()));
@@ -314,5 +328,21 @@ public class MainMenuActivity extends AppCompatActivity
         Xp_progBar.setProgress(DataHolder.ThisUser.getXP());
         Hp_progBar.setProgress(DataHolder.ThisUser.getHP());
         Sp_progBar.setProgress(DataHolder.ThisUser.getSP());
+
+        //setting user avatar:
+        Avatar_back_img.setImageResource(DataHolder.UserAvatar.getBackground_ResIndex());
+        Avatar_skin_img.setImageResource(DataHolder.UserAvatar.getSkin_ResIndex());
+        Avatar_cloth_img.setImageResource(DataHolder.UserAvatar.getCloth_ResIndex());
+        Avatar_eyes_img.setImageResource(DataHolder.UserAvatar.getEyes_ResIndex());
+        Avatar_mouth_img.setImageResource(DataHolder.UserAvatar.getMouth_ResIndex());
+        Avatar_crown_img.setImageResource(DataHolder.UserAvatar.getCrown_ResIndex());
+        if(DataHolder.UserAvatar.getIsKing())
+        {
+            Avatar_hair_img.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            Avatar_hair_img.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -24,7 +24,7 @@ import com.farazannajmi.majesticlife.R;
 @Database(entities = {User.class, Faaliat.class, Skill.class, Quest.class, PlanCell.class,
         FaaliatSkill.class, QuestSkill.class, FaaliatRepetitions.class,
         Avatar.class, AvatarItem.class},
-        version = 5)
+        version = 6)
 public abstract class MajesticLifeRoomDatabase extends RoomDatabase
 {
     private static final String DB_NAME = "MajesticLifeDatabase.db";
@@ -126,7 +126,7 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 //User:
                 userDao.deleteAll();
                 User user = new User(0, "NewKing", "king@mail.com",
-                        R.drawable.ic_king, 0, 1,0, 1, 0, 1, 100);
+                        0, 1,0, 1, 0, 1, 100);
                 userDao.insert(user);
 
                 //Faaliats:

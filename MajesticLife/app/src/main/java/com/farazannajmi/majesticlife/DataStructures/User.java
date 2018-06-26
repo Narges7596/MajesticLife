@@ -26,9 +26,6 @@ public class User
     @ColumnInfo(name = "Email")
     private String Email;
 
-    @ColumnInfo(name = "Avatar_ResIndex")
-    private int Avatar_ResIndex;
-
     @ColumnInfo(name = "XP")
     private int XP;
     @ColumnInfo(name = "XpLevel")
@@ -51,7 +48,6 @@ public class User
     public int getUser_ID(){return this.User_ID;}
     public String getUsername(){return this.Username;}
     public String getEmail(){return this.Email;}
-    public int getAvatar_ResIndex(){return this.Avatar_ResIndex;}
     public int getXP(){return this.XP;}
     public int getXpLevel(){return this.XpLevel;}
     public int getHP(){return this.HP;}
@@ -63,7 +59,6 @@ public class User
     public void setUser_ID(int User_ID){this.User_ID = User_ID;}
     public void setUsername(String Username){this.Username = Username;}
     public void setEmail(String Email){this.Email = Email;}
-    public void setAvatar_ResIndex(int Avatar_ResIndex){this.Avatar_ResIndex = Avatar_ResIndex;}
     public void setXP(int XP){this.XP = XP;}
     public void setXpLevel(int XpLevel){this.XpLevel = XpLevel;}
     public void setHP(int HP){this.HP = HP;}
@@ -72,13 +67,12 @@ public class User
     public void setSpLevel(int SpLevel){this.SpLevel = SpLevel;}
     public void setCoins(int Coins){this.Coins = Coins;}
 
-    public User(int User_ID, String Username, String Email, int Avatar_ResIndex,
+    public User(int User_ID, String Username, String Email,
                 int XP, int XpLevel, int HP, int HpLevel, int SP, int SpLevel, int Coins)
     {
         this.User_ID = User_ID;
         this.Username = Username;
         this.Email = Email;
-        this.Avatar_ResIndex = Avatar_ResIndex;
         this.XP = XP;
         this.XpLevel = XpLevel;
         this.HP = HP;
