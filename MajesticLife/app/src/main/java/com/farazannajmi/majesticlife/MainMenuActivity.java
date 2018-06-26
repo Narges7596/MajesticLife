@@ -73,6 +73,9 @@ public class MainMenuActivity extends AppCompatActivity
         _isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
         //region ----------- load or initial data -----------
+
+        DataHolder.LoadData(this, this);
+
         //if it is the first time app runs, the FirstTime value becomes true:
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         FirstTime = sharedPref.getBoolean("FirstTime", true);

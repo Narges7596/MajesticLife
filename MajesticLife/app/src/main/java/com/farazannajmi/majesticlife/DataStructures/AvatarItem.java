@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
  * Created by Narges on 6/25/2018.
  */
 
-@Entity(tableName = "Avatar_table")
+@Entity(tableName = "AvatarItem_table")
 public class AvatarItem
 {
     @Nonnull
@@ -32,23 +32,25 @@ public class AvatarItem
     5 => crown
      */
 
+    @ColumnInfo(name = "Price")
+    private int Price;
+
     @Nonnull
     public int getResourceIndex() {return ResourceIndex;}
-
     public boolean getIsBought() {return IsBought;}
-
     public int getItemType() {return ItemType;}
+    public int getPrice() {return  Price;}
 
     public void setResourceIndex(@Nonnull int ResourceIndex) {this.ResourceIndex = ResourceIndex;}
-
     public void setIsBought(boolean IsBought) {this.IsBought = IsBought;}
-
     public void setItemType(int ItemType) {this.ItemType = ItemType;}
+    public void setPrice(int Price) {this.Price = Price;}
 
-    public AvatarItem(@Nonnull int ResourceIndex, boolean IsBought, int ItemType)
+    public AvatarItem(@Nonnull int ResourceIndex, boolean IsBought, int ItemType, int Price)
     {
         this.ResourceIndex = ResourceIndex;
         this.IsBought = IsBought;
         this.ItemType = ItemType;
+        this.Price = Price;
     }
 }

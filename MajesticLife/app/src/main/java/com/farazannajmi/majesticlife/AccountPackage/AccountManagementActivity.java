@@ -3,6 +3,7 @@ package com.farazannajmi.majesticlife.AccountPackage;
 import android.app.DialogFragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.FragmentActivity;
@@ -24,6 +25,7 @@ import com.backtory.java.internal.BacktoryUser;
 import com.backtory.java.model.GuestRegistrationParam;
 import com.farazannajmi.majesticlife.DataHolder;
 import com.farazannajmi.majesticlife.DataStructures.UserViewModel;
+import com.farazannajmi.majesticlife.MainMenuActivity;
 import com.farazannajmi.majesticlife.R;
 
 public class AccountManagementActivity extends AppCompatActivity
@@ -120,7 +122,8 @@ public class AccountManagementActivity extends AppCompatActivity
             }
             case R.id.AccountM_editAvatar_btn:
             {
-                //todo
+                Intent AvatsrShopIntent = new Intent(AccountManagementActivity.this, AvatarShopActivity.class);
+                startActivity(AvatsrShopIntent);
                 break;
             }
             default:

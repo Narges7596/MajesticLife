@@ -54,10 +54,12 @@ public class DataHolder
     public static ArrayList<Integer> FaaliatAvatars;
     public static ArrayList<Integer> SkillAvatars;
 
-    private static SQLiteDatabase database;
+    public static boolean IsDatabaseCreated = false;
 
     public static void InitialDataStructures()
     {
+        IsDatabaseCreated = false;
+
         FaaliatAvatars = new ArrayList<Integer>();
         FaaliatAvatars.add(R.drawable.ic_majestic_activities);
         FaaliatAvatars.add(R.drawable.ic_bag);
@@ -107,9 +109,23 @@ public class DataHolder
         SkillAvatars.add(R.drawable.ic_target);
     }
 
+    public static void LoadUser(FragmentActivity activity, LifecycleOwner owner)
+    {
+        Log.d("Data", "Loading User from Database");
+
+        //getting user:
+        UserViewModel userViewModel = ViewModelProviders.of(activity).get(UserViewModel.class);
+        userViewModel.getUser().observe(owner, new Observer<User>() {
+            @Override
+            public void onChanged(@Nullable User user) {
+                DataHolder.ThisUser = user;
+            }
+        });
+    }
+
     public static void LoadData(FragmentActivity activity, LifecycleOwner owner)
     {
-        Log.d("WorkFlow", "Loading data from Database");
+        Log.d("Data", "Loading data from Database");
 
         //getting user:
         UserViewModel userViewModel = ViewModelProviders.of(activity).get(UserViewModel.class);
@@ -165,21 +181,21 @@ public class DataHolder
             }
         });
 
-        //getting UserAvatar
-        AvatarViewModel avatarViewModel = ViewModelProviders.of(activity).get(AvatarViewModel.class);
-        avatarViewModel.getAvatar().observe(owner, new Observer<Avatar>() {
-            @Override
-            public void onChanged(@Nullable Avatar avatar) {
-                UserAvatar = avatar;
-            }
-        });
-
         //getting AvatarItems
         AvatarItemViewModel avatarItemViewModel = ViewModelProviders.of(activity).get(AvatarItemViewModel.class);
         avatarItemViewModel.getAvatarItems().observe(owner, new Observer<List<AvatarItem>>() {
             @Override
             public void onChanged(@Nullable List<AvatarItem> avatarItems) {
                 AvatarItems = (ArrayList) avatarItems;
+            }
+        });
+
+        //getting UserAvatar
+        AvatarViewModel avatarViewModel = ViewModelProviders.of(activity).get(AvatarViewModel.class);
+        avatarViewModel.getAvatar().observe(owner, new Observer<Avatar>() {
+            @Override
+            public void onChanged(@Nullable Avatar avatar) {
+                UserAvatar = avatar;
             }
         });
     }
