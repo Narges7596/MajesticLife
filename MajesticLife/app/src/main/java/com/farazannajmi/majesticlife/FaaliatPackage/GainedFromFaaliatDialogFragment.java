@@ -161,7 +161,7 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
 
                         LinearLayout row = new LinearLayout(view.getContext());
                         row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                        row.setOrientation(LinearLayout.HORIZONTAL);
+                        row.setOrientation(LinearLayout.VERTICAL);
                         row.setGravity(Gravity.RIGHT);
                         row.setGravity(Gravity.CENTER_HORIZONTAL);
                         row.setGravity(Gravity.CENTER_VERTICAL);
@@ -174,6 +174,13 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                         //skillName_tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                         skillName_tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
                         row.addView(skillName_tv);
+
+                        LinearLayout innerHorizontalLayout = new LinearLayout(view.getContext());
+                        innerHorizontalLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                        innerHorizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+                        innerHorizontalLayout.setGravity(Gravity.RIGHT);
+                        //innerHorizontalLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+                        innerHorizontalLayout.setGravity(Gravity.CENTER_VERTICAL);
 
                         RelativeLayout relativeLayout = new RelativeLayout(view.getContext());
                         relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
@@ -195,7 +202,7 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                             skillsLevelTv.add(skillLevel_tv);
                             relativeLayout.addView(skillLevel_tv);
 
-                        row.addView(relativeLayout);
+                        innerHorizontalLayout.addView(relativeLayout);
 
                         ProgressBar progressBar = new ProgressBar(view.getContext(), null, android.R.attr.progressBarStyleHorizontal);
                         LinearLayout.LayoutParams prog_params = new LinearLayout.LayoutParams(oneFifty, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -204,8 +211,9 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                         progressBar.setMax(100);
                         progressBar.setProgress(preSkillProgresses.get(i));
                         skillsProgressBars.add(progressBar);
-                        row.addView(progressBar);
+                        innerHorizontalLayout.addView(progressBar);
 
+                        row.addView(innerHorizontalLayout);
                         parentLayout.addView(row);
                         //endregion ------------------------------
                     }
