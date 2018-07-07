@@ -3,6 +3,7 @@ package com.farazannajmi.majesticlife.DataStructures;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.ArrayList;
@@ -18,9 +19,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
                 onDelete = CASCADE))
 public class Faaliat
 {
-    //public ArrayList<FaaliatSkill> SkillTimes;
-
-    @PrimaryKey
+    @PrimaryKey//(autoGenerate = true)
     @Nonnull
     @ColumnInfo(name = "Faaliat_ID")
     private int Faaliat_ID;
@@ -42,6 +41,9 @@ public class Faaliat
 
     @ColumnInfo(name = "User_ID")
     private int User_ID;
+
+    @Ignore
+    public ArrayList<FaaliatSkill> FaaliatSkills;
 
     @Nonnull
     public int getFaaliat_ID() {return Faaliat_ID;}

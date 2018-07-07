@@ -70,7 +70,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal)
             {
-                EditFaaliatActivity.thisFaaliatSkills.get(position).setRepetitionCount(newVal);
+                EditFaaliatActivity.thisFaaliat.FaaliatSkills.get(position).setRepetitionCount(newVal);
             }
         });
 
@@ -91,7 +91,7 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
                 }
                 else
                 {
-                    EditFaaliatActivity.thisFaaliatSkills.get(position).setSkill_ID(DataHolder.Skills.get(i).getSkill_ID());
+                    EditFaaliatActivity.thisFaaliat.FaaliatSkills.get(position).setSkill_ID(DataHolder.Skills.get(i).getSkill_ID());
                 }
             }
 
@@ -109,9 +109,9 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
             {
                 //delete in database:
                 FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(EditFaaliatActivity.appCompatActivity).get(FaaliatSkillViewModel.class);
-                faaliatSkillViewModel.delete(EditFaaliatActivity.thisFaaliatSkills.get(position));
+                faaliatSkillViewModel.delete(EditFaaliatActivity.thisFaaliat.FaaliatSkills.get(position));
 
-                EditFaaliatActivity.thisFaaliatSkills.remove(position);
+                EditFaaliatActivity.thisFaaliat.FaaliatSkills.remove(position);
 
                 EditFaaliatActivity.Skills_ListView_adapter.notifyDataSetChanged();
             }

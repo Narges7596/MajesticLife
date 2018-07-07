@@ -23,11 +23,7 @@ import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
-import com.farazannajmi.majesticlife.DataStructures.PlanCell;
-import com.farazannajmi.majesticlife.DataStructures.PlanCellViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Skill;
-import com.farazannajmi.majesticlife.DataStructures.SkillViewModel;
-import com.farazannajmi.majesticlife.DataStructures.User;
 import com.farazannajmi.majesticlife.R;
 
 import java.util.ArrayList;
@@ -40,7 +36,7 @@ public class EditFaaliatActivity extends AppCompatActivity
     public static Context context;
     public static AppCompatActivity appCompatActivity;
     public static Faaliat thisFaaliat;
-    public static ArrayList<FaaliatSkill> thisFaaliatSkills;
+    //public static ArrayList<FaaliatSkill> thisFaaliatSkills;
     public static ArrayAdapter<FaaliatSkill> Skills_ListView_adapter;
 
     public static ImageView Avatar_img;
@@ -69,21 +65,21 @@ public class EditFaaliatActivity extends AppCompatActivity
         //getting this current faaliat for editing:
         thisFaaliat = DataHolder.Faaliats.get(getIntent().getIntExtra("The_Faaliat", 0));
 
-        //getting FaaliatSkills:
-        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(this).get(FaaliatSkillViewModel.class);
-        faaliatSkillViewModel.getSkillsForFaaliat(thisFaaliat).observe(this, new Observer<List<FaaliatSkill>>() {
-            @Override
-            public void onChanged(@Nullable List<FaaliatSkill> faaliatSkills)
-            {
-                thisFaaliatSkills = (ArrayList) faaliatSkills;
+//        //getting FaaliatSkills:
+//        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(this).get(FaaliatSkillViewModel.class);
+//        faaliatSkillViewModel.getSkillsForFaaliat(thisFaaliat).observe(this, new Observer<List<FaaliatSkill>>() {
+//            @Override
+//            public void onChanged(@Nullable List<FaaliatSkill> faaliatSkills)
+//            {
+//                thisFaaliatSkills = (ArrayList) faaliatSkills;
 
-                //create our new array adapter
-                Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, thisFaaliatSkills);
-
-                //bind the list view with the custom adapter
-                Skills_ListView.setAdapter(Skills_ListView_adapter);
-            }
-        });
+//                //create our new array adapter
+//                Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, faaliatSkills);
+//
+//                //bind the list view with the custom adapter
+//                Skills_ListView.setAdapter(Skills_ListView_adapter);
+//            }
+//        });
 
         //region ------------ getting UI elements and setting right values: ------------
         Avatar_img = (ImageView) findViewById(R.id.EditOneF_avatar_img);
@@ -151,11 +147,11 @@ public class EditFaaliatActivity extends AppCompatActivity
         });
         //endregion ------------------------
 
-//        //create our new array adapter
-//        Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, thisFaaliatSkills);
-//
-//        //bind the list view with the custom adapter
-//        Skills_ListView.setAdapter(Skills_ListView_adapter);
+        //create our new array adapter
+        Skills_ListView_adapter = new EditFaaliatSkillsListItemArrayAdapter(context, thisFaaliat.FaaliatSkills);
+
+        //bind the list view with the custom adapter
+        Skills_ListView.setAdapter(Skills_ListView_adapter);
         //endregion ------------------------
     }
 
@@ -172,13 +168,14 @@ public class EditFaaliatActivity extends AppCompatActivity
             {
                 //region ---------- addskill_btn ----------
                 FaaliatSkill faaliatSkill = null;
+
                 //finding a new skill:
                 for(int i = 0; i < DataHolder.Skills.size(); i++)
                 {
                     boolean found = false;
-                    for(int j = 0; j < thisFaaliatSkills.size(); j++)
+                    for(int j = 0; j < thisFaaliat.FaaliatSkills.size(); j++)
                     {
-                        if(i == thisFaaliatSkills.get(j).getSkill_ID())
+                        if(i == thisFaaliat.FaaliatSkills.get(j).getSkill_ID())
                         {
                             found = true;
                         }
@@ -198,7 +195,7 @@ public class EditFaaliatActivity extends AppCompatActivity
                 }
                 else
                 {
-                    thisFaaliatSkills.add(faaliatSkill);
+                    thisFaaliat.FaaliatSkills.add(faaliatSkill);
 
                     //saving FaaliatSkill in Database:
                     FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(this).get(FaaliatSkillViewModel.class);
@@ -276,10 +273,10 @@ public class EditFaaliatActivity extends AppCompatActivity
                 FaaliatViewModel faaliatViewModel = ViewModelProviders.of(this).get(FaaliatViewModel.class);
                 faaliatViewModel.update(thisFaaliat);
 
-                for(int skillCounter = 0; skillCounter < thisFaaliatSkills.size(); skillCounter++)
+                for(int skillCounter = 0; skillCounter < thisFaaliat.FaaliatSkills.size(); skillCounter++)
                 {
                     FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(this).get(FaaliatSkillViewModel.class);
-                    faaliatSkillViewModel.update(thisFaaliatSkills.get(skillCounter));
+                    faaliatSkillViewModel.update(thisFaaliat.FaaliatSkills.get(skillCounter));
                 }
 
                 //returning
@@ -309,9 +306,9 @@ public class EditFaaliatActivity extends AppCompatActivity
     public static boolean IsSkillDuplicated(int sillIndex)
     {
         boolean isDuplicated = false;
-        for(int i = 0; i < thisFaaliatSkills.size(); i++)
+        for(int i = 0; i < thisFaaliat.FaaliatSkills.size(); i++)
         {
-            if(sillIndex == thisFaaliatSkills.get(i).getSkill_ID())
+            if(sillIndex == thisFaaliat.FaaliatSkills.get(i).getSkill_ID())
             {
                 isDuplicated = true;
             }

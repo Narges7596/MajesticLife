@@ -43,7 +43,6 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
     private Context context;
     private Activity activity;
     private ArrayList<Faaliat> faaliatList;
-    //static ArrayList<FaaliatSkill> faaliatSkills;
     static String sk_txt;
 
     public FaaliatsListItemArrayAdapter(@NonNull Context context, @NonNull ArrayList<Faaliat> objects, @Nonnull Activity activity)
@@ -86,25 +85,17 @@ public class FaaliatsListItemArrayAdapter extends ArrayAdapter<Faaliat>
         xp_txt.setText(Integer.toString(faaliat.getXpCount()));
 
 
-        //getting FaaliatSkills and setting it in UI:
+        //setting UI:
         final View finalConvertView = convertView;
-        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of((FragmentActivity) activity).get(FaaliatSkillViewModel.class);
-        faaliatSkillViewModel.getSkillsForFaaliat(faaliat).observe((LifecycleOwner) context, new Observer<List<FaaliatSkill>>() {
-            @Override
-            public void onChanged(@Nullable List<FaaliatSkill> skills) {
-                ArrayList<FaaliatSkill> faaliatSkills = (ArrayList) skills;
 
-                String sk_txt = "";
-                for (int i = 0; i < faaliatSkills.size(); i++)
-                {
-                    sk_txt += "+" + faaliatSkills.get(i).getRepetitionCount() + " " +
-                            DataHolder.Skills.get(faaliatSkills.get(i).getSkill_ID()).getSkill_Name() + "\n";
-                }
-
-                TextView skills_txt = (TextView) finalConvertView.findViewById(R.id.listItem_faaliat_skills_txt);
-                skills_txt.setText(sk_txt);
-            }
-        });
+        String sk_txt = "";
+        for (int i = 0; i < faaliat.FaaliatSkills.size(); i++)
+        {
+            sk_txt += "+" + faaliat.FaaliatSkills.get(i).getRepetitionCount() + " " +
+                    DataHolder.Skills.get(faaliat.FaaliatSkills.get(i).getSkill_ID()).getSkill_Name() + "\n";
+        }
+        TextView skills_txt = (TextView) finalConvertView.findViewById(R.id.listItem_faaliat_skills_txt);
+        skills_txt.setText(sk_txt);
 
         //get the image associated with this property
         avatar_img.setImageResource(faaliat.getAvatar_ResIndex());

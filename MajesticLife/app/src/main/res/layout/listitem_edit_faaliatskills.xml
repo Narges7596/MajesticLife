@@ -24,7 +24,7 @@
     <NumberPicker
         android:id="@+id/listItem_editfaaliatskill_times_numberPicker"
         android:layout_width="50dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_toLeftOf="@+id/listItem_editfaaliatskill_remove_btn"
         android:layout_centerInParent="true"/>
 

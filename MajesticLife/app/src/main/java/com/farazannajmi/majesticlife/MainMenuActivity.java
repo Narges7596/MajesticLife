@@ -32,8 +32,8 @@ public class MainMenuActivity extends AppCompatActivity
 {
     public static AppManager TheAppManager;
 
-    public ImageView UserAvatar_img;
     public TextView Username_txt;
+    public TextView Coins_txt;
 
     public TextView XpLevel_txt;
     public TextView HpLevel_txt;
@@ -66,6 +66,7 @@ public class MainMenuActivity extends AppCompatActivity
 
         //region ----------- getting UI elements -----------
         Username_txt = (TextView) findViewById(R.id.Main_UserName_txt);
+        Coins_txt = (TextView) findViewById(R.id.Main_Coins_txt);
         XpLevel_txt = findViewById(R.id.Main_XpLevel_txt);
         HpLevel_txt = findViewById(R.id.Main_HpLevel_txt);
         SpLevel_txt = findViewById(R.id.Main_SpLevel_txt);
@@ -90,6 +91,7 @@ public class MainMenuActivity extends AppCompatActivity
         //region ----------- load or initial data -----------
 
         DataHolder.LoadData(this, this);
+        DataHolder.LoadFaaliatSkills(this, this);
 
         //if it is the first time app runs, the FirstTime value becomes true:
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -321,6 +323,7 @@ public class MainMenuActivity extends AppCompatActivity
     public void InitialUIElements()
     {
         Username_txt.setText(DataHolder.ThisUser.getUsername());
+        Coins_txt.setText(Integer.toString(DataHolder.ThisUser.getCoins()));
 
         XpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getXpLevel()));
         HpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getHpLevel()));

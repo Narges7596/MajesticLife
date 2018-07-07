@@ -18,6 +18,7 @@ import com.farazannajmi.majesticlife.DataStructures.Faaliat;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatRepetitions;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatRepetitionsViewModel;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
+import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
 import com.farazannajmi.majesticlife.DataStructures.MajesticLifeRoomDatabase;
 import com.farazannajmi.majesticlife.DataStructures.PlanCell;
@@ -198,6 +199,29 @@ public class DataHolder
                 UserAvatar = avatar;
             }
         });
+    }
+
+    public static void LoadFaaliatSkills(FragmentActivity activity, LifecycleOwner owner)
+    {
+        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(activity).get(FaaliatSkillViewModel.class);
+
+        for(int faaliatCounter = 0; faaliatCounter < Faaliats.size(); faaliatCounter++)
+        {
+            faaliatSkillViewModel.getSkillsForFaaliat(Faaliats.get(faaliatCounter)).observe(owner, new Observer<List<FaaliatSkill>>() {
+                @Override
+                public void onChanged(@Nullable List<FaaliatSkill> faaliatSkills)
+                {
+                    if(faaliatSkills.size() != 0)
+                    {
+                        for (int i = 0; i < Faaliats.size(); i++)
+                        {
+                            if (Faaliats.get(i).getFaaliat_ID() == faaliatSkills.get(0).getFaaliat_ID())
+                                Faaliats.get(i).FaaliatSkills = (ArrayList) faaliatSkills;
+                        }
+                    }
+                }
+            });
+        }
     }
 
 

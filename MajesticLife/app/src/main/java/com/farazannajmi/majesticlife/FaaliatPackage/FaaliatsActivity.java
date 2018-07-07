@@ -52,6 +52,12 @@ public class FaaliatsActivity extends AppCompatActivity
         //getting UI elements
         faaliats_listView = (ListView) findViewById(R.id.FaaliatsActivity_ListView);
 
+
+        for(int faaliatCounter = 0; faaliatCounter < DataHolder.Faaliats.size(); faaliatCounter++)
+        {
+            if(DataHolder.Faaliats.get(faaliatCounter).FaaliatSkills == null)
+                DataHolder.Faaliats.get(faaliatCounter).FaaliatSkills = new ArrayList<>();
+        }
         //create our new array adapter
         faaliats_listView_adapter = new FaaliatsListItemArrayAdapter(this, DataHolder.Faaliats, this);
         //bind the list view with the custom adapter
@@ -71,6 +77,7 @@ public class FaaliatsActivity extends AppCompatActivity
         {
             Faaliat newFaaliat = new Faaliat(DataHolder.Faaliats.size(), "new activity", DataHolder.FaaliatAvatars.get(0),
                     R.color.faaliatsColor1, 0, 0, 0, DataHolder.ThisUser.getUser_ID());
+            newFaaliat.FaaliatSkills = new ArrayList<>();
             DataHolder.Faaliats.add(newFaaliat);
 
             //adding skill in database:
