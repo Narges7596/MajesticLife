@@ -58,6 +58,7 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
     private static ArrayList<Integer> preSkillsLevels = new ArrayList<>();
     private static ArrayList<TextView> skillsLevelTv = new ArrayList<>();
 
+    private TextView Coins_txt;
     private TextView XpLevel_txt;
     private TextView HpLevel_txt;
     private TextView SpLevel_txt;
@@ -94,6 +95,7 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
         final View view = inflater.inflate(R.layout.dialog_gainedfromfaaliat, null);
 
         //getting UI elements:
+        Coins_txt = view.findViewById(R.id.gainedD_coins_txt);
         XpLevel_txt = view.findViewById(R.id.gainedD_XpLevel_txt);
         HpLevel_txt = view.findViewById(R.id.gainedD_HpLevel_txt);
         SpLevel_txt = view.findViewById(R.id.gainedD_SpLevel_txt);
@@ -106,6 +108,7 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
         parentLayout = view.findViewById(R.id.gainedD_parent);
 
         //setting UI elements values:
+        Coins_txt.setText("+0");
         XpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getXpLevel()));
         HpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getHpLevel()));
         SpLevel_txt.setText(Integer.toString(DataHolder.ThisUser.getSpLevel()));
@@ -133,6 +136,12 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                         {
                             skill.setLevel(skill.getLevel() + 1);
                             newProgress = newProgress - 100;
+
+                            //adding coin reward:
+                            DataHolder.ThisUser.setCoins(DataHolder.ThisUser.getCoins() + DataHolder.LevelUpReward);
+                            //saving user
+                            UserViewModel userViewModel = ViewModelProviders.of(FaaliatsActivity.appCompatActivity).get(UserViewModel.class);
+                            userViewModel.update(DataHolder.ThisUser);
                         }
                         else if((newProgress < 0) && (skill.getLevel() == 1))
                         {
@@ -305,6 +314,8 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                     {
                         skillsLevelTv.get(skillCounter).setText(Integer.toString(s.getLevel()));
                         skillsLevelTv.get(skillCounter).setTextColor(ContextCompat.getColor(FaaliatsActivity.context, R.color.colorAccent));
+
+                        Coins_txt.setText("+" + DataHolder.LevelUpReward);
                     }
                     skillsProgressBars.get(skillCounter).setProgress(s.getProgress());
                     ObjectAnimator animationskill = ObjectAnimator.ofInt(skillsProgressBars.get(skillCounter), "progress", preSkillProgresses.get(skillCounter), s.getProgress());

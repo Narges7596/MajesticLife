@@ -42,6 +42,8 @@ import java.util.List;
 
 public class DataHolder
 {
+    public static int LevelUpReward = 50;
+
     public static User ThisUser;
     public static BacktoryUser CurrentBacktoryUser;
     public static ArrayList<Faaliat> Faaliats;

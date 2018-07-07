@@ -56,7 +56,7 @@ public class AvatarShopListItemArrayAdapter extends ArrayAdapter<AvatarItem>
 
         ImageView avatar_img = (ImageView) convertView.findViewById(R.id.listItem_avaShop_img);
         TextView price_txt = (TextView) convertView.findViewById(R.id.listItem_avaShop_price_txt);
-        Button buy_btn = (Button) convertView.findViewById(R.id.listItem_avaShop_btn);
+        final Button buy_btn = (Button) convertView.findViewById(R.id.listItem_avaShop_btn);
 
         //setting info in UI:
         price_txt.setText("x " + avatarItem.getPrice());
@@ -80,6 +80,7 @@ public class AvatarShopListItemArrayAdapter extends ArrayAdapter<AvatarItem>
                 {
                     if(DataHolder.ThisUser.getCoins() >= avatarItem.getPrice())
                     {
+                        buy_btn.setText("Select");
                         DataHolder.ThisUser.setCoins(DataHolder.ThisUser.getCoins() - avatarItem.getPrice());
                         AvatarShopActivity.coins_txt.setText(Integer.toString((DataHolder.ThisUser.getCoins())));
                         avatarItem.setIsBought(true);
