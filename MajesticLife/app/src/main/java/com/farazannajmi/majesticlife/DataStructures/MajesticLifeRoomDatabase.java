@@ -207,14 +207,14 @@ public abstract class MajesticLifeRoomDatabase extends RoomDatabase
                 //no initial FaaliatRepetitions
                 //todo test:
                 faaliatRepetitionsDao.deleteAll();
-                FaaliatRepetitions fr1 = new FaaliatRepetitions(0, 1, "2018/6/10", 1);
-                FaaliatRepetitions fr2 = new FaaliatRepetitions(0, 2, "2018/6/11", 3);
-                FaaliatRepetitions fr3 = new FaaliatRepetitions(0, 3, "2018/6/12", 2);
-                FaaliatRepetitions fr4 = new FaaliatRepetitions(0, 4, "2018/6/13", 5);
-                FaaliatRepetitions fr5 = new FaaliatRepetitions(0, 6, "2018/6/15", 3);
-                FaaliatRepetitions fr6 = new FaaliatRepetitions(0, 1, "2018/6/17", 1);
-                FaaliatRepetitions fr7 = new FaaliatRepetitions(0, 3, "2018/6/19", 1);
-                FaaliatRepetitions fr8 = new FaaliatRepetitions(0, 4, "2018/6/20", 2);
+                FaaliatRepetitions fr1 = new FaaliatRepetitions(0, 1, "2018/6/28", 1);
+                FaaliatRepetitions fr2 = new FaaliatRepetitions(0, 2, "2018/6/29", 3);
+                FaaliatRepetitions fr3 = new FaaliatRepetitions(0, 3, "2018/6/30", 2);
+                FaaliatRepetitions fr4 = new FaaliatRepetitions(0, 4, "2018/6/31", 5);
+                FaaliatRepetitions fr5 = new FaaliatRepetitions(0, 6, "2018/7/2", 3);
+                FaaliatRepetitions fr6 = new FaaliatRepetitions(0, 1, "2018/7/4", 1);
+                FaaliatRepetitions fr7 = new FaaliatRepetitions(0, 3, "2018/7/6", 1);
+                FaaliatRepetitions fr8 = new FaaliatRepetitions(0, 4, "2018/7/7", 2);
                 faaliatRepetitionsDao.insert(fr1);
                 faaliatRepetitionsDao.insert(fr2);
                 faaliatRepetitionsDao.insert(fr3);

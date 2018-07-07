@@ -225,41 +225,4 @@ public class DataHolder
             });
         }
     }
-
-
-    public static void SaveData (Activity activity)
-    {
-        //todo
-
-        //------------a variable:
-        //public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
-        //private PlanCellViewModel mPlanCellViewModel;
-        //------------in onCreat:
-        //mPlanCellViewModel = ViewModelProviders.of(this).get(PlanCellViewModel.class);
-        //
-        //mPlanCellViewModel.getAllWords().observe(this, new Observer<List<PlanCell>>() {
-        //    @Override
-        //    public void onChanged(@Nullable final List<PlanCell> words) {
-        //        // Update the cached copy of the words in the adapter.
-        //        adapter.setWords(words);
-        //    }
-        //});
-
-        //-------------in onActivityResult:
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-//            Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
-//            mWordViewModel.insert(word);
-//        } else {
-//            Toast.makeText(
-//                    getApplicationContext(),
-//                    R.string.empty_not_saved,
-//                    Toast.LENGTH_LONG).show();
-//        }
-        //-----------in OnClick:
-//        Intent intent = new Intent(MainActivity.this, NewWordActivity.class);
-//        startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
-
-    }
 }
