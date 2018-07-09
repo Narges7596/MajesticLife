@@ -16,6 +16,7 @@ import com.farazannajmi.majesticlife.R;
 
 public class SkillsActivity extends AppCompatActivity
 {
+    public static AppCompatActivity appCompatActivity;
     public static Context context;
     public static ArrayAdapter<Skill> skill_gridview_adapter;
 
@@ -27,6 +28,7 @@ public class SkillsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skills);
         context = getApplicationContext();
+        appCompatActivity = this;
 
         //getting UI elements
         skills_gridview = (GridView) findViewById(R.id.SkillsActivity_gridview);
@@ -56,6 +58,10 @@ public class SkillsActivity extends AppCompatActivity
 
     public static void DeleteSkill(int skillIndex)
     {
+        //deleting skill from database:
+        SkillViewModel skillViewModel = ViewModelProviders.of(appCompatActivity).get(SkillViewModel.class);
+        skillViewModel.delete(DataHolder.Skills.get(skillIndex));
+
         DataHolder.Skills.remove(skillIndex);
         skill_gridview_adapter.notifyDataSetChanged();
     }

@@ -117,13 +117,13 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
         SpLevel_progBar.setProgress(DataHolder.ThisUser.getSP());
 
         //getting FaaliatSkills and setting it in UI:
-        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(FaaliatsActivity.appCompatActivity).get(FaaliatSkillViewModel.class);
-        faaliatSkillViewModel.getSkillsForFaaliat(ThisFaaliat).observe((LifecycleOwner) FaaliatsActivity.context, new Observer<List<FaaliatSkill>>() {
-            @Override
-            public void onChanged(@Nullable List<FaaliatSkill> skills) {
+//        FaaliatSkillViewModel faaliatSkillViewModel = ViewModelProviders.of(FaaliatsActivity.appCompatActivity).get(FaaliatSkillViewModel.class);
+//        faaliatSkillViewModel.getSkillsForFaaliat(ThisFaaliat).observe((LifecycleOwner) FaaliatsActivity.context, new Observer<List<FaaliatSkill>>() {
+//            @Override
+//            public void onChanged(@Nullable List<FaaliatSkill> skills) {
                 if(!gotAllFaaliatSkills)
                 {
-                    ArrayList<FaaliatSkill> faaliatSkills = (ArrayList) skills;
+                    ArrayList<FaaliatSkill> faaliatSkills = ThisFaaliat.FaaliatSkills;
 
                     for (int i = 0; i < faaliatSkills.size(); i++)
                     {
@@ -219,8 +219,8 @@ public class GainedFromFaaliatDialogFragment extends DialogFragment
                     }
                     gotAllFaaliatSkills = true;
                 }
-            }
-        });
+//            }
+//        });
 
 
         final Handler handler = new Handler();

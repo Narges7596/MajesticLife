@@ -91,7 +91,8 @@ public class EditFaaliatSkillsListItemArrayAdapter extends ArrayAdapter<FaaliatS
                 }
                 else
                 {
-                    EditFaaliatActivity.thisFaaliat.FaaliatSkills.get(position).setSkill_ID(DataHolder.Skills.get(i).getSkill_ID());
+                    int newID = DataHolder.Skills.get(i).getSkill_ID();
+                    EditFaaliatActivity.thisFaaliat.FaaliatSkills.get(position).setSkill_ID(newID);
                 }
             }
 
