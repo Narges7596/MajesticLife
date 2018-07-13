@@ -1,10 +1,8 @@
 package com.farazannajmi.majesticlife;
 
-import android.app.Activity;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -20,11 +18,9 @@ import com.farazannajmi.majesticlife.DataStructures.FaaliatRepetitionsViewModel;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkill;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatSkillViewModel;
 import com.farazannajmi.majesticlife.DataStructures.FaaliatViewModel;
-import com.farazannajmi.majesticlife.DataStructures.MajesticLifeRoomDatabase;
 import com.farazannajmi.majesticlife.DataStructures.PlanCell;
 import com.farazannajmi.majesticlife.DataStructures.PlanCellViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Quest;
-import com.farazannajmi.majesticlife.DataStructures.QuestSkill;
 import com.farazannajmi.majesticlife.DataStructures.QuestViewModel;
 import com.farazannajmi.majesticlife.DataStructures.Skill;
 import com.farazannajmi.majesticlife.DataStructures.SkillViewModel;

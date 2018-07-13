@@ -1,6 +1,5 @@
 package com.farazannajmi.majesticlife;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.backtory.java.internal.BacktoryCallBack;
